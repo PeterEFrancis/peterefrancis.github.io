@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Peter Francis</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <!-- do not cache this page -->
+  <meta http-equiv="cache-control" content="max-age=0"/>
+  <meta http-equiv="cache-control" content="no-cache"/>
+  <meta http-equiv="expires" content="0"/>
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+  <meta http-equiv="pragma" content="no-cache"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  <script src="decrypt.js"></script>
+  <!-- Fonts for switcher -->
+  <!-- Serif -->
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Bitter|Bree+Serif|Crete+Round|Crimson+Text|Domine|EB+Garamond|Grenze|Libre+Baskerville|Libre+Caslon+Display|Libre+Caslon+Text|Lora|Merriweather|Noto+Serif|PT+Serif|Playfair+Display|Roboto+Slab|Slabo+27px|Source+Serif+Pro|Vollkorn&display=swap" rel="stylesheet">
+  <!-- Display -->
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Alfa+Slab+One|Baloo+Bhaina|Bangers|Bowlby+One+SC|Bungee|Cabin+Sketch|Emilys+Candy|Faster+One|Lobster|Monoton|Mountains+of+Christmas|Nixie+One|Press+Start+2P|Righteous|Rye|Saira+Stencil+One|Shojumaru|Special+Elite|Titan+One&display=swap" rel="stylesheet">
+  <!-- Sans-serif -->
+  <link href="https://fonts.googleapis.com/css?family=Blinker|Lato|Lexend+Exa|Montserrat|Muli|Noto+Sans|Nunito|Open+Sans|Open+Sans+Condensed:300|Oswald|PT+Sans|Poppins|Raleway|Red+Hat+Display|Red+Hat+Text|Roboto|Roboto+Condensed|Source+Sans+Pro|Titillium+Web|Ubuntu&display=swap" rel="stylesheet">
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    * {
+      line-height: 1.35em;
+      font-size: 12pt;
+    }
+
+    h4 {
+      font-weight: bold;
+    }
+
+    h5 {
+      font-size: 12pt;
+      font-weight: bold;
+      margin-top: 25px;
+    }
+
+    .group {
+      padding-bottom: 35px;
+    }
+
+    td {
+      font-size: 10pt;
+    }
+
+    .serif {
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    }
+
+    .sansSerif {
+      font-family: sans-serif;
+    }
+
+    .display {
+      font-family: sans-serif;
+    }
+
+  </style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button> -->
+      <a class="navbar-brand" href="javascript:changeColor()" id="linkForColorChange"><i class="fa fa-paint-brush"></i></a>
+      <a class="navbar-brand" href="javascript:changeFont()" id="linkForFontChange"><i class="fa fa-font"></i></a>
+    </div>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div> -->
+  </div>
+</nav>
+
+<div class="jumbotron" id="colorChanging">
+  <div class="container text-center">
+    <h1 class="textColorChanging" id="display">Peter E. Francis</h1>
+    <em><p class="textColorChanging">A collection of projects from diverse motivations</p></em>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="group">
+        <h4 class="serif">Mathematics, CS</h4>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/?viewer=share/" target="_blank" class="sansSerif">New Projects and Problems</a><br><br>
+        <a href="https://ifs-fractal-generator.herokuapp.com" target="_blank" class="sansSerif">IFS Fractal Generator</a><br><br>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/Final%20Paper/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif">The Maximum Size of Weak (<i>k</i>, <i>l</i>)-Sum-Free Sets</a><br><br>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/presentation/presentation.pdf?viewer=raw" target="_blank" class="sansSerif">The Maximum Size of Weak (<i>k</i>, <i>l</i>)-Sum-Free Sets Presentation</a><br><br>
+        <a href="https://share.cocalc.com/share/fe1b52d3-0a65-4731-a145-f98a9f424ba5/Mathematical%20Techniques%20for%20Physicists.pdf?viewer=raw" target="_blank" class="sansSerif"><em>Mathematical Techniques for Physicists</em></a><br><br>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/Sample%20Files%20and%20Templates/?viewer=share/" target="_blank" class="sansSerif">Sample LaTeX Files</a><br><br>
+        <!-- <a href="http://matthewtorrence.com/ACFrontend/index.html" target="_blank">AddComb</a> -->
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="group">
+        <h4 class="serif">Philosophy, Literature, Music</h4>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Philosophy%20233/Book/Book.pdf?viewer=raw" target="_blank" class="sansSerif"><em>What is the Scientific Method?</em></a><br><br>
+        <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a" target="_blank" class="sansSerif">Noteflight</a><br><br>
+        <button data-toggle="modal" data-target="#TheYearThatEveryoneForgot_modal" class="btn" style="padding:0px">
+          <a class="sansSerif"><i class="fa fa-lock"></i> <em>The Year That Everyone Forgot</em></a>
+        </button><br><br>
+        <!-- Modal -->
+        <div id="TheYearThatEveryoneForgot_modal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter Passphrase</h4>
+              </div>
+              <div class="modal-body">
+                <input id="TheYearThatEveryoneForgot_input" type="password" name="password" placeholder="passphrase" autofocus/>
+                <button type="button" class="btn btn-default" onclick="show('TheYearThatEveryoneForgot', 'a817abb7c593b14528692f37e576c980784b5f60be1c5a56d7b4173529c6d2129fb060994b7a20c5591a77f092725874ca2c9eae501b3023409fe9799871527eSe/0RjC2eC6LkvHievs+A2ePu0YgZuwJaY6nhzh9c+mSFXccokj04wsUd6byGPWDTooQUkNPcaRo9mzF1/lH0IiLYd313PjKb8EiIgvnKg9LjFdogXKWUCkUgicCjwvvV/0fn36V6y2YOXyUWpSR/qrIA4m40OdLw9bCegGhQcMrzKemzR+AebSq6BZslkS5');"/>Submit</button>
+                <a style="margin-left:20px;" href="#" id="TheYearThatEveryoneForgot_link" target="_blank"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button data-toggle="modal" data-target="#AShortMelodytotheEnd_modal" class="btn" style="padding:0px">
+          <a class="sansSerif"><i class="fa fa-lock"></i> <em>A Short Melody to the End</em></a>
+        </button><br><br>
+        <!-- Modal -->
+        <div id="AShortMelodytotheEnd_modal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter Passphrase</h4>
+              </div>
+              <div class="modal-body">
+                <input id="AShortMelodytotheEnd_input" type="password" name="password" placeholder="passphrase" autofocus/>
+                <button type="button" class="btn btn-default" onclick="show('AShortMelodytotheEnd', '1ab70715b12fb3fbe1d13fdfbb7a591c4d7288f9316296a6a8f6288b2f39138b618d03816b7638369b241fc5c4e0ef33cd9a422493604089432725fa5ca65d7a1ODwR0rs0RDApYPH5hw0oMizCahvlEtBW2Gx79fH5mGwEuoysugDvpzxF9IAjSEMf/QAQSquQXP4UQIN4OfFcNAyTaPABelZrtw+3hOZxeW/BEXMEwMPbgWyeenNDwTOOGuHxd23dSUJhXylp1pLVrXhUTuiSpf7ruGFH7DBkGbYzb7RuZM7OdFZg2HFRe96HjBABfMToCZNu6mvxAQ5cjs4ThFm+ydUWZ0Fu9B+9Ys=');"/>Submit</button>
+                <a style="margin-left:20px;" href="#" id="AShortMelodytotheEnd_link" target="_blank"></a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="group">
+        <h4 class="serif">Just For Fun</h4>
+        <a href="HarryPotterFullCollection" target="_blank" class="sansSerif">Harry Potter Full Collection</a><br><br>
+        <a href="https://play-quadegories.herokuapp.com/" target="_blank" class="sansSerif">Play Quadegories!&trade;</a><br><br>
+        <a href="http://poetrymaster.com" target="_blank" class="sansSerif">Poetry Master</a><br><br>
+        <a href="HOSS" target="_blank" class="sansSerif">Hoss's County Corner</a><br><br>
+        <a href="Zelcer" target="_blank" class="sansSerif">Zelcer's Homepage</a><br><br>
+        <a href="https://troop616.github.io/HP-Scouting-Association" target="_blank" class="sansSerif">HP Scouting Association</a><br><br>
+        <a href="files/ESDAR.pdf" target="_blank" class="sansSerif">E.S.D.A.R.</a><br><br>
+
+
+        <!-- <a href="Mitch" target="_blank">Fenton Knives</a><br><br> -->
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="group">
+        <h4 class="serif">PEF Photography</h4>
+        <a href="http://www.instagram.com/pef_photography" target="_blank" class="sansSerif"><i class="fa fa-instagram"></i> Instagram Page</a>
+        <br>
+        <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif"><i class="fa fa-flickr"></i> Flickr Page</a>
+        <br>
+        <h5>Rates</h5>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>1-2</td>
+              <td>$10 each</td>
+            </tr>
+            <tr>
+              <td>3-9</td>
+              <td>$8.50 each</td>
+            </tr>
+            <tr>
+              <td>10+</td>
+              <td>$7.50 each</td>
+            </tr>
+            <tr>
+              <td>unlimited</td>
+              <td>$150/hour</td>
+            </tr>
+          </tbody>
+        </table>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+      </div>
+    </div>
+
+  </div>
+</div><br>
+
+
+<footer class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Peter E. Francis</h2>
+        <em>A collection of projects from diverse motivations</em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <img src="logo.png" style="width:120px; padding:20px"/>
+      </div>
+      <div class="col-md-3">
+        <h5>Personal</h5>
+        <p><a href="https://github.com/francisp336" target="_blank"><i class="fa fa-github"></i> francisp336</a></p>
+        <p><a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/Personal/Resume/resume.pdf?viewer=raw" target="_blank"><i class="fa fa-file-text-o"></i> Resume</a></p>
+        <p><a href="http://public.gettysburg.edu/~franpe02/files/" target="_blank"><i class="fa fa-archive"></i> Raw Files</a></p>
+      </div>
+      <div class="col-md-4">
+        <h5>Contact</h5>
+        <p><a href="mailto:franpe02@gettysburg.edu"><i class="fa fa-envelope-o"></i> franpe02@gettysburg.edu</a></p>
+        <p>Gettysburg College CB#893<br>
+           300 N Washington Street<br>
+           Gettysburg, PA 17325-1400
+        </p>
+      </div>
+
+    </div>
+    <div class="row" style="margin-top:50px;">
+      <div class="col-xs-12">
+        <p class="text-center" style="font-size:8pt">&copy; 2019</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script>
+
+function pow(a,b) {
+  return a ** b
+}
+
+function changeColor() {
+  // Choose random color
+  var red = Math.floor((Math.random() * 255));
+  var green = Math.floor((Math.random() * 255));
+  var blue = Math.floor((Math.random() * 255));
+  // color string
+  var color = 'rgb(' + red + ',' + green + ',' + blue + ')'
+  // Set the background color
+  document.getElementById('colorChanging').style.backgroundColor = color;
+  // Set the text color
+  var textColor = getContrastColor(red,green,blue);
+  var elements = document.getElementsByClassName('textColorChanging');
+  elements[0].style.color = textColor;
+  elements[1].style.color = textColor;
+}
+
+
+
+function getContrastColor(red, green, blue){
+  var L1 = 0.2126 * pow(red / 255, 2.2) + 0.7152 * pow(green / 255, 2.2) +  0.0722 * pow(blue / 255, 2.2);
+  var contrastRatio = 0;
+  if (L1 > 0) {
+      contrastRatio = parseInt(String((L1 + 0.05) / (0.05)));
+  } else {
+      contrastRatio = parseInt(String((0.05) / (L1 + 0.05)));
+  }
+  // If contrast is more than 5, return black
+  if (contrastRatio > 5) {
+      return '#000000';
+  } else {
+      // if not, return white
+      return '#FFFFFF';
+  }
+}
+
+
+function changeFont() {
+  // serif
+  var serifOptions = ['Merriweather', 'Roboto Slab', 'Libre Caslon Text', 'Slabo 27px',
+                 'Libre Caslon Display', 'PT Serif', 'Lora', 'Playfair Display',
+                 'Noto Serif', 'Grenze', 'Crimson Text', 'Libre Baskerville',
+                 'Bree Serif', 'Source Serif Pro', 'Arvo', 'Bitter', 'EB Garamond',
+                 'Domine', 'Vollkorn', 'Crete Round'];
+  var serifElements = document.getElementsByClassName("serif");
+  var serifFont = serifOptions[Math.floor(Math.random() * (serifOptions.length))];
+  for (var i = 0; i < serifElements.length; i++) {
+    serifElements[i].style.fontFamily = serifFont;
+  }
+
+  // sans serif
+  var sansSerifOptions = ['Blinker', 'Lato', 'Lexend Exa', 'Montserrat', 'Muli',
+                          'Noto Sans', 'Nunito', 'Open Sans', 'Open Sans Condensed',
+                          'Oswald', 'PT Sans', 'Poppins', 'Raleway',
+                          'Red Hat Display', 'Red Hat Text', 'Roboto',
+                          'Roboto Condensed', 'Source Sans Pro', 'Titillium Web', 'Ubuntu']
+  var sansSerifElements = document.getElementsByClassName("sansSerif");
+  var sansSerifFont = sansSerifOptions[Math.floor(Math.random() * (sansSerifOptions.length))];
+  for (var i = 0; i < sansSerifElements.length; i++) {
+    sansSerifElements[i].style.fontFamily = sansSerifFont;
+  }
+
+  // Display
+  var displayOptions = ['Abril Fatface', 'Alfa Slab One', 'Baloo Bhaina', 'Bangers',
+                        'Bowlby One SC', 'Bungee', 'Cabin Sketch', 'Emilys Candy',
+                        'Faster One', 'Lobster', 'Monoton', 'Mountains of Christmas',
+                        'Nixie One', 'Press Start 2P', 'Righteous', 'Rye',
+                        'Saira Stencil One', 'Shojumaru', 'Special Elite', 'Titan One']
+  document.getElementById('display').style.fontFamily = displayOptions[Math.floor(Math.random() * (displayOptions.length))];
+
+}
+
+
+
+</script>
+
+
+</html>
