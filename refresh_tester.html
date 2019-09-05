@@ -1,7 +1,11 @@
 <html>
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="refresh" content="300">
-    
+
   <!-- do not cache this page -->
   <meta http-equiv="cache-control" content="max-age=0"/>
   <meta http-equiv="cache-control" content="no-cache"/>
@@ -10,6 +14,31 @@
   <meta http-equiv="pragma" content="no-cache"/>
 </head>
 <body>
-  <iframe src="https://ifs-fractal-generator.herokuapp.com/" width="50%" height="500px"></iframe>
-  <iframe src="https://play-quadegories.herokuapp.com/" width="50%" height="500px"></iframe>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4">
+        <iframe src="https://ifs-fractal-generator.herokuapp.com/" width="100%" height="300px"></iframe>
+      </div>
+      <div class="col-lg-4">
+        <iframe src="https://ifs-fractal-generator.herokuapp.com/master_list" width="100%" height="300px"></iframe>
+      </div>
+      <div class="col-lg-4">
+        <iframe src="https://ifs-fractal-generator.herokuapp.com/generator/full" width="100%" height="300px"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <iframe src="https://play-quadegories.herokuapp.com/" width="100%" height="300px"></iframe>
+    </div>
+    <div class="col-lg-4">
+      <iframe src="https://play-quadegories.herokuapp.com/choose-collection" width="100%" height="300px"></iframe>
+    </div>
+    <div class="col-lg-4">
+      <iframe src="https://play-quadegories.herokuapp.com/game/expert/3" width="100%" height="300px"></iframe>
+    </div>
+  </div>
+</div>
+
 </body>
