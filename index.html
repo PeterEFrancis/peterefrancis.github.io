@@ -237,11 +237,11 @@
               <td>$10 each</td>
             </tr>
             <tr>
-              <td>3-9</td>
+              <td>3-8</td>
               <td>$9 each</td>
             </tr>
             <tr>
-              <td>10+</td>
+              <td>9+</td>
               <td>$8 each</td>
             </tr>
             <tr>
@@ -402,9 +402,9 @@ function changeFont() {
     if (numPics>0 && !isNaN(numPics) && parseInt(Number(numPics)) == numPics && !isNaN(parseInt(numPics, 10))){
       if (numPics <= 2){
         price = numPics * 10;
-      } else if (numPics <= 9){
+      } else if (numPics <= 8){
         price = numPics * 9;
-      } else if (numPics >= 10){
+      } else if (numPics >= 9){
         price = numPics * 8;
       }
       document.getElementById('price').innerHTML = "$ " + price;
