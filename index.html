@@ -234,15 +234,15 @@
             </tr>
             <tr>
               <td>1-2</td>
+              <td>$12 each</td>
+            </tr>
+            <tr>
+              <td>3-9</td>
+              <td>$11 each</td>
+            </tr>
+            <tr>
+              <td>10+</td>
               <td>$10 each</td>
-            </tr>
-            <tr>
-              <td>3-8</td>
-              <td>$9 each</td>
-            </tr>
-            <tr>
-              <td>9+</td>
-              <td>$8 each</td>
             </tr>
             <tr>
               <td>unlimited</td>
@@ -401,11 +401,11 @@ function changeFont() {
     var numPics = document.getElementById('num_of_pics').value;
     if (numPics>0 && !isNaN(numPics) && parseInt(Number(numPics)) == numPics && !isNaN(parseInt(numPics, 10))){
       if (numPics <= 2){
+        price = numPics * 12;
+      } else if (numPics <= 9){
+        price = numPics * 11;
+      } else if (numPics >= 10){
         price = numPics * 10;
-      } else if (numPics <= 8){
-        price = numPics * 9;
-      } else if (numPics >= 9){
-        price = numPics * 8;
       }
       document.getElementById('price').innerHTML = "$ " + price;
     }
