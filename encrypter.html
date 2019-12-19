@@ -1,0 +1,48 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  <script src="decrypt.js"></script>
+
+</head>
+<body>
+  <strong><label>Original String:</label></strong>
+   <span id="demo0"></span>
+
+   <br>
+   <br>
+
+   <strong><label>Encrypted:</label></strong>
+   <span id="demo1"></span>
+
+   <br>
+   <br>
+
+   <strong><label>Decrypted:</label></strong>
+   <span id="demo2"></span>
+
+   <br>
+   <br>
+
+   <strong><label>String after Decryption:</label></strong>
+   <span id="demo3"></span>
+
+
+   <br />
+   <br />
+
+</body>
+<script>
+  // INIT
+  var myString   = "";
+  var myPassword = "";
+
+  // PROCESS
+  var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
+  var decrypted = CryptoJS.AES.decrypt(encrypted, myPassword);
+
+  document.getElementById("demo0").innerHTML = myString;
+  document.getElementById("demo1").innerHTML = encrypted;
+  document.getElementById("demo2").innerHTML = decrypted;
+  document.getElementById("demo3").innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
+</script>
+</html>
