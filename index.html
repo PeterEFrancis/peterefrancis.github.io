@@ -5,9 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/c13a8d5cc1.js" crossorigin="anonymous"></script>
 
   <!-- Icon files -->
   <link rel="apple-touch-icon" sizes="57x57" href="icon_files/apple-icon-57x57.png">
@@ -80,6 +81,10 @@
       padding-bottom: 35px;
     }
 
+    table {
+      border: 1px solid lightgrey;
+    }
+
     td {
       font-size: 10pt;
     }
@@ -96,6 +101,36 @@
       font-family: sans-serif;
     }
 
+    .row {
+        margin-bottom:50px;
+    }
+
+    body {
+      min-width: 275px;
+    }
+
+    strong, em {
+      font-size: 14px;
+    }
+
+    .desc {
+      font-size:14px;
+      margin-bottom:20px;
+      text-align: justify;
+    }
+
+    .title_link {
+      display: inline-block;
+    }
+
+    .code-logo {
+      color: grey;
+      margin-left: 4px;
+      float:right;
+      user-select: none;
+    }
+
+
   </style>
 
 </head>
@@ -108,8 +143,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button> -->
-      <a class="navbar-brand" href="javascript:changeColor()" id="linkForColorChange"><i class="fa fa-paint-brush"></i></a>
-      <a class="navbar-brand" href="javascript:changeFont()" id="linkForFontChange"><i class="fa fa-font"></i></a>
+      <a class="navbar-brand" href="javascript:changeColor()"><i class="fas fa-paint-brush"></i></a>
+      <a class="navbar-brand" href="javascript:changeFont()"><i class="fas fa-font"></i></a>
+      <!-- <a class="navbar-brand" href="javascript:toggleDesc()">T</a> -->
     </div>
     <!-- <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -125,45 +161,114 @@
   <div class="container text-center">
     <h1 class="textColorChanging" id="display">Peter E. Francis</h1>
 
-    <em><p class="textColorChanging">A collection of projects from diverse motivations</p></em>
+    <em><p class="textColorChanging">A Collection of Projects from Diverse Motivations</p></em>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h3 class="serif">About Me</h3>
+      <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fab fa-github"></i> PeterEFrancis</a>&emsp;<a href="https://share.cocalc.com/share/1cd78fdc1c0934eafe7710682dca38d1f3f774cf/Personal/Resume/new/resume_cv.pdf?viewer=raw" target="_blank"><i class="far fa-address-card	"></i> Resume</a>&emsp;<a href="mailto:franpe02@gettysburg.edu"><i class="far fa-envelope"></i> franpe02@gettysburg.edu</a></p>
+      <p class="sanSerif">I am a math nerd, a photographer, and someone who likes adding third phrases to written lists in order to show people that I am a fan of the Oxford comma.</p>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
       <div class="group">
         <h3 class="serif">Mathematics, CS</h3>
         <h5 class="serif">Writing</h5>
-        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/Final%20Paper/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif"><em>The Maximum Size of Weak (<i>k</i>, <i>l</i>)-Sum-Free Sets</em></a> (<a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/presentation/presentation.pdf?viewer=raw" target="_blank" class="sansSerif">Presentation</a>)<br><br>
-        <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif"><em>On Moments and Centroids</em></a><br><br>
-        <a href="https://share.cocalc.com/share/fe1b52d3-0a65-4731-a145-f98a9f424ba5/Mathematical%20Techniques%20for%20Physicists.pdf?viewer=raw" target="_blank" class="sansSerif"><i class="fa fa-spinner" aria-hidden="true"></i> <em>Mathematical Techniques for Physicists</em></a><br><br>
-        <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif"><i class="fa fa-spinner" aria-hidden="true"></i> <em>Algebra in the Game "Lights Out"</em></a><br><br>
+        <img class="code-logo" style="height:.75em;" src="TeX.png"/>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/Final%20Paper/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>The Maximum Size of Weak (<i>k</i>, <i>l</i>)-Sum-Free Sets</em></a>
+        <p class="desc">  I wrote this paper while taking Math 301 at Gettysburg College, "Intermediate Math Research In Additive  Combinatorics."<Br> <strong>Abstract:</strong> A subset A of a given finite abelian group <i>G</i> is called weakly (<i>k</i>, <i>l</i>)-sum-free if the set of all sums of <i>k</i> distinct elements of <i>A</i> is disjoint with set of all sums of <i>l</i> distinct elements of <i>A</i>....</p>
 
+        <img class="code-logo" style="height:.75em;" src="TeX.png"/>
+        <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif title_link"><em>On Moments and Centroids</em></a>
+        <p class="desc">While serving as a PLA for a Calculus 2 class, I realized that the students were not understanding the origin of the formulas they were trying to memorize and use, which motivated me to write this short tutorial.</p>
+
+        <i class="code-logo fab fa-python"></i><i class="code-logo fab fa-markdown"></i>
+        <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Algebra in the Game "Lights Out"</em></a>
+        <p class="desc">(In Progress) "Lights Out" is a game using binary-state cellular automota. This paper explores the algebraic structures the game admits.</p>
+
+        <img class="code-logo" style="height:.75em;" src="TeX.png"/><i class="code-logo fab fa-python"></i>
+        <a href="https://share.cocalc.com/share/fe1b52d3-0a65-4731-a145-f98a9f424ba5/Mathematical%20Techniques%20for%20Physicists.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Mathematical Techniques for Physicists</em></a>
+        <p class="desc">(In Progress) After taking a math methods course for Physicits, I realized that the 1333-page textbook that we used covered far more material than a semseter of undergraduate math for physics majors requires. This textbook will include coverage of 4 important topics that every physics major should be familiar with: Fourier Analysis, Vector Calculus, Linear Algebra, and Partial Differential Equations.</p>
         <h5 class="serif">Modules and Projects</h5>
-        <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif">graphPlot</a><br><br>
-        <a href="https://pypi.org/project/ifsFractals/" target="_blank" class="sansSerif">ifsFractals</a>, <a href="https://ifs-fractal-generator.herokuapp.com" target="_blank" class="sansSerif">IFS Fractal Generator</a><br><br>
-        <a href="https://github.com/PeterEFrancis/lorentz-attractor" target="_blank" class="sansSerif">Lorentz Attractor Animation</a><br><br>
-        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/?viewer=share/" target="_blank" class="sansSerif"><i class="fa fa-spinner" aria-hidden="true"></i> New Projects and Problems</a><br><br>
+
+        <i class="code-logo fab fa-python"></i>
+        <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif title_link">graphPlot</a><br>
+        <p class="desc">graphPlot is a Python module (released on PyPi) that uses physical simulation to find ideal plotting coordinates for graphs.</p>
+
+        <i class="code-logo fab fab fa-html5"></i><i class="code-logo fab fa-python"></i>
+        <a href="https://pypi.org/project/ifsFractals/" target="_blank" class="sansSerif title_link">ifsFractals</a><br>
+        <p class="desc">ifsFractals is a Python module (released on PyPi) that can be used to generate fractals that are fixed point sets of contraction mappings. I created the <a href="https://ifs-fractal-generator.herokuapp.com" target="_blank" class="sansSerif">IFS Fractal Generator</a> website in order to allow people who are unfamilar with Python to define the transformations needed to generate their desired images, as well as a "word fractal" page that allows users to easily generate a fractal that resembles a word.</p>
+
+        <i class="code-logo fab fa-python"></i>
+        <a href="https://github.com/PeterEFrancis/lorentz-attractor" target="_blank" class="sansSerif title_link">Lorentz Attractor Animation</a><br>
+        <p class="desc">I made this animation as a demonstration of the way to animate solutions to three-dimmensional systems of ODEs.</p>
+
+        <i class="code-logo fab fa-python"></i>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/?viewer=share/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> New Projects and Problems</a><br>
+        <p class="desc">(Always in Progess) This CoCalc folder contains some of my "backburner" projects and ideas. Some subfolders have unanswered questions and probelems, so feel free to take a look!</p>
+
+        <h5 class="serif">Fun and Games</h5>
+
+        <i class="code-logo fab fab fa-html5"></i><i class="code-logo fab fa-js-square"></i>
+        <a href="https://sedar.io/" class="sansSerif title_link" target="_blank">Sedar.io</a><br>
+        <p class="desc">Sedario is a short and fun two-person strategy game, with simple rules and few materials. I had fun developing a client-side online interface to play the game.</p>
+
+        <i class="code-logo fab fa-java"></i><img class="code-logo" style="height:1em;" src="unity.png"/>
+        <a href="http://cs.gettysburg.edu/~franpe02/TrafficLightsWeb/" class="sansSerif title_link" target="_blank">Traffic Lights</a><br>
+        <p class="desc">Traffic Lights is a two-player strategy game, on a 3 x 4 grid of lights. Here you will find an online interface to play the game and some mathematical analysis.</p>
+
+        <i class="code-logo fab fab fa-html5"></i><img class="code-logo" style="height:1em;" src="flask.png"/><i class="code-logo fab fa-python"></i>
+        <a href="https://call-bingo.herokuapp.com" target="_blank" class="sansSerif title_link">Bingo Caller</a><br>
+        <p class="desc">I was annoyed when I struggled to find a simple web-based Bingo Caller that would be good to project on a screen, so I made one.</p>
+
+        <i class="code-logo fab fab fa-html5"></i><img class="code-logo" style="height:1em;" src="flask.png"/><i class="code-logo fab fa-python"></i>
+        <a href="https://play-quadegories.herokuapp.com/" target="_blank title_link" class="sansSerif title_link">Play Quadegories!&trade;</a><br>
+        <p class="desc">Quadegories!&trade; is an extremely challenging, clue-based trivia game that works the brain's executive funtion. It was developed by <a href="http://Zelcer.tk" target="_blank" class="sansSerif">Brook Zelcer</a>.</p>
+
 
         <h5 class="serif">Resources</h5>
-        <a href="http://MathWeather.live" target="_blank" class="sansSerif">MathWeather.live</a><br><br>
-        <a href="https://github.com/francisp336/LaTeX-samples/tree/master" target="_blank" class="sansSerif">Sample LaTeX Files</a><br><br>
-        <a href="desmos_links.html" target="_blank" class="sansSerif">Desmos Graphs</a><br><br>
+        <i class="code-logo fab fa-js-square"></i>
+        <a href="http://MathWeather.live" target="_blank" class="sansSerif title_link">MathWeather.live</a><br>
+        <p class="desc">After hearing the chair of the Math Department at Gettysburg College (Dr. Ben Kennedy) asses the "math weather" at the beginning of each colloquium, I decided to make a web app to do it everyday!</p>
 
-        <!--         <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/Secret%20Sequences/main.pdf?viewer=raw" target="_blank" class="sansSerif"><em>Decoding Secret Sequences and Mixing Up Quantifiers</em></a><br><br> -->
-        <!-- <a href="http://matthewtorrence.com/ACFrontend/index.html" target="_blank">AddComb</a> -->
+        <img class="code-logo" style="height:.75em;" src="TeX.png"/>
+        <a href="https://github.com/francisp336/LaTeX-samples/tree/master" target="_blank" class="sansSerif title_link">Sample LaTeX Files</a><br>
+        <p class="desc">Everyone who has done it knows that learning LaTeX can be a struggle at first, but the rewards are huge! I made these templates so that people who have never learned a markup language before can get started with typesetting.</p>
+
+        <a href="desmos_links.html" target="_blank" class="sansSerif title_link">Desmos Graphs</a><br>
+        <p class="desc">Building and using Desmos Graphs can give great intuitive and visual understaing of various topics. These are some of the graphs that I have made that </p>
+
+
+
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="group">
         <h3 class="serif">Philosophy, Literature, Music</h3>
-        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Philosophy%20233/Book/Book.pdf?viewer=raw" target="_blank" class="sansSerif"><em>What is the Scientific Method?</em></a><br><br>
-        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/3.1/Jewish%20Humor/final/Final_Tom_Lehrer_2.pdf?viewer=raw" target="_blank" class="sansSerif"><em>The Life and Comedy of Tom Lehrer</em></a><br><br>
-        <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif">Original Compositions and Arrangements on Noteflight</a><br><br>
-        <a data-toggle="modal" data-target="#TheYearThatEveryoneForgot_modal" href="">
-          <i class="fa fa-lock"></i> <em>The Year That Everyone Forgot</em>
-        </a><br><br>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Philosophy%20233/Book/Book.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>What is the Scientific Method?</em></a>
+        <p class="desc">
+          Although 'The Scientific Method' is a fairly ubiquitous phrase, through various considerations, we will be gine ot see that the poseter flowchart that we recall adorning the wall of our fifth grade classroom does not do it justice. <em>What is the Scientific Method?</em> aims to take the reader through notable episodes of the history of particle physics while examining the ongoing philosophical discussion on the scientific method.
+        </p>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/3.1/Jewish%20Humor/final/Final_Tom_Lehrer_2.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>The Life and Comedy of Tom Lehrer</em></a>
+        <p class="desc">
+          In 1967, the heart of the Cold War, a lanky Russian Jewish mathematician from the United States sat at a piano in front of a large audience in Copenhagen, singing a satire about mutually assured destruction and nuclear holocaust, that was televised to viewers around the world. Should we be that surprised?...
+        </p>
+        <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif title_link">Original Compositions and Arrangements on Noteflight</a>
+        <p class="desc">
+          I have arranged and composed for various groups including marching band, choir, piano, and small chamber ensembles. Here you can access my <em>Noteflight Marketplace</em> as well as view all of my public scores.
+        </p>
+        <a data-toggle="modal" data-target="#TheYearThatEveryoneForgot_modal" href="" class="title_link">
+          <i class="fas fa-lock"></i> <em>The Year That Everyone Forgot</em>
+        </a>
+        <p class="desc">
+          (In progress) I have always enjoyed writing short stories, and I have begun collecting and organizing them into a book.
+        </p>
         <!-- Modal -->
         <div id="TheYearThatEveryoneForgot_modal" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -181,9 +286,12 @@
             </div>
           </div>
         </div>
-        <a data-toggle="modal" data-target="#AShortMelodytotheEnd_modal" href="">
-          <i class="fa fa-lock"></i> <em>A Short Melody to The End</em>
-        </a><br><br>
+        <a data-toggle="modal" data-target="#AShortMelodytotheEnd_modal" href="" class="title_link">
+          <i class="fas fa-lock"></i> <em>A Short Melody to The End</em>
+        </a>
+        <p class="desc">
+          (In progress) <em>A Short Melody to the End</em> is a one Act Play that I am writing. I hope to be able to announce the debut soon!
+        </p>
         <!-- Modal -->
         <div id="AShortMelodytotheEnd_modal" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -205,23 +313,12 @@
 
       </div>
       <div class="group">
-        <h3 class="serif">Fun and Games</h3>
-        <a href="https://sedar.io/" class="sansSerif" target="_blank">Sedar.io</a><br><br>
-        <a href="http://cs.gettysburg.edu/~franpe02/TrafficLightsWeb/" class="sansSerif" target="_blank">Traffic Lights</a><br><br>
-        <a href="https://call-bingo.herokuapp.com" target="_blank" class="sansSerif">Bingo Caller</a><br><br>
-        <a href="http://public.gettysburg.edu/~franpe02/HarryPotterFullCollection" target="_blank" class="sansSerif">Harry Potter Full Collection</a><br><br>
-        <a href="https://play-quadegories.herokuapp.com/" target="_blank" class="sansSerif">Play Quadegories!&trade;</a><br><br>
-        <!-- <a href="Mitch" target="_blank">Fenton Knives</a><br><br> -->
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="group">
         <h3 class="serif">PEF Photography</h3>
-        <a href="http://www.instagram.com/pef_photography" target="_blank" class="sansSerif"><i class="fa fa-instagram"></i> Instagram Page</a>
+        <a href="http://www.instagram.com/pef_photography" target="_blank" class="sansSerif"><i class="fab fa-instagram"></i> Instagram Page</a>
         <br>
-        <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif"><i class="fa fa-flickr"></i> Flickr Page</a>
-
+        <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif"><i class="fab fa-flickr"></i> Flickr Page</a><br>
         <br>
+        <p class="desc">I have been doing photography since high school, and I started working professionally for the office of Communications and Marketing at Gettysburg College in 2018. I enjoy shooting portaits and events, but I have also done wildlife, landscape, and travel photography.</p>
         <h5>Rates</h5>
         <table class="table">
           <tbody>
@@ -256,7 +353,7 @@
         <div class="row">
           <div class="col-xs-6">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="# of Pics" style="height:2.5em;min-width:85px;" id="num_of_pics">
+              <input type="text" class="form-control" placeholder="# of Photos" style="height:2.5em;min-width:85px;" id="num_of_pics">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" style="height:2.5em" onclick="price()">Get Price</button>
               </span>
@@ -277,16 +374,19 @@
               <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
             </form> -->
       </div>
-      <div class="group">
+      <!-- <div class="group">
         <h3 class="serif">Other</h3>
         <a href="https://peterefrancis.com/tutor/" class="sansSerif" target="_blank">Tutoring Info</a><br><br>
         <a href="https://peterefrancis.com/PLA/" class="sansSerif" target="_blank">PLA Resources</a><br><br>
         <a href="http://poetrymaster.com" target="_blank" class="sansSerif">Poetry Master</a><br><br>
-        <a href="http://Zelcer.tk" target="_blank" class="sansSerif">Zelcer</a><br><br>
         <a href="https://troop616.github.io/HP-Scouting-Association" target="_blank" class="sansSerif">HP Scouting Association</a><br><br>
-      </div>
-    </div>
+        <a href="http://public.gettysburg.edu/~franpe02/HarryPotterFullCollection" target="_blank" class="sansSerif">Harry Potter Full Collection</a><br>
+        <a href="Mitch" target="_blank">Fenton Knives</a><br><br>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/Secret%20Sequences/main.pdf?viewer=raw" target="_blank" class="sansSerif"><em>Decoding Secret Sequences and Mixing Up Quantifiers</em></a><br><br>
+        <a href="http://matthewtorrence.com/ACFrontend/index.html" target="_blank">AddComb</a>
+      </div> -->
 
+    </div>
   </div>
 </div>
 <br>
@@ -299,7 +399,7 @@
     <div class="row">
       <div class="col-md-12">
         <h2>Peter E. Francis</h2>
-        <em>A collection of projects from diverse motivations</em>
+        <em>A Collection of Projects from Diverse Motivations</em>
       </div>
     </div>
     <div class="row">
@@ -308,16 +408,16 @@
       </div>
       <div class="col-md-2">
         <h5>Personal</h5>
-        <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fa fa-github"></i> PeterEFrancis</a></p>
-        <p><a href="https://share.cocalc.com/share/1cd78fdc1c0934eafe7710682dca38d1f3f774cf/Personal/Resume/new/resume_cv.pdf?viewer=raw" target="_blank"><i class="fa fa-file-text-o"></i> Resume</a></p>
-        <p><a href="http://public.gettysburg.edu/~franpe02/files/" target="_blank"><i class="fa fa-archive"></i> Raw Files</a></p>
-        <p><a href="other_links.html" target="_blank"><i class="fa fa-link"></i> Other Links</a></p>
+        <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fab fa-github"></i> PeterEFrancis</a></p>
+        <p><a href="https://share.cocalc.com/share/1cd78fdc1c0934eafe7710682dca38d1f3f774cf/Personal/Resume/new/resume_cv.pdf?viewer=raw" target="_blank"><i class="far fa-address-card	"></i> Resume</a></p>
+        <p><a href="http://public.gettysburg.edu/~franpe02/files/" target="_blank"><i class="fas fa-archive"></i> Raw Files</a></p>
+        <p><a href="other_links.html" target="_blank"><i class="fas fa-link"></i> Other Links</a></p>
       </div>
       <div class="col-md-3">
         <h5>Contact</h5>
-        <p><a href="mailto:franpe02@gettysburg.edu"><i class="fa fa-envelope-o"></i> franpe02@gettysburg.edu</a></p>
-        <p>Gettysburg College CB#893<br>
-           300 N Washington Street<br>
+        <p><a href="mailto:franpe02@gettysburg.edu"><i class="fas fa-envelope-o"></i> franpe02@gettysburg.edu</a></p>
+        <p>Gettysburg College CB #893<br>
+           300 N. Washington Street<br>
            Gettysburg, PA 17325-1400
         </p>
       </div>
@@ -327,7 +427,7 @@
     </div>
     <div class="row" style="margin-top:50px;">
       <div class="col-xs-12">
-        <p class="text-center" style="font-size:8pt">&copy; 2018-2020</p>
+        <p class="text-center" style="font-size:8pt">&copy; Peter E. Francis 2018-2020</p>
     </div>
   </div>
 </footer>
@@ -400,7 +500,7 @@ function changeFont() {
   }
 
   // Display
-  var displayOptions = ['Abril Fatface', 'Alfa Slab One', 'Baloo Bhaina', 'Bangers',
+  var displayOptions = ['Abril Fatface', 'Alfas Slab One', 'Baloo Bhaina', 'Bangers',
                         'Bowlby One SC', 'Bungee', 'Cabin Sketch', 'Emilys Candy',
                         'Faster One', 'Lobster', 'Monoton', 'Mountains of Christmas',
                         'Nixie One', 'Press Start 2P', 'Righteous', 'Rye',
@@ -430,6 +530,31 @@ function changeFont() {
 
 
   }
+
+
+  function toggleDesc(){
+    var descs = document.getElementsByClassName("desc");
+    var titleLinks = document.getElementsByClassName("title_link");
+    if (descs[0].style.display != 'none') {
+      for (var i = 0; i < descs.length; i++){
+        descs[i].style.display = 'none';
+      }
+      for (var i = 0; i < titleLinks.length; i++){
+        titleLinks[i].style.marginBottom = '20px';
+      }
+    }
+    else {
+      for (var i = 0; i < descs.length; i++){
+        descs[i].style.display = 'block';
+      }
+      for (var i = 0; i < titleLinks.length; i++){
+        titleLinks[i].style.marginBottom = '0px';
+      }
+    }
+  }
+
+
+
 
 
 </script>
