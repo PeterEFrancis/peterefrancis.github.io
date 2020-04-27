@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond);
+* {
+	font-family:'EB Garamond', serif;
+}
+
+body {
+	cursor:url(http://media.tumblr.com/d966369b267e70194d0a4ac40f6df63b/tumblr_inline_ms5iz0TtmM1r6qyth.png), auto;
+	background-color: black;
+}
+
+a:hover, button:hover {
+	cursor:url(img/red.png), auto;
+}
+
+p, li {
+	font-size: 25pt;
+}
+
+.white {
+	color: white !important;
+}
+
+.maplink {
+	padding: 0px;
+	height: 150px;
+	border: 0px;
+}
+
+.maplink h2 {
+	margin: 0px;
+	font-size: 70pt;
+	color: white;
+	-webkit-text-stroke: 2.5px black;
+	line-height: 1.5em;
+}
+
+
+.parallax {
+  /* Set a specific height */
+  min-height: 100%;
+	min-width: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (max-device-width: 1366px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home Page</title>
+        <link href="/favicon.ico" rel="shortcut icon">
+            <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <br>
+        <center>
+            <img src="HP.jpg" id="mainpic">
+                <p class="sub">Full Collection</p>
+                <p class="desc">This site contains all Harry Potter movies, books, audiobooks,
+                soundtracks, and Google Earth Street View locations to <i>The Wizarding World
+                    of Harry Potter</i> at Universal in Orlando Florida.</p>
+               <br>
+               <br>
+
+            <script>
+                function moveDiv() {
+                    var $span = $("#random");
+
+                    $span.fadeOut(1000, function() {
+                                  var maxLeft = $(window).width() - $span.width();
+                                  var maxTop = $(window).height() - $span.height();
+                                  var leftPos = Math.floor(Math.random() * (maxLeft + 1))
+                                  var topPos = Math.floor(Math.random() * (maxTop + 1))
+
+                                  $span.css({ left: leftPos, top: topPos }).fadeIn(1000);
+                                  });
+                };
+
+            moveDiv();
+            setInterval(moveDiv, 3000);
+            </script>
+
+        <a href="https://drive.google.com/embeddedfolderview?id=0B36rb6nwHYd-fnF0bzluYUttUjJvLTNpcHB4UTIxZ2ptRzBWV1lhaTM0NEYzNUpKblVjV2M#grid">
+            <div class="tabs" id="books">
+                                        <p class="tabtitle">Books</p>
+                                        </div>
+
+        </a>
+        <a href="https://drive.google.com/embeddedfolderview?id=0B36rb6nwHYd-flgwVGJmcm1HbUdjMFRVcTFwVkhjNGxwTFBTUnZ6bGpza3Q4MTVZTHdRS1k#grid">
+            <div class="tabs" id="movies">
+                <p class="tabtitle">Movies</p>
+            </div>
+        </a>
+        <a href="https://drive.google.com/embeddedfolderview?id=0B36rb6nwHYd-fnE5SGJVYkFfSXhHbnd2OW1Zd0RTa0ZvR3lia19pX1Q2SEhYejhTSmNfc0E#list">
+            <div class="tabs" id="audiobooks">
+                <p class="tabtitle">Audiobooks</p>
+            </div>
+        </a>
+        <a href="https://drive.google.com/embeddedfolderview?id=0B36rb6nwHYd-fldoZXlYblFGRGM3S2dmYU9hamxuOWNYbXg0NkNBWmE5aGFRY2FwbVI0eXc#list">
+            <div class="tabs" id="soundtracks">
+                <p class="tabtitle">Soundtracks</p>
+            </div>
+        </a>
+        <a href="pictures.html">
+            <div class="tabs" id="forum">
+                <p class="tabtitle">Pictures</p>
+            </div>
+        </a>
+        <a href="world.html">
+            <div class="tabs" id="world">
+               <p class="tabtitle">H. P. World</p>
+            </div>
+        </a>
+        <a href="videos.html">
+            <div class="tabs" id="videos">
+                <p class="tabtitle">Cool Videos</p>
+            </div>
+        </a>
+        <br>
+        <br>
+        <hr>
+        <footer style="display: block">
+                <p class="desc">Questions or concerns? Contact us at <a href=
+                    "mailto:customersupport@harrypotterfullcollection.ga" style=
+                    "text-decoration: underline">customersupport@harrypotterfullcollection.ga</a></p>
+
+
+
+
+        </footer>
+        </center>
+    </body>
+</html>
