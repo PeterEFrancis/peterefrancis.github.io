@@ -149,7 +149,7 @@
           td.setAttribute('id',letter + newMax);
           document.getElementById(letter).appendChild(td);
         }
-
+        document.getElementById('num-columns').innerHTML = columns.length;
       }
     }
 
@@ -170,6 +170,7 @@
           tr.appendChild(td);
         }
         document.getElementById('tbody').appendChild(tr);
+        document.getElementById('num-rows').innerHTML = rows.length;
       }
     }
 
@@ -187,6 +188,7 @@
 
         columns.pop();
 
+        document.getElementById('num-columns').innerHTML = columns.length;
       }
     }
 
@@ -195,6 +197,8 @@
 
         tbody = document.getElementById('tbody');
         tbody.removeChild(document.getElementById(rows.pop()));
+
+        document.getElementById('num-rows').innerHTML = rows.length;
 
       }
     }
