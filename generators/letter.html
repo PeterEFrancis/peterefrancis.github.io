@@ -8,14 +8,10 @@
     <style>
       * {
         user-select: none;
-        margin: 0px;
-        padding: 0px;
         }
 
       h1 {
-        display: block;
-        margin-top: 10vmin;
-        margin-bottom: 0px;
+        margin: 0px;
         font-size: 80vmin;
       }
 
@@ -26,12 +22,14 @@
     <center>
       <h1 id="letter"></h1>
     </center>
+
+    <script>
+      function generate() {
+        document.getElementById('letter').innerHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[ Math.floor((Math.random() * 26))];
+      }
+    </script>
   </body>
 
-  <script>
-    function generate() {
-      document.getElementById('letter').innerHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[ Math.floor((Math.random() * 25))];
-    }
-  </script>
+
 
 </html>
