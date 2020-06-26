@@ -329,7 +329,7 @@
 
       </div>
       <div class="group">
-        <img src="img/fern.png" class="img-responsive center-block" style="width:80%; max-width:369px; margin-top:10px; margin-bottom: 10px; user-select:none;" alt="Barnsley img/fern, generated with 100,000,000 iterated points with ifsFractals python module" title="Barnsley img/fern, generated with 100,000,000 iterated points with ifsFractals python module"/>
+				<canvas id="fern" class="img-responsive center-block" height="1000" width="1000" style="width:80%; max-width:369px; user-select:none;"></canvas>
       </div>
       <div class="group">
         <h3 class="serif">PEF Photography</h3>
@@ -379,7 +379,8 @@
           <div class="col-xs-6">
             <p id="price" style="line-height:2em; margin: 0px 0px 0px 40px;"></p>
           </div>
-        </div>      </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -552,6 +553,58 @@ function changeFont() {
 
 
 </script>
+
+
+<script>
+
+var canvas = document.getElementById("fern");
+var ctx = canvas.getContext('2d');
+
+const WIDTH = canvas.width;
+const HEIGHT = canvas.height;
+
+var val = 0;
+
+function draw_fern() {
+	ctx.clearRect(0, 0, WIDTH, HEIGHT);
+	ctx.fillStyle = "black";
+	var nextX, nextY, x, y, plotX, plotY, r;
+	x = 0, y = 0;
+	for (var i = 0; i < 100000; i++) {
+		r = Math.random();
+		if (r < 0.03) {
+			nextX =  0;
+			nextY =  0.16 * y;
+		} else if (r < 0.8) {
+			nextX =  0.85 * Math.cos(val) * x + Math.sin(val) * y;
+			nextY = -Math.sin(val) * x + 0.85 * Math.cos(val) * y + 1.6;
+		} else if (r < 0.9) {
+			nextX =  0.20 * x - 0.26 * y;
+			nextY =  0.23 * x + 0.22 * y + 1.6;
+		} else {
+			nextX = 0.19 * x + 0.26 * y;
+			nextY = -0.22 * x + 0.23 * y + 0.44;
+		}
+		x = nextX;
+		y = nextY;
+		centerX = WIDTH/4 * (x/2.5 + 2);
+		centerY = HEIGHT - y * (HEIGHT / 11);
+		ctx.fillRect(centerX, centerY, 1, 1);
+	}
+}
+var i = Math.PI;
+setInterval(function() {
+	draw_fern();
+	val = 0.06 * Math.sin(i);
+	i += 0.1;
+	i = i % (2 * Math.PI);
+}, 80);
+
+
+
+</script>
+
+
 
 
 <script>
