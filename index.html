@@ -489,7 +489,7 @@
 //  \__ \ | |_  | (_| | | |    \__ \
 //  |___/  \__|  \__,_| |_|    |___/
 
-	var numStars = 1000;
+	var numStars = 200;
 	var radius = 1;
 	var focalLength = canvas.width * 2;
 	var centerX, centerY;
@@ -559,7 +559,7 @@
 			pixelX += centerX;
 			pixelY = (star.y - centerY) * (focalLength / star.z);
 			pixelY += centerY;
-			pixelRadius = radius * (focalLength / star.z) * canvas.width / 3000;
+			pixelRadius = radius * (focalLength / star.z) * canvas.width / 2000;
 
 			ctx.beginPath();
 			ctx.arc(pixelX, pixelY, pixelRadius, 0, 2 * Math.PI);
