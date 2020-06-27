@@ -557,7 +557,7 @@
 			pixelX += centerX;
 			pixelY = (star.y - centerY) * (focalLength / star.z);
 			pixelY += centerY;
-			pixelRadius = radius * (focalLength / star.z);
+			pixelRadius = radius * (focalLength / star.z) * canvas.width / 3000;
 
 			ctx.beginPath();
 			ctx.arc(pixelX, pixelY, pixelRadius, 0, 2 * Math.PI);
