@@ -105,8 +105,8 @@
         margin-bottom:50px;
     }
 
-    body {
-      min-width: 275px;
+    html {
+      min-width: 300px;
     }
 
 
@@ -143,9 +143,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button> -->
-      <a class="navbar-brand" href="javascript:changeColor()"><i class="fas fa-paint-brush"></i></a>
-      <a class="navbar-brand" href="javascript:changeFont()"><i class="fas fa-font"></i></a>
-      <!-- <a class="navbar-brand" href="javascript:toggleDesc()">T</a> -->
+      <a class="navbar-brand" href="javascript:switch_view(COLOR)"><i class="fas fa-paint-brush"></i></a>
+			<a class="navbar-brand" href="javascript:changeFont()"><i class="fas fa-font"></i></a>
+			<a class="navbar-brand" href="javascript:toggleDesc()">T</a>
+			<a class="navbar-brand" href="javascript:switch_view(STARS)"><i class="fas fa-space-shuttle"></i></a>
     </div>
     <!-- <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -157,15 +158,15 @@
   </div>
 </nav>
 
-<div class="jumbotron" id="colorChanging">
-  <div class="container text-center">
-    <h1 class="textColorChanging" id="display">Peter E. Francis</h1>
-
-    <em><p class="textColorChanging">A Collection of Projects from Diverse Motivations</p></em>
+<div class="jumbotron" id="colorChanging" style="padding: 0px; height: 300px;">
+	<canvas id="canvas" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
+  <div class="center-block" style="position: absolute; top: 130px; width: 100%; min-width: 300px" id="">
+    <h1 class="textColorChanging text-center" id="display">Peter E. Francis</h1>
+    <em><p class="textColorChanging text-center">A Collection of Projects from Diverse Motivations</p></em>
   </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-bottom: 50px;">
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -263,7 +264,7 @@
     <div class="col-md-6">
       <div class="group">
         <h3 class="serif">Philosophy, Literature, Music</h3>
-        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Philosophy%20233/Book/Book.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>What is the Scientific Method?</em></a>
+        <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Philosophy%20233/Book/Book.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>What is the Scientific Method?</em></a><br>
         <p class="desc">
           Although 'The Scientific Method' is a fairly ubiquitous phrase, we will begin to see that the poseter flowchart that we recall adorning the wall of our fifth grade classroom does not do it justice. <em>What is the Scientific Method?</em> aims to take the reader through notable episodes of the history of particle physics while examining the ongoing philosophical discussion on the scientific method.
         </p>
@@ -384,10 +385,7 @@
     </div>
   </div>
 </div>
-<br>
-<br>
-<br>
-<br>
+
 
 <footer class="container-fluid">
   <div class="container">
@@ -428,82 +426,154 @@
 </footer>
 
 </body>
+
+<script src="js/color-font-change.js"></script>
+<script src="js/stars.js"></script>
+<script src="js/fern.js"></script>
+
 <script>
 
-function pow(a,b) {
-  return a ** b
-}
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext("2d");
+	var update_ID;
 
-function changeColor() {
-  // Choose random color
-  var red = Math.floor((Math.random() * 255));
-  var green = Math.floor((Math.random() * 255));
-  var blue = Math.floor((Math.random() * 255));
-  // color string
-  var color = 'rgb(' + red + ',' + green + ',' + blue + ')'
-  // Set the background color
-  document.getElementById('colorChanging').style.backgroundColor = color;
-  // Set the text color
-  var textColor = getContrastColor(red,green,blue);
-  var elements = document.getElementsByClassName('textColorChanging');
-  elements[0].style.color = textColor;
-  elements[1].style.color = textColor;
-}
+	const COLOR = -1;
+	const STARS = 0;
+
+	const INITIALIZERS = [initialize_stars];
+	const UPDATERS = [update_stars];
 
 
 
-function getContrastColor(red, green, blue){
-  var L1 = 0.2126 * pow(red / 255, 2.2) + 0.7152 * pow(green / 255, 2.2) +  0.0722 * pow(blue / 255, 2.2);
-  var contrastRatio = 0;
-  if (L1 > 0) {
-      contrastRatio = parseInt(String((L1 + 0.05) / (0.05)));
-  } else {
-      contrastRatio = parseInt(String((0.05) / (L1 + 0.05)));
-  }
-  // If contrast is more than 5, return black
-  if (contrastRatio > 5) {
-      return '#000000';
-  } else {
-      // if not, return white
-      return '#FFFFFF';
-  }
-}
 
-function changeFont() {
-  // serif
-  var serifOptions = ['Merriweather', 'Roboto Slab', 'Libre Caslon Text', 'Slabo 27px',
-                 'Libre Caslon Display', 'PT Serif', 'Lora', 'Playfair Display',
-                 'Noto Serif', 'Grenze', 'Crimson Text', 'Libre Baskerville',
-                 'Bree Serif', 'Source Serif Pro', 'Arvo', 'Bitter', 'EB Garamond',
-                 'Domine', 'Vollkorn', 'Crete Round'];
-  var serifElements = document.getElementsByClassName("serif");
-  var serifFont = serifOptions[Math.floor(Math.random() * (serifOptions.length))];
-  for (var i = 0; i < serifElements.length; i++) {
-    serifElements[i].style.fontFamily = serifFont;
-  }
+	function switch_view(view) {
 
-  // sans serif
-  var sansSerifOptions = ['Blinker', 'Lato', 'Lexend Exa', 'Montserrat', 'Muli',
-                          'Noto Sans', 'Nunito', 'Open Sans', 'Open Sans Condensed',
-                          'Oswald', 'PT Sans', 'Poppins', 'Raleway',
-                          'Red Hat Display', 'Red Hat Text', 'Roboto',
-                          'Roboto Condensed', 'Source Sans Pro', 'Titillium Web', 'Ubuntu']
-  var sansSerifElements = document.getElementsByClassName("sansSerif");
-  var sansSerifFont = sansSerifOptions[Math.floor(Math.random() * (sansSerifOptions.length))];
-  for (var i = 0; i < sansSerifElements.length; i++) {
-    sansSerifElements[i].style.fontFamily = sansSerifFont;
-  }
+		clearInterval(update_ID);
+		ctx.clearRect(0,0, canvas.width, canvas.height);
 
-  // Display
-  var displayOptions = ['Abril Fatface', 'Alfas Slab One', 'Baloo Bhaina', 'Bangers',
-                        'Bowlby One SC', 'Bungee', 'Cabin Sketch', 'Emilys Candy',
-                        'Faster One', 'Lobster', 'Monoton', 'Mountains of Christmas',
-                        'Nixie One', 'Press Start 2P', 'Righteous', 'Rye',
-                        'Saira Stencil One', 'Shojumaru', 'Special Elite', 'Titan One']
-  document.getElementById('display').style.fontFamily = displayOptions[Math.floor(Math.random() * (displayOptions.length))];
+		if (view == COLOR) {
 
-}
+			changeColor();
+			start_fern();
 
+		} else {
+
+			stop_fern()
+
+			if (view == STARS) {
+
+				document.getElementById('colorChanging').style.color = "white";
+				initialize_stars();
+
+				update_ID = setInterval(update_stars, 10);
+
+			}
+
+
+
+		}
+
+
+	}
+
+
+
+
+
+
+//         _
+//   ___  | |_    __ _   _ __   ___
+//  / __| | __|  / _` | | '__| / __|
+//  \__ \ | |_  | (_| | | |    \__ \
+//  |___/  \__|  \__,_| |_|    |___/
+
+	var numStars = 1000;
+	var radius = 1;
+	var focalLength = canvas.width * 2;
+	var centerX, centerY;
+	var stars = [], star;
+
+
+	function initialize_stars() {
+
+		centerX = canvas.width / 2;
+		centerY = canvas.height / 2;
+
+		stars = [];
+		for(var i = 0; i < numStars; i++){
+			star = {
+				x: Math.random() * canvas.width,
+				y: Math.random() * canvas.height,
+				z: Math.random() * canvas.width
+			};
+			stars.push(star);
+		}
+
+		window.addEventListener("mousemove",function(e){
+			centerX = canvas.width / 2 + (window.innerWidth / 2 - e.x) / 5;
+			centerY = canvas.height / 2 + (window.innerHeight / 2 - e.y) / 5;
+		});
+
+		// reset centerX and Y when mouse leaves
+		canvas.addEventListener("mouseout",function(e){
+			centerX = canvas.width / 2;
+			centerY = canvas.height / 2;
+		});
+
+	}
+
+	function update_stars() {
+		moveStars();
+		drawStars();
+	}
+
+	function moveStars(){
+		for(i = 0; i < numStars; i++) {
+			star = stars[i];
+			star.z--;
+
+			if (star.z <= 0){
+				star.z = canvas.width;
+			}
+		}
+	}
+
+	function drawStars(){
+		var pixelX, pixelY, pixelRadius;
+		// Resize to the screen
+		if (canvas.width != canvas.clientWidth || canvas.height != canvas.clientHeight){
+			canvas.width = canvas.clientWidth;
+			canvas.height = canvas.clientHeight;
+			initialize_stars();
+		}
+
+		ctx.fillStyle = "black";
+		ctx.fillRect(0,0, canvas.width, canvas.height);
+		ctx.fillStyle = "white";
+		for (i = 0; i < numStars; i++){
+			star = stars[i];
+
+			pixelX = (star.x - centerX) * (focalLength / star.z);
+			pixelX += centerX;
+			pixelY = (star.y - centerY) * (focalLength / star.z);
+			pixelY += centerY;
+			pixelRadius = radius * (focalLength / star.z);
+
+			ctx.beginPath();
+			ctx.arc(pixelX, pixelY, pixelRadius, 0, 2 * Math.PI);
+			ctx.fill();
+		}
+	}
+
+
+
+
+//                                   _              _
+//  _ __     __ _    __ _    ___    | |__     ___  | |  _ __     ___   _ __   ___
+// | '_ \   / _` |  / _` |  / _ \   | '_ \   / _ \ | | | '_ \   / _ \ | '__| / __|
+// | |_) | | (_| | | (_| | |  __/   | | | | |  __/ | | | |_) | |  __/ | |    \__ \
+// | .__/   \__,_|  \__, |  \___|   |_| |_|  \___| |_| | .__/   \___| |_|    |___/
+// |_|              |___/                              |_|
 
   function price(){
     var price = 0;
@@ -548,63 +618,7 @@ function changeFont() {
     }
   }
 
-
-
-
-
 </script>
-
-
-<script>
-
-var canvas = document.getElementById("fern");
-var ctx = canvas.getContext('2d');
-
-const WIDTH = canvas.width;
-const HEIGHT = canvas.height;
-
-var val = 0;
-
-function draw_fern() {
-	ctx.clearRect(0, 0, WIDTH, HEIGHT);
-	ctx.fillStyle = "black";
-	var nextX, nextY, x, y, plotX, plotY, r;
-	x = 0, y = 0;
-	for (var i = 0; i < 100000; i++) {
-		r = Math.random();
-		if (r < 0.03) {
-			nextX =  0;
-			nextY =  0.16 * y;
-		} else if (r < 0.8) {
-			nextX =  0.85 * Math.cos(val) * x + Math.sin(val) * y;
-			nextY = -Math.sin(val) * x + 0.85 * Math.cos(val) * y + 1.6;
-		} else if (r < 0.9) {
-			nextX =  0.20 * x - 0.26 * y;
-			nextY =  0.23 * x + 0.22 * y + 1.6;
-		} else {
-			nextX = 0.19 * x + 0.26 * y;
-			nextY = -0.22 * x + 0.23 * y + 0.44;
-		}
-		x = nextX;
-		y = nextY;
-		centerX = WIDTH/4 * (x/2.5 + 2);
-		centerY = HEIGHT - y * (HEIGHT / 11);
-		ctx.fillRect(centerX, centerY, 1, 1);
-	}
-}
-var i = Math.PI;
-setInterval(function() {
-	draw_fern();
-	val = 0.06 * Math.sin(i);
-	i += 0.1;
-	i = i % (2 * Math.PI);
-}, 80);
-
-
-
-</script>
-
-
 
 
 <script>
