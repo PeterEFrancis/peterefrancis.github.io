@@ -162,7 +162,7 @@
 	<canvas id="canvas" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
   <div class="center-block" style="position: absolute; top: 130px; width: 100%; min-width: 220px" id="">
     <h1 class="textColorChanging text-center" id="display">Peter E. Francis</h1>
-    <em><p class="textColorChanging text-center">A Collection of Projects from Diverse Motivations</p></em>
+    <em><p class="textColorChanging text-center" id="subtitle">A Collection of Projects from Diverse Motivations</p></em>
   </div>
 </div>
 
@@ -463,7 +463,8 @@
 
 			if (view == STARS) {
 
-				document.getElementById('colorChanging').style.color = "white";
+				document.getElementById('display').style.color = "white";
+				document.getElementById('subtitle').style.color = "white";
 				initialize_stars();
 
 				update_ID = setInterval(update_stars, 10);
