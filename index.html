@@ -520,6 +520,13 @@
 			centerY = canvas.height / 2 + (window.innerHeight / 2 - e.y) / 5;
 		});
 
+
+		canvas.addEventListener("touchmove",function(e){
+			e.preventDefault();
+			centerX = canvas.width / 2 + (window.innerWidth / 2 - e.targetTouches[0].screenX) / 5;
+			centerY = canvas.height / 2 + (window.innerHeight / 2 - e.targetTouches[0].screenY) / 5;
+		});
+
 		// reset centerX and Y when mouse leaves
 		canvas.addEventListener("mouseout",function(e){
 			centerX = canvas.width / 2;
