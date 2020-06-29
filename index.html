@@ -371,9 +371,9 @@
         <div class="row">
           <div class="col-xs-6">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="# of Photos" style="height:2.5em;min-width:85px;" id="num_of_pics">
+              <input type="text" class="form-control" placeholder="# of Photos" style="height:2.5em;min-width:85px; background-color:inherit" id="num_of_pics">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="height:2.5em" onclick="price()">Get Price</button>
+                <button class="btn btn-default" type="button" style="height:2.5em; background-color:inherit; color:inherit" onclick="price()">Get Price</button>
               </span>
             </div>
           </div>
@@ -465,9 +465,15 @@
 
 				document.getElementById('display').style.color = "white";
 				document.getElementById('subtitle').style.color = "white";
+				// document.body.style.backgroundImage = "url('img/metal.jpg')";
+				document.body.style.backgroundColor = "rgb(40,40,40)";
+				// document.getElementsByTagName('footer')[0].style.backgroundColor = "rgb(40,40,40)";
+				document.body.style.color = "grey";
+				document.getElementsByTagName('footer')[0].style.color = "black";
+
 				initialize_stars();
 
-				update_ID = setInterval(update_stars, 10);
+				update_ID = setInterval(update_stars, 15);
 
 			}
 
@@ -502,12 +508,10 @@
 		centerY = canvas.height / 2;
 
 		stars = [];
-		for(var i = 0; i < numStars; i++){
-			star = {
-				x: Math.random() * canvas.width,
-				y: Math.random() * canvas.height,
-				z: Math.random() * canvas.width
-			};
+		for (var i = 0; i < numStars; i++){
+			star = [Math.random() * canvas.width,
+			        Math.random() * canvas.height,
+			        Math.random() * canvas.width];
 			stars.push(star);
 		}
 
@@ -532,10 +536,10 @@
 	function moveStars(){
 		for(i = 0; i < numStars; i++) {
 			star = stars[i];
-			star.z--;
+			star[2]--;
 
-			if (star.z <= 0){
-				star.z = canvas.width;
+			if (star[2] <= 0){
+				star[2] = canvas.width;
 			}
 		}
 	}
@@ -555,11 +559,11 @@
 		for (i = 0; i < numStars; i++){
 			star = stars[i];
 
-			pixelX = (star.x - centerX) * (focalLength / star.z);
+			pixelX = (star[0] - centerX) * (focalLength / star[2]);
 			pixelX += centerX;
-			pixelY = (star.y - centerY) * (focalLength / star.z);
+			pixelY = (star[1] - centerY) * (focalLength / star[2]);
 			pixelY += centerY;
-			pixelRadius = radius * (focalLength / star.z) * canvas.width / 2000;
+			pixelRadius = radius * (focalLength / star[2]) * canvas.width / 2000;
 
 			ctx.beginPath();
 			ctx.arc(pixelX, pixelY, pixelRadius, 0, 2 * Math.PI);
