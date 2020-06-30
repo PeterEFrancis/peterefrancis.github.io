@@ -338,7 +338,7 @@
         <br>
         <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif"><i class="fab fa-flickr"></i> Flickr Page</a><br>
         <br>
-        <p class="desc">I have been doing photography since high school, and I started working professionally for the office of Communications and Marketing at Gettysburg College in 2018.</p><p class="desc">I enjoy shooting portaits and events, but I have also done wildlife, landscape, and travel photography.</p>
+        <p class="desc">I started photography in high school, and I started working professionally for the office of Communications and Marketing at Gettysburg College in 2018.</p><p class="desc">I enjoy shooting portaits and events, but I have also done wildlife, landscape, and travel photography.</p>
         <h5>Rates</h5>
         <table class="table">
           <tbody>
@@ -457,6 +457,9 @@
 			stop_fern();
 			start_fern();
 
+			document.body.style.backgroundColor = "white";
+			document.body.style.color = "#333333";
+
 		} else {
 
 			stop_fern()
@@ -465,11 +468,9 @@
 
 				document.getElementById('display').style.color = "white";
 				document.getElementById('subtitle').style.color = "white";
-				// document.body.style.backgroundImage = "url('img/metal.jpg')";
 				document.body.style.backgroundColor = "rgb(40,40,40)";
-				// document.getElementsByTagName('footer')[0].style.backgroundColor = "rgb(40,40,40)";
 				document.body.style.color = "grey";
-				document.getElementsByTagName('footer')[0].style.color = "black";
+				document.getElementsByTagName('footer')[0].style.color = "#333333";
 
 				initialize_stars();
 
