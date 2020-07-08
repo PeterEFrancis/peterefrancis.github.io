@@ -644,7 +644,7 @@ function initialize_network() {
 		var rect = canvas.getBoundingClientRect();
 		var user_x = (e.clientX - rect.left) * (canvas.width / canvas.clientWidth);
 		var user_y = (e.clientY - rect.top) * (canvas.height / canvas.clientHeight);
-		if (user_y > 0 && user_y < canvas.height && user_x > 0 && user_x < canvas.width) {
+		if (user_y > 0 && user_y < canvas.height) {
 			for (var i = 0; i < numNodes; i++) {
 				d = Math.sqrt(Math.pow((nodes[i].x - user_x), 2) + Math.pow((nodes[i].y - user_y), 2));
 				nodes[i].x = (nodes[i].x + (nodes[i].x - user_x) * 7 / (Math.abs(nodes[i].x - user_x) * d) + border) % (canvas.width + border * 2) - border;
@@ -692,7 +692,7 @@ function draw_network() {
 		for (var j = i + 1; j < numNodes; j++) {
 			// draw connection
 			d = Math.sqrt(Math.pow((nodes[i].x - nodes[j].x), 2) + Math.pow((nodes[i].y - nodes[j].y), 2));
-			if (d < 80 && d > radius) {
+			if (d < canvas.width / (4 * Math.sqrt(canvas.width / 100)) && d > radius) {
 				ctx.lineWidth = Math.min(1200 / (200 * Math.pow(d, 1)), 2);
 				ctx.beginPath();
 				ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -704,10 +704,12 @@ function draw_network() {
 
 
 }
-
-
-
-
+//
+// 200 6
+// 400 8
+// 600 12
+//
+// 1600 16
 
 
 
