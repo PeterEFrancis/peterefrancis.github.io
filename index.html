@@ -161,7 +161,7 @@
 </nav>
 
 <div class="jumbotron" id="colorChanging" style="padding: 0px; height: 300px;">
-	<canvas id="canvas" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
+	<canvas id="canvas" height="300" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
   <div class="center-block" style="position: absolute; top: 130px; width: 100%; min-width: 220px" id="">
     <h1 class="textColorChanging text-center" id="display">Peter E. Francis</h1>
     <em><p class="textColorChanging text-center" id="subtitle">A Collection of Projects from Diverse Motivations</p></em>
@@ -557,11 +557,11 @@ function initialize_stars() {
 	});
 
 
-	canvas.addEventListener("touchmove",function(e){
-		e.preventDefault();
-		centerX = canvas.width / 2 + (window.innerWidth / 2 - e.targetTouches[0].screenX) / 5;
-		centerY = canvas.height / 2 + (window.innerHeight / 2 - e.targetTouches[0].screenY) / 5;
-	});
+	// canvas.addEventListener("touchmove",function(e){
+	// 	e.preventDefault();
+	// 	centerX = canvas.width / 2 + (window.innerWidth / 2 - e.targetTouches[0].screenX) / 5;
+	// 	centerY = canvas.height / 2 + (window.innerHeight / 2 - e.targetTouches[0].screenY) / 5;
+	// });
 
 	// reset centerX and Y when mouse leaves
 	canvas.addEventListener("mouseout",function(e){
@@ -590,9 +590,8 @@ function moveStars(){
 function drawStars(){
 	var pixelX, pixelY, pixelRadius;
 	// Resize to the screen
-	if (canvas.width != canvas.clientWidth || canvas.height != canvas.clientHeight){
+	if (canvas.width != canvas.clientWidth){
 		canvas.width = canvas.clientWidth;
-		canvas.height = canvas.clientHeight;
 		initialize_stars();
 	}
 
@@ -674,9 +673,8 @@ function move_network() {
 
 function draw_network() {
 	// Resize to the screen
-	if (canvas.width != canvas.clientWidth || canvas.height != canvas.clientHeight){
+	if (canvas.width != canvas.clientWidth){
 		canvas.width = canvas.clientWidth;
-		canvas.height = canvas.clientHeight;
 		initialize_network();
 	}
 
