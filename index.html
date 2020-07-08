@@ -461,7 +461,7 @@
 
 	function switch_view(view) {
 
-		if (view != current_view) {
+		if (view != current_view || view == COLOR) {
 			current_view = view;
 
 			clearInterval(update_ID);
