@@ -486,11 +486,13 @@
 				document.body.style.color = "rgb(45,45,45)";
 				document.getElementsByTagName('footer')[0].style.color = "#333333";
 
+				document.getElementById('display').style.color = "white";
+				document.getElementById('subtitle').style.color = "white";
 
 				if (view == STARS) {
 
-					document.getElementById('display').style.color = "white";
-					document.getElementById('subtitle').style.color = "white";
+					// document.getElementById('display').style.color = "white";
+					// document.getElementById('subtitle').style.color = "white";
 					document.body.style.backgroundColor = "rgb(40,40,40)";
 					document.body.style.color = "grey";
 					document.getElementsByTagName('footer')[0].style.color = "#333333";
@@ -503,8 +505,8 @@
 
 				else if (view == NETWORK) {
 
-					document.getElementById('display').style.color = "rgb(45,45,45)";
-					document.getElementById('subtitle').style.color = "rgb(45,45,45)";
+					// document.getElementById('display').style.color = "rgb(45,45,45)";
+					// document.getElementById('subtitle').style.color = "rgb(45,45,45)";
 
 					initialize_network();
 
@@ -622,7 +624,7 @@ function drawStars(){
 // |_| |_|  \___|  \__|   \_/\_/    \___/  |_|    |_|\_\
 
 
-var numNodes = 175;
+var numNodes = 75;
 var radius = 3;
 var speed = 0.3;
 var border = 50;
@@ -679,11 +681,12 @@ function draw_network() {
 	}
 
 	// draw background
-	ctx.fillStyle = "rgb(235, 235, 235)";
+	ctx.fillStyle = "darkblue";// "rgb(235, 235, 235)";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 	// nodes and connections
-	ctx.fillStyle = "#bfbfbf";
+	ctx.fillStyle = "white";// "#bfbfbf";
+	ctx.strokeStyle = "white";// "#bfbfbf";
 	for (var i = 0; i < numNodes; i++) {
 		// draw node
 		ctx.beginPath();
@@ -693,7 +696,7 @@ function draw_network() {
 			// draw connection
 			d = Math.sqrt(Math.pow((nodes[i].x - nodes[j].x), 2) + Math.pow((nodes[i].y - nodes[j].y), 2));
 			if (d < canvas.width / (4 * Math.sqrt(canvas.width / 100)) && d > radius) {
-				ctx.lineWidth = Math.min(1200 / (200 * Math.pow(d, 1)), 2);
+				ctx.lineWidth = Math.min(5000 / (200 * Math.pow(d, 1)), 10);
 				ctx.beginPath();
 				ctx.moveTo(nodes[i].x, nodes[i].y);
 				ctx.lineTo(nodes[j].x, nodes[j].y);
