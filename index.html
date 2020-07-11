@@ -137,7 +137,7 @@
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header" data-toggle="tooltip" data-placement="bottom" title="Click on me and see what I do!">
+    <div class="navbar-header">
       <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -148,7 +148,7 @@
 			<a class="navbar-brand" href="javascript:toggleDesc()">T</a>
 			<a class="navbar-brand" href="javascript:switch_view(STARS)"><i class="fas fa-space-shuttle"></i></a>
 			<a class="navbar-brand" href="javascript:switch_view(NETWORK)"><i class="fa fa-dot-circle-o"></i></a>
-			<!-- <a class="navbar-brand" href="javascript:switch_view(SNOW)"><i class="fa fa-snowflake-o"></i></a> -->
+			<a class="navbar-brand" href="javascript:switch_view(DELAUNAY)"><i class="fa fa-asterisk"></i></a>
     </div>
     <!-- <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -447,16 +447,17 @@
 	const COLOR = 0;
 	const STARS = 1;
 	const NETWORK = 2;
+	const DELAUNAY = 3;
 
 	var current_view = COLOR;
 
 
 
-
-
-
-
 	start_fern();
+
+
+
+
 
 
 	function switch_view(view) {
@@ -513,6 +514,18 @@
 					initialize_network();
 
 					update_ID = setInterval(update_network, 15);
+
+				}
+
+				else if (view == DELAUNAY) {
+
+					document.getElementById('display').style.textShadow = "0px 0px 15px #000000";
+					document.getElementById('subtitle').style.textShadow = "0px 0px 10px #000000";
+					// document.getElementById('subtitle').style.color = "rgb(45,45,45)";
+
+					initialize_delaunay();
+
+					update_ID = setInterval(update_delaunay, 15);
 
 				}
 
@@ -709,12 +722,229 @@ function draw_network() {
 
 
 }
-//
-// 200 6
-// 400 8
-// 600 12
-//
-// 1600 16
+
+
+
+
+
+//  ____           _
+// |  _ \    ___  | |   __ _   _   _   _ __     __ _   _   _
+// | | | |  / _ \ | |  / _` | | | | | | '_ \   / _` | | | | |
+// | |_| | |  __/ | | | (_| | | |_| | | | | | | (_| | | |_| |
+// |____/   \___| |_|  \__,_|  \__,_| |_| |_|  \__,_|  \__, |
+//                                                     |___/
+
+
+var numPoints = 75;
+var del_radius = 3;
+var del_speed = 0.3;
+var del_border = 50;
+var points;
+var triangles = [];
+
+
+function initialize_delaunay() {
+	points = [];
+	for (var i = 0; i < numPoints; i++) {
+		points.push({
+			x: Math.random() * (canvas.width + 2 * del_border),
+			y: Math.random() * (canvas.height + 2 * del_border),
+			dir: Math.random() * Math.random() * Math.PI * 2
+		});
+	}
+	points[-1] = {x: -canvas.width, y: canvas.width * 2};
+	points[-2] = {x: canvas.width * 2, y: canvas.width * 2};
+	points[-3] = {x: canvas.width / 2, y: -canvas.width};
+
+}
+
+function update_delaunay() {
+	move_delaunay();
+	draw_delaunay();
+}
+
+function move_point(i, dir, amount) {
+	points[i].x = (points[i].x + Math.cos(dir) * amount + del_border) % (canvas.width + del_border * 2) - del_border;
+	points[i].y = (points[i].y + Math.sin(dir) * amount + del_border) % (canvas.height + del_border * 2) - del_border;
+}
+
+
+function move_delaunay() {
+	for (var i = 0; i < numPoints; i++) {
+		move_point(i, points[i].dir, del_speed);
+	}
+
+	triangles = get_triangulation();
+}
+
+function point_inside_circumference_of_triangle(point, triangle) {
+	var a = points[point];
+	var b = points[triangle[0]];
+	var c = points[triangle[1]];
+	var d = points[triangle[2]];
+	var m = [a.x-d.x, a.y-d.y, (a.x-d.x)**2 + (a.y-d.y)**2,   // 0 1 2
+           b.x-d.x, b.y-d.y, (b.x-d.x)**2 + (b.y-d.y)**2,   // 3 4 5
+           c.x-d.x, c.y-d.y, (c.x-d.x)**2 + (c.y-d.y)**2];  // 6 7 8
+	var det = m[0] * (m[4] * m[8] - m[5] * m[7]) -
+	          m[1] * (m[3] * m[8] - m[5] * m[6]) +
+            m[2] * (m[3] * m[7] - m[4] * m[6]);
+	return det > 0;
+}
+
+const EDGES = [[0,1], [1,2], [2,0]];
+
+function remove_obj_from_arr(obj, arr) {
+	var index = arr.indexOf(obj);
+	if (index > -1) {
+		arr.splice(index, 1);
+	}
+}
+
+function get_triangulation() {
+	// console.log("get triangularization")
+	// triangulation := empty triangle mesh data structure
+	// add super-triangle to triangulation // must be large enough to completely contain all the points in pointList
+	var triangulation = [[-1, -2, -3]];
+	// for each point in pointList do // add all the points one at a time to the triangulation
+	for (var point = 0; point < numPoints; point++) {
+		// console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ adding point: " + point);
+		// console.log("\ttriangulation:["); for (zzz in triangulation) {console.log("\t\t" + triangulation[zzz]);} console.log("\t\t]");
+		// console.log("Find all of the bad triangles");
+		// badTriangles := empty set
+		var badTriangles = [];
+		// for each triangle in triangulation do // first find all the triangles that are no longer valid due to the insertion
+		for (var i = 0; i < triangulation.length; i++) {
+			var triangle = triangulation[i];
+			// if point is inside circumcircle of triangle
+			if (point_inside_circumference_of_triangle(point, triangle)) {
+				// console.log("\tfound: " + triangle);
+				// 	add triangle to badTriangles
+				badTriangles.push(triangle);
+			}
+		}
+		// console.log("\tBad Triangles:["); for (zzz in badTriangles) {console.log("\t\t" + badTriangles[zzz]);} console.log("\t\t]");
+		// console.log("look through the bad Triangles and find the `polygon` of space around `point` that needs to be re-triangulated");
+		// polygon := empty set
+		var polygon = [];
+		// for each triangle in badTriangles do // find the boundary of the polygonal hole
+		for (var i = 0; i < badTriangles.length; i++) {
+			var triangle = badTriangles[i];
+			// console.log("\tbad triangle: " + triangle + "\n\tfind edges not shared with other bad triangles and add them to `polygon`");
+			// for each edge in triangle do
+			for (var j = 0; j < 3; j++) {
+				// if edge is not shared by any other triangles in badTriangles
+				var edge = [triangle[EDGES[j][0]], triangle[EDGES[j][1]]];
+				// console.log("\t\tedge: " + edge);
+				var shared = false;
+				for (var k = 0; k < badTriangles.length; k++) {
+					if (k != i) {
+						// console.log("     " + badTriangles[k]);
+						if (badTriangles[k].indexOf(edge[0]) != -1 && badTriangles[k].indexOf(edge[1]) != -1) {
+							shared = true;
+							break;
+						}
+					}
+				}
+				// console.log("\t\t\t shared: " + shared);
+				// add edge to polygon
+				if (!shared) {
+					polygon.push(edge)
+				}
+			}
+		}
+		// console.log("\tpolygon:"); for (zzz in polygon) {console.log("\t\t" + polygon[zzz]);}
+
+		// console.log("Remove all of the bad triangles from triangulation");
+		// for each triangle in badTriangles do // remove them from the data structure
+		// console.log("\tBad Triangles:["); for (zzz in badTriangles) {console.log("\t\t" + badTriangles[zzz]);} console.log("\t\t]");
+		// console.log("\ttriangulation:["); for (zzz in triangulation) {console.log("\t\t" + triangulation[zzz]);} console.log("\t\t]");
+		// console.log("\tremoving...");
+		for (var i = 0; i < badTriangles.length; i++) {
+			// remove triangle from triangulation
+			remove_obj_from_arr(badTriangles[i], triangulation);
+		}
+		// console.log("\ttriangulation:["); for (zzz in triangulation) {console.log("\t\t" + triangulation[zzz]);} console.log("\t\t]");
+		// console.log("re-triangulate polygon hole using `point`");
+		// for each edge in polygon do // re-triangulate the polygonal hole
+		for (var i = 0; i < polygon.length; i++) {
+			// newTri := form a triangle from edge to point
+			var newTri = [polygon[i][0], polygon[i][1], point];
+			// console.log("\tadding new triangle: " + newTri);
+			// add newTri to triangulation
+			triangulation.push(newTri);
+		}
+		// console.log("\ttriangulation:["); for (zzz in triangulation) {console.log("\t\t" + triangulation[zzz]);} console.log("\t\t]");
+	}
+
+	// for each triangle in triangulation // done inserting points, now clean up
+	var new_triangles = [];
+	for (var i = 0; i < triangulation.length; i++) {
+		// if triangle contains a vertex from original super-triangle
+		// remove triangle from triangulation
+		if (triangulation[i].indexOf(-1) == -1 && triangulation[i].indexOf(-2) == -1 && triangulation[i].indexOf(-3) == -1) {
+			new_triangles.push(triangulation[i]);
+		}
+	}
+	return new_triangles;
+}
+
+
+function draw_delaunay() {
+	// Resize to the screen
+	if (canvas.width != canvas.clientWidth) {
+		canvas.width = canvas.clientWidth;
+		initialize_delaunay();
+	}
+
+	// draw background
+	ctx.fillStyle = "darkgreen";// "rgb(235, 235, 235)";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	// points
+	ctx.fillStyle = "white";// "#bfbfbf";
+	for (var i = 0; i < numPoints; i++) {
+		// draw node
+		ctx.beginPath();
+		ctx.arc(points[i].x, points[i].y, del_radius, 0, 2 * Math.PI);
+		ctx.fill();
+	}
+
+	// triangles
+	var lines = [];
+	for (var k = 0; k < triangles.length; k++) {
+		for (var i = 0; i < 3; i++) {
+			var a = Math.min(i, (i + 1) % 3);
+			var b = Math.max(i, (i + 1) % 3);
+			if (!lines.includes([triangles[k][a], triangles[k][b]])) {
+				lines.push([triangles[k][a], triangles[k][b]]);
+			}
+		}
+	}
+	ctx.strokeStyle = "white";// "#bfbfbf";
+	ctx.lineWidth = .25;
+	for (var i = 0; i < lines.length; i++) {
+		ctx.beginPath();
+		ctx.moveTo(points[lines[i][0]].x, points[lines[i][0]].y);
+		ctx.lineTo(points[lines[i][1]].x, points[lines[i][1]].y);
+		ctx.stroke();
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
