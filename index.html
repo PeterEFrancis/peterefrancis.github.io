@@ -680,8 +680,8 @@ function update_network() {
 }
 
 function move_node(i, dir, amount) {
-	nodes[i].x = (nodes[i].x + Math.cos(dir) * amount + border) % (canvas.width + border * 2) - border;
-	nodes[i].y = (nodes[i].y + Math.sin(dir) * amount + border) % (canvas.height + border * 2) - border;
+	nodes[i].x = (nodes[i].x + Math.cos(dir) * amount + border + canvas.width + border * 2) % (canvas.width + border * 2) - border;
+	nodes[i].y = (nodes[i].y + Math.sin(dir) * amount + border + canvas.height + border * 2) % (canvas.height + border * 2) - border;
 }
 
 function move_network() {
@@ -1010,8 +1010,16 @@ function get_voronoi() {
 			l.push([cc1, new_point]);
 		}
 	}
+	var n_l = [];
+	var corner = {x:canvas.width + 2 * del_border, y:canvas.height + 2 * del_border};
+	var mx = distance({x:0,y:0}, corner);
+	for (var i = 0; i < l.length; i++) {
+		if (distance(l[i][0], l[i][1]) < mx) {
+			n_l.push(l[i]);
+		}
+	}
 
-	return {circumcenters:circumcenters, lines:l};
+	return {circumcenters:circumcenters, lines:n_l};
 
 }
 
