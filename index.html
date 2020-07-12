@@ -115,6 +115,10 @@
       text-align: justify;
     }
 
+    .p-br {
+      margin-bottom:-5px;
+    }
+
     .title_link {
       display: inline-block;
     }
@@ -124,6 +128,7 @@
       margin-left: 6px;
       float:right;
       user-select: none;
+      display: block;
     }
 
     .math {
@@ -163,8 +168,8 @@
 <div class="jumbotron" id="colorChanging" style="padding: 0px; height: 300px;">
 	<canvas id="canvas" height="300" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
   <div class="center-block" style="position: absolute; top: 130px; width: 100%; min-width: 220px" id="">
-    <h1 class="textColorChanging text-center" id="display">Peter E. Francis</h1>
-    <em><p class="textColorChanging text-center" id="subtitle">A Collection of Projects from Diverse Motivations</p></em>
+    <h1 class="textColorChanging text-center" id="display" style="user-select: none">Peter E. Francis</h1>
+    <em><p class="textColorChanging text-center" id="subtitle" style="user-select: none">A Collection of Projects from Diverse Motivations</p></em>
   </div>
 </div>
 
@@ -185,24 +190,27 @@
         <h5 class="serif">Writing</h5>
         <img class="code-logo" style="height:.75em;" src="img/TeX.png"/>
         <a href="https://share.cocalc.com/share/535de1b4021791bf62276f30d13d80cd080773bc/3.2/Research%20401/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>Maximal Sizes of Weak <i class="math">(2,1)</i>-Sum-Free Sets in Finite Abelian Groups</em></a>
-        <p class="desc"><strong>Abstract:</strong> The finite abelian group <i class="math">G</i> is type I if <i class="math">|G|</i> has a prime divisor congruent to <i class="math">2(3)</i>, type II if <i class="math">|G|</i> is divisible by <i class="math">3</i> but has no divisors congruent to <i class="math">2(3)</i>, and type III if all divisors of <i class="math">|G|</i> are congruent to <i class="math">1(3)</i>.... <a href="https://share.cocalc.com/share/e27129bb6637de042fdd30c57a19791e1c06c98a/3.2/Research%20401/presentations/Presentation.pdf?viewer=raw" target="_blank">(Presentation)</a></p>
+        <p class="desc p-br"><strong>Abstract:</strong> The finite abelian group <i class="math">G</i> is type I if <i class="math">|G|</i> has a prime divisor congruent to <i class="math">2(3)</i>, type II if <i class="math">|G|</i> is divisible by <i class="math">3</i> but has no divisors congruent to <i class="math">2(3)</i>, and type III if all divisors of <i class="math">|G|</i> are congruent to <i class="math">1(3)</i>.... <a href="https://share.cocalc.com/share/e27129bb6637de042fdd30c57a19791e1c06c98a/3.2/Research%20401/presentations/Presentation.pdf?viewer=raw" target="_blank">(Presentation)</a></p>
 
-        <img class="code-logo" style="height:.75em;" src="img/TeX.png"/>
+        <br><img class="code-logo" style="height:.75em;" src="img/TeX.png"/>
         <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/Final%20Paper/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>The Maximum Size of Weak (<i class="math">k</i>, <i class="math">l</i>)-Sum-Free Sets</em></a>
-        <p class="desc"><strong>Abstract:</strong> A subset <i class="math">A</i> of a given finite abelian group <i class="math">G</i> is called weakly (<i class="math">k</i>, <i class="math">l</i>)-sum-free if the set of all sums of <i class="math">k</i> distinct elements of <i class="math">A</i> is disjoint with set of all sums of <i class="math">l</i> distinct elements of <i class="math">A</i>.... <a href="https://share.cocalc.com/share/ffb6474b099ea32e4235833504cf0ba372f17ba3/2.2/Math%20Research/presentation/presentation.pdf?viewer=raw" target="_blank">(Presentation)</a></p>
+        <p class="desc p-br"><strong>Abstract:</strong> A subset <i class="math">A</i> of a given finite abelian group <i class="math">G</i> is called weakly (<i class="math">k</i>, <i class="math">l</i>)-sum-free if the set of all sums of <i class="math">k</i> distinct elements of <i class="math">A</i> is disjoint with set of all sums of <i class="math">l</i> distinct elements of <i class="math">A</i>.... <a href="https://share.cocalc.com/share/ffb6474b099ea32e4235833504cf0ba372f17ba3/2.2/Math%20Research/presentation/presentation.pdf?viewer=raw" target="_blank">(Presentation)</a></p>
 
-        <img class="code-logo" style="height:.75em;" src="img/TeX.png"/>
+        <br><img class="code-logo" style="height:.75em;" src="img/TeX.png"/>
         <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif title_link"><em>On Moments and Centroids</em></a>
-        <p class="desc">While serving as a PLA for a Calculus 2 class, I realized that the students were not understanding the origin of the formulas they were trying to memorize and use, which motivated me to write this short tutorial.</p>
+        <p class="desc p-br">While serving as a PLA for a Calculus 2 class, I realized that the students were not understanding the origin of the formulas they were trying to memorize and use, which motivated me to write this short tutorial.</p>
 
-        <i class="code-logo fab fa-python"></i><i class="code-logo fab fa-markdown"></i>
+        <br><i class="code-logo fab fa-python"></i><i class="code-logo fab fa-markdown"></i>
         <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Algebra in the Game "Lights Out"</em></a>
-        <p class="desc">(In Progress) "Lights Out" is a game using binary-state cellular automota. This paper explores the algebraic structures the game admits.</p>
+        <p class="desc p-br">(In Progress) "Lights Out" is a game using binary-state cellular automota. This paper explores the algebraic structures the game admits.</p>
 
-        <img class="code-logo" style="height:.75em;" src="img/TeX.png"/><i class="code-logo fab fa-python"></i>
+        <br><img class="code-logo" style="height:.75em;" src="img/TeX.png"/><i class="code-logo fab fa-python"></i>
         <a href="https://share.cocalc.com/share/fe1b52d3-0a65-4731-a145-f98a9f424ba5/Mathematical%20Techniques%20for%20Physicists.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Mathematical Techniques for Physicists</em></a>
         <p class="desc">(In Progress) After taking a math methods course for Physicits, I realized that the 1333-page textbook that we used covered far more material than a semseter of undergraduate math for physics majors requires. This textbook will include coverage of 4 important topics that every physics major should be familiar with: Fourier Analysis, Vector Calculus, Linear Algebra, and Partial Differential Equations.</p>
-        <h5 class="serif">Modules and Projects</h5>
+
+
+
+				<h5 class="serif">Modules and Projects</h5>
 
         <i class="code-logo fab fa-python"></i>
         <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif title_link">graphPlot</a><br>
@@ -574,12 +582,6 @@ function initialize_stars() {
 	});
 
 
-	// canvas.addEventListener("touchmove",function(e){
-	// 	e.preventDefault();
-	// 	centerX = canvas.width / 2 + (window.innerWidth / 2 - e.targetTouches[0].screenX) / 5;
-	// 	centerY = canvas.height / 2 + (window.innerHeight / 2 - e.targetTouches[0].screenY) / 5;
-	// });
-
 	// reset centerX and Y when mouse leaves
 	canvas.addEventListener("mouseout",function(e){
 		centerX = canvas.width / 2;
@@ -734,14 +736,27 @@ function draw_network() {
 // |____/   \___| |_|  \__,_|  \__,_| |_| |_|  \__,_|  \__, |
 //                                                     |___/
 
+const TRIANGLES = 0;
+const BOTH = 1;
+const VORONOI = 2;
+const EDGES = [[0,1], [1,2], [2,0]];
 
 var numPoints = 75;
 var del_radius = 3;
 var del_speed = 0.3;
-var del_border = 50;
+var del_border = 150;
 var points;
 var triangles = [];
+var del_mode;
 
+document.addEventListener("click",function(e){
+	var rect = canvas.getBoundingClientRect();
+	var user_x = (e.clientX - rect.left) * (canvas.width / canvas.clientWidth);
+	var user_y = (e.clientY - rect.top) * (canvas.height / canvas.clientHeight);
+	if (user_y > 0 && user_y < canvas.height) {
+		del_mode = (del_mode + 1) % 3;
+	}
+});
 
 function initialize_delaunay() {
 	points = [];
@@ -756,6 +771,9 @@ function initialize_delaunay() {
 	points[-2] = {x: canvas.width * 2, y: canvas.width * 2};
 	points[-3] = {x: canvas.width / 2, y: -canvas.width};
 
+	del_mode = TRIANGLES;
+
+
 }
 
 function update_delaunay() {
@@ -764,8 +782,8 @@ function update_delaunay() {
 }
 
 function move_point(i, dir, amount) {
-	points[i].x = (points[i].x + Math.cos(dir) * amount + del_border) % (canvas.width + del_border * 2) - del_border;
-	points[i].y = (points[i].y + Math.sin(dir) * amount + del_border) % (canvas.height + del_border * 2) - del_border;
+	points[i].x = (points[i].x + Math.cos(dir) * amount + del_border + canvas.width + del_border * 2) % (canvas.width + del_border * 2) - del_border;
+	points[i].y = (points[i].y + Math.sin(dir) * amount + del_border + canvas.height + del_border * 2) % (canvas.height + del_border * 2) - del_border;
 }
 
 
@@ -790,8 +808,6 @@ function point_inside_circumference_of_triangle(point, triangle) {
             m[2] * (m[3] * m[7] - m[4] * m[6]);
 	return det > 0;
 }
-
-const EDGES = [[0,1], [1,2], [2,0]];
 
 function remove_obj_from_arr(obj, arr) {
 	var index = arr.indexOf(obj);
@@ -839,7 +855,7 @@ function get_triangulation() {
 				for (var k = 0; k < badTriangles.length; k++) {
 					if (k != i) {
 						// console.log("     " + badTriangles[k]);
-						if (badTriangles[k].indexOf(edge[0]) != -1 && badTriangles[k].indexOf(edge[1]) != -1) {
+						if (badTriangles[k].includes(edge[0]) && badTriangles[k].includes(edge[1])) {
 							shared = true;
 							break;
 						}
@@ -881,11 +897,122 @@ function get_triangulation() {
 	for (var i = 0; i < triangulation.length; i++) {
 		// if triangle contains a vertex from original super-triangle
 		// remove triangle from triangulation
-		if (triangulation[i].indexOf(-1) == -1 && triangulation[i].indexOf(-2) == -1 && triangulation[i].indexOf(-3) == -1) {
+		if (!triangulation[i].includes(-1) && !triangulation[i].includes(-2) && !triangulation[i].includes(-3)) {
 			new_triangles.push(triangulation[i]);
 		}
 	}
 	return new_triangles;
+}
+
+
+
+function get_triangle_lines() {
+	var l = [];
+	for (var k = 0; k < triangles.length; k++) {
+		for (var i = 0; i < 3; i++) {
+			var a = Math.min(i, (i + 1) % 3);
+			var b = Math.max(i, (i + 1) % 3);
+			if (!l.includes([triangles[k][a], triangles[k][b]])) {
+				l.push([triangles[k][a], triangles[k][b]]);
+			}
+		}
+	}
+	return l;
+}
+
+
+function distance(a, b) {
+	return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)
+}
+
+function get_circumcenter(triangle) {
+	var a = points[triangle[0]];
+	var b = points[triangle[1]];
+	var c = points[triangle[2]];
+
+	var ab = distance(a,b);
+	var bc = distance(b,c);
+	var ca = distance(c,a);
+
+	var A = Math.acos((-(bc**2) + ca**2 + ab**2)/(2 * ca * ab));
+	var B = Math.acos((-(ca**2) + bc**2 + ab**2)/(2 * bc * ab));
+	var C = Math.acos((-(ab**2) + ca**2 + bc**2)/(2 * bc * ca));
+
+	var den = Math.sin(2 * A) + Math.sin(2 * B) + Math.sin(2 * C);
+
+	var x = (a.x * Math.sin(2 * A) + b.x * Math.sin(2 * B) + c.x * Math.sin(2 * C)) / den;
+	var y = (a.y * Math.sin(2 * A) + b.y * Math.sin(2 * B) + c.y * Math.sin(2 * C)) / den;
+
+	return {x:x, y:y};
+}
+
+function are_adjacent(triangle1, triangle2) {
+	// check to see if they have two elements in common (so a total of 4)
+	return [...(new Set([...triangle1, ...triangle2]))].length == 4;
+}
+
+function get_rel_pos(triangle1, triangle2) {
+	var adjacent = false;
+	var shared_edge_num;
+	for (var i = 0; i < EDGES.length; i++) {
+		if (triangle2.includes(triangle1[EDGES[i][0]]) && triangle2.includes(triangle1[EDGES[i][1]])) {
+			adjacent = true;
+			shared_edge_num = i;
+		}
+	}
+	return {are_adjacent:adjacent, shared_edge_num_of_1:shared_edge_num};
+}
+
+var adj_triangles;
+
+function midpoint_of(i, j) {
+	var a = points[i];
+	var b = points[j];
+	return {x: (a.x+b.x)/2, y: (a.y+b.y)/2};
+}
+
+function get_voronoi() {
+
+	adj_triangles = [];
+	for (var i = 0; i < triangles.length; i++) {
+		adj_triangles[i] = {adjacent:[], open_edge_nums: [0, 1, 2]};
+		for (var j = 0; j < triangles.length; j++) {
+			if (i != j) {
+				var rel_pos = get_rel_pos(triangles[i], triangles[j]);
+				if (rel_pos.are_adjacent) {
+					adj_triangles[i].adjacent.push(j);
+					remove_obj_from_arr(rel_pos.shared_edge_num_of_1, adj_triangles[i].open_edge_nums);
+				}
+			}
+		}
+	}
+
+	var circumcenters = [];
+	for (var i = 0; i < triangles.length; i++) {
+		circumcenters.push(get_circumcenter(triangles[i]));
+	}
+
+	var l = [];
+	for (var i = 0; i < triangles.length; i++) {
+		var cc1 = circumcenters[i];
+		for (var j = 0; j < adj_triangles[i].adjacent.length; j++) {
+			var cc2 = circumcenters[adj_triangles[i].adjacent[j]];
+			l.push([cc1, cc2]);
+		}
+		for (var j = 0; j < adj_triangles[i].open_edge_nums.length; j++) {
+			// a point is at "infinity"
+			var open_edge = EDGES[adj_triangles[i].open_edge_nums[j]];
+			var mid = midpoint_of(triangles[i][open_edge[0]], triangles[i][open_edge[1]]);
+			var xdir = cc1.x > canvas.width / 2 ? 1 : -1;
+			var ydir = cc1.y > canvas.height / 2 ? 1 : -1;
+			var new_point = {x: 100 * xdir * Math.abs(cc1.x - mid.x) + cc1.x,
+			                 y: 100 * ydir * Math.abs(cc1.y - mid.y) + cc1.y};
+			l.push([cc1, new_point]);
+		}
+	}
+
+	return {circumcenters:circumcenters, lines:l};
+
 }
 
 
@@ -897,36 +1024,52 @@ function draw_delaunay() {
 	}
 
 	// draw background
-	ctx.fillStyle = "darkgreen";// "rgb(235, 235, 235)";
+	ctx.fillStyle = "green";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-	// points
-	ctx.fillStyle = "white";// "#bfbfbf";
-	for (var i = 0; i < numPoints; i++) {
-		// draw node
-		ctx.beginPath();
-		ctx.arc(points[i].x, points[i].y, del_radius, 0, 2 * Math.PI);
-		ctx.fill();
-	}
 
-	// triangles
-	var lines = [];
-	for (var k = 0; k < triangles.length; k++) {
-		for (var i = 0; i < 3; i++) {
-			var a = Math.min(i, (i + 1) % 3);
-			var b = Math.max(i, (i + 1) % 3);
-			if (!lines.includes([triangles[k][a], triangles[k][b]])) {
-				lines.push([triangles[k][a], triangles[k][b]]);
-			}
+	if (del_mode == TRIANGLES || del_mode == BOTH) {
+		// points
+		ctx.fillStyle = "white";// "#bfbfbf";
+		for (var i = 0; i < numPoints; i++) {
+			// draw node
+			ctx.beginPath();
+			ctx.arc(points[i].x, points[i].y, del_radius, 0, 2 * Math.PI);
+			ctx.fill();
+			// ctx.font = "14px Arial";
+			// ctx.fillText(i, points[i].x, points[i].y);
+		}
+
+		// triangles
+		var lines = get_triangle_lines();
+		ctx.strokeStyle = "white";
+		ctx.lineWidth = .25;
+		for (var i = 0; i < lines.length; i++) {
+			ctx.beginPath();
+			ctx.moveTo(points[lines[i][0]].x, points[lines[i][0]].y);
+			ctx.lineTo(points[lines[i][1]].x, points[lines[i][1]].y);
+			ctx.stroke();
 		}
 	}
-	ctx.strokeStyle = "white";// "#bfbfbf";
-	ctx.lineWidth = .25;
-	for (var i = 0; i < lines.length; i++) {
-		ctx.beginPath();
-		ctx.moveTo(points[lines[i][0]].x, points[lines[i][0]].y);
-		ctx.lineTo(points[lines[i][1]].x, points[lines[i][1]].y);
-		ctx.stroke();
+	if (del_mode == VORONOI || del_mode == BOTH) {
+		ctx.fillStyle = "black";
+		var voronio = get_voronoi();
+		for (var i = 0; i < voronio.circumcenters.length; i++) {
+			ctx.beginPath();
+			ctx.arc(voronio.circumcenters[i].x, voronio.circumcenters[i].y, del_radius, 0, 2 * Math.PI);
+			ctx.fill();
+			// ctx.font = "20px Arial";
+			// ctx.fillText(i, voronio.circumcenters[i].x, voronio.circumcenters[i].y);
+		}
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = .25;
+		for (var i = 0; i < voronio.lines.length; i++) {
+			ctx.beginPath();
+			ctx.moveTo(voronio.lines[i][0].x, voronio.lines[i][0].y);
+			ctx.lineTo(voronio.lines[i][1].x, voronio.lines[i][1].y);
+			ctx.stroke();
+		}
+
 	}
 
 
