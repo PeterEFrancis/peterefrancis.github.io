@@ -154,6 +154,7 @@
 			<a class="navbar-brand" href="javascript:switch_view(STARS)"><i class="fas fa-space-shuttle"></i></a>
 			<a class="navbar-brand" href="javascript:switch_view(NETWORK)"><i class="fa fa-dot-circle-o"></i></a>
 			<a class="navbar-brand" href="javascript:switch_view(DELAUNAY)"><i class="fa fa-asterisk"></i></a>
+			<a class="navbar-brand" href="javascript:switch_view(EYES)"><i class="fa fa-eye"></i></a>
     </div>
     <!-- <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -456,16 +457,16 @@
 	const STARS = 1;
 	const NETWORK = 2;
 	const DELAUNAY = 3;
+	const EYES = 4;
 
 	var current_view = COLOR;
-
 
 
 	start_fern();
 
 
-
-
+	const INITIALIZERS = [null, initialize_stars, initialize_network, initialize_delaunay, initialize_eyes];
+	const UPDATERS = [null, update_stars, update_network, update_delaunay, update_eyes];
 
 
 	function switch_view(view) {
@@ -496,45 +497,21 @@
 				document.body.style.color = "rgb(45,45,45)";
 				document.getElementsByTagName('footer')[0].style.color = "#333333";
 
+
+				INITIALIZERS[view]();
+				update_ID = setInterval(UPDATERS[view], 15);
+
 				document.getElementById('display').style.color = "white";
 				document.getElementById('subtitle').style.color = "white";
 
 				if (view == STARS) {
 
-					// document.getElementById('display').style.color = "white";
-					// document.getElementById('subtitle').style.color = "white";
 					document.body.style.backgroundColor = "rgb(40,40,40)";
 					document.body.style.color = "grey";
 					document.getElementsByTagName('footer')[0].style.color = "#333333";
-
-					initialize_stars();
-
-					update_ID = setInterval(update_stars, 15);
-
-				}
-
-				else if (view == NETWORK) {
-
+				} else {
 					document.getElementById('display').style.textShadow = "0px 0px 15px #000000";
 					document.getElementById('subtitle').style.textShadow = "0px 0px 10px #000000";
-					// document.getElementById('subtitle').style.color = "rgb(45,45,45)";
-
-					initialize_network();
-
-					update_ID = setInterval(update_network, 15);
-
-				}
-
-				else if (view == DELAUNAY) {
-
-					document.getElementById('display').style.textShadow = "0px 0px 15px #000000";
-					document.getElementById('subtitle').style.textShadow = "0px 0px 10px #000000";
-					// document.getElementById('subtitle').style.color = "rgb(45,45,45)";
-
-					initialize_delaunay();
-
-					update_ID = setInterval(update_delaunay, 15);
-
 				}
 
 			}
@@ -792,14 +769,14 @@ function move_delaunay() {
 		move_point(i, points[i].dir, del_speed);
 	}
 
-	triangles = get_triangulation();
+	triangles = get_triangulation(points);
 }
 
-function point_inside_circumference_of_triangle(point, triangle) {
-	var a = points[point];
-	var b = points[triangle[0]];
-	var c = points[triangle[1]];
-	var d = points[triangle[2]];
+function point_inside_circumference_of_triangle(point, triangle, pts) {
+	var a = pts[point];
+	var b = pts[triangle[0]];
+	var c = pts[triangle[1]];
+	var d = pts[triangle[2]];
 	var m = [a.x-d.x, a.y-d.y, (a.x-d.x)**2 + (a.y-d.y)**2,   // 0 1 2
            b.x-d.x, b.y-d.y, (b.x-d.x)**2 + (b.y-d.y)**2,   // 3 4 5
            c.x-d.x, c.y-d.y, (c.x-d.x)**2 + (c.y-d.y)**2];  // 6 7 8
@@ -816,13 +793,13 @@ function remove_obj_from_arr(obj, arr) {
 	}
 }
 
-function get_triangulation() {
+function get_triangulation(p) {
 	// console.log("get triangularization")
 	// triangulation := empty triangle mesh data structure
 	// add super-triangle to triangulation // must be large enough to completely contain all the points in pointList
 	var triangulation = [[-1, -2, -3]];
 	// for each point in pointList do // add all the points one at a time to the triangulation
-	for (var point = 0; point < numPoints; point++) {
+	for (var point = 0; point < p.length; point++) {
 		// console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ adding point: " + point);
 		// console.log("\ttriangulation:["); for (zzz in triangulation) {console.log("\t\t" + triangulation[zzz]);} console.log("\t\t]");
 		// console.log("Find all of the bad triangles");
@@ -832,7 +809,7 @@ function get_triangulation() {
 		for (var i = 0; i < triangulation.length; i++) {
 			var triangle = triangulation[i];
 			// if point is inside circumcircle of triangle
-			if (point_inside_circumference_of_triangle(point, triangle)) {
+			if (point_inside_circumference_of_triangle(point, triangle, p)) {
 				// console.log("\tfound: " + triangle);
 				// 	add triangle to badTriangles
 				badTriangles.push(triangle);
@@ -905,15 +882,14 @@ function get_triangulation() {
 }
 
 
-
-function get_triangle_lines() {
+function get_triangle_lines(tris) {
 	var l = [];
-	for (var k = 0; k < triangles.length; k++) {
+	for (var k = 0; k < tris.length; k++) {
 		for (var i = 0; i < 3; i++) {
 			var a = Math.min(i, (i + 1) % 3);
 			var b = Math.max(i, (i + 1) % 3);
-			if (!l.includes([triangles[k][a], triangles[k][b]])) {
-				l.push([triangles[k][a], triangles[k][b]]);
+			if (!l.includes([tris[k][a], tris[k][b]])) {
+				l.push([tris[k][a], tris[k][b]]);
 			}
 		}
 	}
@@ -963,22 +939,19 @@ function get_rel_pos(triangle1, triangle2) {
 	return {are_adjacent:adjacent, shared_edge_num_of_1:shared_edge_num};
 }
 
-var adj_triangles;
-
 function midpoint_of(i, j) {
 	var a = points[i];
 	var b = points[j];
 	return {x: (a.x+b.x)/2, y: (a.y+b.y)/2};
 }
 
-function get_voronoi() {
-
-	adj_triangles = [];
-	for (var i = 0; i < triangles.length; i++) {
+function get_adj_triangles(tris) {
+	var adj_triangles = [];
+	for (var i = 0; i < tris.length; i++) {
 		adj_triangles[i] = {adjacent:[], open_edge_nums: [0, 1, 2]};
-		for (var j = 0; j < triangles.length; j++) {
+		for (var j = 0; j < tris.length; j++) {
 			if (i != j) {
-				var rel_pos = get_rel_pos(triangles[i], triangles[j]);
+				var rel_pos = get_rel_pos(tris[i], tris[j]);
 				if (rel_pos.are_adjacent) {
 					adj_triangles[i].adjacent.push(j);
 					remove_obj_from_arr(rel_pos.shared_edge_num_of_1, adj_triangles[i].open_edge_nums);
@@ -986,14 +959,20 @@ function get_voronoi() {
 			}
 		}
 	}
+	return adj_triangles;
+}
+
+function get_voronoi(tris) {
+
+	var adj_triangles = get_adj_triangles(tris);
 
 	var circumcenters = [];
-	for (var i = 0; i < triangles.length; i++) {
-		circumcenters.push(get_circumcenter(triangles[i]));
+	for (var i = 0; i < tris.length; i++) {
+		circumcenters.push(get_circumcenter(tris[i]));
 	}
 
 	var l = [];
-	for (var i = 0; i < triangles.length; i++) {
+	for (var i = 0; i < tris.length; i++) {
 		var cc1 = circumcenters[i];
 		for (var j = 0; j < adj_triangles[i].adjacent.length; j++) {
 			var cc2 = circumcenters[adj_triangles[i].adjacent[j]];
@@ -1002,7 +981,7 @@ function get_voronoi() {
 		for (var j = 0; j < adj_triangles[i].open_edge_nums.length; j++) {
 			// a point is at "infinity"
 			var open_edge = EDGES[adj_triangles[i].open_edge_nums[j]];
-			var mid = midpoint_of(triangles[i][open_edge[0]], triangles[i][open_edge[1]]);
+			var mid = midpoint_of(tris[i][open_edge[0]], tris[i][open_edge[1]]);
 			var xdir = cc1.x > canvas.width / 2 ? 1 : -1;
 			var ydir = cc1.y > canvas.height / 2 ? 1 : -1;
 			var new_point = {x: 100 * xdir * Math.abs(cc1.x - mid.x) + cc1.x,
@@ -1020,7 +999,6 @@ function get_voronoi() {
 	}
 
 	return {circumcenters:circumcenters, lines:n_l};
-
 }
 
 
@@ -1049,7 +1027,7 @@ function draw_delaunay() {
 		}
 
 		// triangles
-		var lines = get_triangle_lines();
+		var lines = get_triangle_lines(triangles);
 		ctx.strokeStyle = "white";
 		ctx.lineWidth = .25;
 		for (var i = 0; i < lines.length; i++) {
@@ -1061,7 +1039,7 @@ function draw_delaunay() {
 	}
 	if (del_mode == VORONOI || del_mode == BOTH) {
 		ctx.fillStyle = "black";
-		var voronio = get_voronoi();
+		var voronio = get_voronoi(triangles);
 		for (var i = 0; i < voronio.circumcenters.length; i++) {
 			ctx.beginPath();
 			ctx.arc(voronio.circumcenters[i].x, voronio.circumcenters[i].y, del_radius, 0, 2 * Math.PI);
@@ -1082,6 +1060,131 @@ function draw_delaunay() {
 
 
 }
+
+
+
+
+
+//  _____
+// | ____|  _   _    ___   ___
+// |  _|   | | | |  / _ \ / __|
+// | |___  | |_| | |  __/ \__ \
+// |_____|  \__, |  \___| |___/
+//          |___/
+
+var numEyes = 50;
+var eye_border = 20;
+var eyes;
+
+
+function get_connections(tris) {
+	var connections = [];
+	for (var i = 0; i < tris.length; i++) {
+		for (var j = 0; j < 3; j++) {
+			if (connections[tris[i][j]] == undefined) {
+				connections[tris[i][j]] = [];
+			}
+			connections[tris[i][j]].push(...tris[i]);
+		}
+	}
+	for (var i = 0; i < connections.length; i++) {
+		var new_conn = [];
+		for (var j = 0; j < connections[i].length; j++) {
+			if (connections[i][j] != i && !new_conn.includes(connections[i][j])) {
+				new_conn.push(connections[i][j]);
+			}
+		}
+		connections[i] = new_conn;
+	}
+	return connections;
+}
+
+
+function initialize_eyes() {
+	eyes = [];
+	for (var i = 0; i < numEyes; i++) {
+		eyes.push({
+			x: Math.random() * (canvas.width + 2 * eye_border),
+			y: Math.random() * (canvas.height + 2 * eye_border),
+			dir: Math.random() * Math.random() * Math.PI * 2
+		});
+	}
+	eyes[-1] = {x: -canvas.width, y: canvas.width * 2};
+	eyes[-2] = {x: canvas.width * 2, y: canvas.width * 2};
+	eyes[-3] = {x: canvas.width / 2, y: -canvas.width};
+
+	var tris = get_triangulation(eyes);
+	var tri_conns = get_connections(tris);
+
+
+	for (var i = 0; i < numEyes; i++) {
+		var min_radius = canvas.width;
+		for (var j = 0; j < tri_conns[i].length; j++) {
+			var radius = distance(eyes[i], eyes[tri_conns[i][j]]) / 2;
+			if (radius < min_radius) {
+				min_radius = radius;
+			}
+		}
+		eyes[i].radius = min_radius;
+	}
+
+
+	document.addEventListener("mousemove",function(e){
+		var rect = canvas.getBoundingClientRect();
+		var user_x = (e.clientX - rect.left) * (canvas.width / canvas.clientWidth);
+		var user_y = (e.clientY - rect.top) * (canvas.height / canvas.clientHeight);
+		for (var i = 0; i < numEyes; i++) {
+			var slope = (eyes[i].y - user_y)/(user_x - eyes[i].x);
+			eyes[i].dir = Math.atan(slope) + (user_x < eyes[i].x ? Math.PI : 0);
+		}
+	});
+
+}
+
+function update_eyes() {
+
+	// Resize to the screen
+	if (canvas.width != canvas.clientWidth) {
+		canvas.width = canvas.clientWidth;
+		initialize_eyes();
+	}
+
+	ctx.fillStyle = "purple";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	ctx.strokeStyle = "black";
+	for (var i = 0; i < numEyes; i++) {
+		// white part
+		ctx.fillStyle = "white";
+		ctx.beginPath();
+		ctx.arc(eyes[i].x, eyes[i].y, eyes[i].radius, 0 , Math.PI * 2);
+		ctx.stroke();
+		ctx.fill();
+
+		// pupil
+		ctx.fillStyle = "black";
+		ctx.beginPath();
+		ctx.arc(eyes[i].x + (eyes[i].radius / 3) * Math.cos(eyes[i].dir), eyes[i].y - (eyes[i].radius / 3) * Math.sin(eyes[i].dir), eyes[i].radius / 3, 0 , Math.PI * 2);
+		ctx.fill();
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
