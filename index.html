@@ -1081,9 +1081,10 @@ function blink_eye(eye) {
 	let blinkID = setInterval(function() {
 		if (theta <= Math.PI) {
 			eye.closed = Math.sin(theta);
-			theta += Math.PI/100;
+			theta += Math.PI/80;
 		} else {
 			clearInterval(blinkID);
+			eye.closed = 0;
 		}
 	}, 1);
 }
@@ -1151,6 +1152,17 @@ function initialize_eyes() {
 			var slope = (eyes[i].y - user_y)/(user_x - eyes[i].x);
 			eyes[i].dir = Math.atan(slope) + (user_x < eyes[i].x ? Math.PI : 0);
 			eyes[i].dist = distance(eyes[i], {x:user_x, y:user_y});
+		}
+	});
+
+	document.addEventListener("click",function(e){
+		var rect = canvas.getBoundingClientRect();
+		var user_x = (e.clientX - rect.left) * (canvas.width / canvas.clientWidth);
+		var user_y = (e.clientY - rect.top) * (canvas.height / canvas.clientHeight);
+		if (user_y > 0 && user_y < canvas.height) {
+			for (var i = 0; i < numEyes; i++) {
+				blink_eye(eyes[i]);
+			}
 		}
 	});
 
