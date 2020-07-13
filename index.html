@@ -1077,13 +1077,14 @@ var eye_border = 20;
 var eyes;
 
 function blink_eye(eye) {
+	clearInterval(eye.blinkID);
 	var theta = 0;
-	let blinkID = setInterval(function() {
+	eye.blinkID = setInterval(function() {
 		if (theta <= Math.PI) {
 			eye.closed = Math.sin(theta);
 			theta += Math.PI/80;
 		} else {
-			clearInterval(blinkID);
+			clearInterval(eye.blinkID);
 			eye.closed = 0;
 		}
 	}, 1);
@@ -1135,7 +1136,7 @@ function initialize_eyes() {
 	for (var i = 0; i < numEyes; i++) {
 		var min_radius = canvas.width;
 		for (var j = 0; j < tri_conns[i].length; j++) {
-			var radius = distance(eyes[i], eyes[tri_conns[i][j]]) / 2;
+			var radius = distance(eyes[i], eyes[tri_conns[i][j]]) / 2.5;
 			if (radius < min_radius) {
 				min_radius = radius;
 			}
@@ -1192,6 +1193,8 @@ function update_eyes() {
 	for (var i = 0; i < numEyes; i++) {
 		// white part
 		ctx.fillStyle = "#f0f4ff";
+		ctx.strokeStyle = "#330033";
+		ctx.lineWidth = 5;
 		ctx.beginPath();
 		ctx.arc(eyes[i].x, eyes[i].y, eyes[i].radius, 0 , Math.PI * 2);
 		ctx.stroke();
