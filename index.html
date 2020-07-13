@@ -1076,6 +1076,17 @@ var numEyes = 50;
 var eye_border = 20;
 var eyes;
 
+function blink_eye(eye) {
+	var theta = 0;
+	let blinkID = setInterval(function() {
+		if (theta <= Math.PI) {
+			eye.closed = Math.sin(theta);
+			theta += Math.PI/100;
+		} else {
+			clearInterval(blinkID);
+		}
+	}, 1);
+}
 
 function get_connections(tris) {
 	var connections = [];
@@ -1100,6 +1111,7 @@ function get_connections(tris) {
 }
 
 
+
 function initialize_eyes() {
 	eyes = [];
 	for (var i = 0; i < numEyes; i++) {
@@ -1108,6 +1120,7 @@ function initialize_eyes() {
 			y: Math.random() * (canvas.height + 2 * eye_border),
 			dir: Math.random() * Math.random() * Math.PI * 2,
 			dist: 1,
+			closed: 0,
 		});
 	}
 	eyes[-1] = {x: -canvas.width, y: canvas.width * 2};
@@ -1155,13 +1168,18 @@ function update_eyes() {
 		initialize_eyes();
 	}
 
-	ctx.fillStyle = "purple";
+	// random blinks
+	if (Math.random() < 0.025) {
+		blink_eye(eyes[Math.floor(Math.random() * numEyes)]);
+	}
+
+	ctx.fillStyle = "#660066";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 	ctx.strokeStyle = "black";
 	for (var i = 0; i < numEyes; i++) {
 		// white part
-		ctx.fillStyle = "white";
+		ctx.fillStyle = "#f0f4ff";
 		ctx.beginPath();
 		ctx.arc(eyes[i].x, eyes[i].y, eyes[i].radius, 0 , Math.PI * 2);
 		ctx.stroke();
@@ -1172,8 +1190,19 @@ function update_eyes() {
 		ctx.beginPath();
 		ctx.arc(eyes[i].x + (logistic(eyes[i].dist) * eyes[i].radius / 3) * Math.cos(eyes[i].dir),
 		        eyes[i].y - (logistic(eyes[i].dist) * eyes[i].radius / 3) * Math.sin(eyes[i].dir),
-						eyes[i].radius / 3, 0 , Math.PI * 2);
+		        eyes[i].radius / 3, 0 , Math.PI * 2);
 		ctx.fill();
+
+		// lid
+		if (eyes[i].closed != 0) {
+			ctx.fillStyle = "#330033";
+			ctx.strokeStyle = "#330033";
+			ctx.beginPath();
+			var angle = Math.asin(1 - eyes[i].closed * 2);
+			ctx.arc(eyes[i].x, eyes[i].y, eyes[i].radius, Math.PI + angle, Math.PI * 2 - angle);
+			ctx.fill();
+			ctx.stroke();
+		}
 
 	}
 
