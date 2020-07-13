@@ -1106,7 +1106,8 @@ function initialize_eyes() {
 		eyes.push({
 			x: Math.random() * (canvas.width + 2 * eye_border),
 			y: Math.random() * (canvas.height + 2 * eye_border),
-			dir: Math.random() * Math.random() * Math.PI * 2
+			dir: Math.random() * Math.random() * Math.PI * 2,
+			dist: 1,
 		});
 	}
 	eyes[-1] = {x: -canvas.width, y: canvas.width * 2};
@@ -1136,9 +1137,14 @@ function initialize_eyes() {
 		for (var i = 0; i < numEyes; i++) {
 			var slope = (eyes[i].y - user_y)/(user_x - eyes[i].x);
 			eyes[i].dir = Math.atan(slope) + (user_x < eyes[i].x ? Math.PI : 0);
+			eyes[i].dist = distance(eyes[i], {x:user_x, y:user_y});
 		}
 	});
 
+}
+
+function logistic(x) {
+	return 2 / (1 + Math.exp(-0.005 * x)) - 1;
 }
 
 function update_eyes() {
@@ -1164,7 +1170,9 @@ function update_eyes() {
 		// pupil
 		ctx.fillStyle = "black";
 		ctx.beginPath();
-		ctx.arc(eyes[i].x + (eyes[i].radius / 3) * Math.cos(eyes[i].dir), eyes[i].y - (eyes[i].radius / 3) * Math.sin(eyes[i].dir), eyes[i].radius / 3, 0 , Math.PI * 2);
+		ctx.arc(eyes[i].x + (logistic(eyes[i].dist) * eyes[i].radius / 3) * Math.cos(eyes[i].dir),
+		        eyes[i].y - (logistic(eyes[i].dist) * eyes[i].radius / 3) * Math.sin(eyes[i].dir),
+						eyes[i].radius / 3, 0 , Math.PI * 2);
 		ctx.fill();
 
 	}
