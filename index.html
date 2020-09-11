@@ -4,10 +4,13 @@
   <title>Peter E. Francis</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
   <script src="https://kit.fontawesome.com/c13a8d5cc1.js" crossorigin="anonymous"></script>
 
   <!-- Icon files -->
@@ -394,18 +397,12 @@
             </tr>
           </tbody>
         </table>
-        <div class="row">
-          <div class="col-xs-6">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="# of Photos" style="height:2.5em;min-width:85px; background-color:inherit" id="num_of_pics">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="height:2.5em; background-color:inherit; color:inherit" onclick="price()">Get Price</button>
-              </span>
-            </div>
-          </div>
-          <div class="col-xs-6">
-            <p id="price" style="line-height:2em; margin: 0px 0px 0px 40px;"></p>
-          </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="# of Photos" id="num_of_pics">
+          <span class="input-group-addon" id="price" style="width: 30%"></span>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" onclick="price()">Get Price</button>
+          </span>
         </div>
       </div>
     </div>
@@ -1323,6 +1320,7 @@ function update_eyes() {
     }
   }
 
+
 </script>
 
 
@@ -1331,6 +1329,30 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
+
+
+
+
+
+
+<script>
+
+if (/Android|Mobile|webOS|iPhone|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+  toggleDesc();
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 </html>
 
