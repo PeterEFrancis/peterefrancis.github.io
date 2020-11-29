@@ -18,9 +18,6 @@
 <body>
 <div class="container-fluid">
   <h1>Movie List</h1>
-  <h4>(<span id="number"></span>)</h4>
-  <!-- <p>Type something in the input field to search the list for movie titles:</p> -->
-  <!-- <input class="form-control" id="myInput" type="text" placeholder="Search.."> -->
   <br>
   <table id="movies" class="table table-bordered table-striped">
     <thead>
@@ -43,17 +40,6 @@
 
 
 <script>
-
-// $(document).ready(function(){
-//   $("#myInput").on("keyup", function() {
-//     var value = $(this).val().toLowerCase();
-//     $("#movies tr").filter(function() {
-//       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-//     });
-//   });
-// });
-
-
 
   var movie_list = document.getElementById('movie-list');
 
@@ -107,8 +93,6 @@
         movie_list.appendChild(tr);
       }
     }
-
-    document.getElementById('number').innerHTML = num;
 
     $('#movies').DataTable({
       "paging":   false
