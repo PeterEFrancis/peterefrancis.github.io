@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" type="image/jpg" href="/icon_files/favicon.ico"/>
+
 </head>
 <body>
 <p id="test"></p>
@@ -20,11 +22,8 @@
       <tr>
         <td><strong>Movie Title</strong></td>
       </tr>
-
     </thead>
-    <tbody id="movie-list">
-
-    </tbody>
+    <tbody id="movie-list"></tbody>
   </table>
 
 </div>
@@ -46,8 +45,10 @@ $(document).ready(function(){
 
   $.get('all.xml', function(xml) {
     var titles = [];
-    for (var i = 1; i < xml.documentElement.childNodes.length; i = i + 2) {
-      titles.push(xml.documentElement.childNodes[i].getAttribute('title'));
+    for (var i = 0; i < xml.documentElement.childNodes.length; i++) {
+      if (xml.childNodes[0].childNodes[i].nodeName == "Video") {
+        titles.push(xml.documentElement.childNodes[i].getAttribute('title'));
+      }
     }
     titles = [...new Set(titles)];
     for (var i = 0; i < titles.length; i++) {
@@ -57,7 +58,6 @@ $(document).ready(function(){
       tr.appendChild(td);
       movie_list.appendChild(tr);
     }
-
   });
 
 
