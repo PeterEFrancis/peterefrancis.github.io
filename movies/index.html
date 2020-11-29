@@ -78,7 +78,7 @@
 
         const duration = document.createElement('td');
         var date = new Date(0);
-        date.setSeconds(Number(xml.documentElement.childNodes[i].getAttribute('duration') || 0));
+        date.setSeconds(Number(xml.documentElement.childNodes[i].getAttribute('duration') / 1000 || 0));
         const timeString = date.toISOString().substr(11, 8);
         duration.appendChild(document.createTextNode(timeString));
         tr.appendChild(duration);
