@@ -9,18 +9,30 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="image/jpg" href="/icon_files/favicon.ico"/>
 
+  <!-- datatables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+
 </head>
 <body>
-<p id="test"></p>
-<div class="container">
+<div class="container-fluid">
   <h1>Movie List</h1>
-  <p>Type something in the input field to search the list for movie titles:</p>
-  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <h4>(<span id="number"></span>)</h4>
+  <!-- <p>Type something in the input field to search the list for movie titles:</p> -->
+  <!-- <input class="form-control" id="myInput" type="text" placeholder="Search.."> -->
   <br>
   <table id="movies" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <td><strong>Movie Title</strong></td>
+        <th>Movie Title</th>
+        <th>Summary</th>
+        <th>Year</th>
+        <th>Rating</th>
+        <th>Content Rating</th>
+        <th>Duration</th>
+        <th>Genres</th>
+
       </tr>
     </thead>
     <tbody id="movie-list"></tbody>
@@ -32,35 +44,77 @@
 
 <script>
 
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#movies tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+// $(document).ready(function(){
+//   $("#myInput").on("keyup", function() {
+//     var value = $(this).val().toLowerCase();
+//     $("#movies tr").filter(function() {
+//       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+//     });
+//   });
+// });
+
+
 
   var movie_list = document.getElementById('movie-list');
 
   $.get('all.xml', function(xml) {
-    var titles = [];
+    var num = 0;
     for (var i = 0; i < xml.documentElement.childNodes.length; i++) {
       if (xml.childNodes[0].childNodes[i].nodeName == "Video") {
-        titles.push(xml.documentElement.childNodes[i].getAttribute('title'));
+        num++;
+        const tr = document.createElement('tr');
+
+        const title = document.createElement('td');
+        title.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('title')));
+        tr.appendChild(title);
+
+        const summary = document.createElement('td');
+        summary.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('summary') || ""));
+        tr.appendChild(summary);
+
+        const year = document.createElement('td');
+        year.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('year') || ""));
+        tr.appendChild(year);
+
+        const rating = document.createElement('td');
+        rating.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('rating') || ""));
+        tr.appendChild(rating);
+
+        const contentRating = document.createElement('td');
+        contentRating.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('contentRating') || ""));
+        tr.appendChild(contentRating);
+
+        const duration = document.createElement('td');
+        var date = new Date(0);
+        date.setSeconds(Number(xml.documentElement.childNodes[i].getAttribute('duration') || 0));
+        const timeString = date.toISOString().substr(11, 8);
+        duration.appendChild(document.createTextNode(timeString));
+        tr.appendChild(duration);
+
+        const subNodes = xml.documentElement.childNodes[i].childNodes;
+        // genres
+        var genres = [];
+        for (var j = 0; j < subNodes.length; j++) {
+          if (subNodes[j].nodeName == "Genre") {
+            genres.push(subNodes[j].getAttribute('tag'));
+          }
+        }
+        const genre = document.createElement('td');
+        genre.appendChild(document.createTextNode(genres.join(', ')));
+        tr.appendChild(genre);
+
+
+        movie_list.appendChild(tr);
       }
     }
-    titles = [...new Set(titles)];
-    for (var i = 0; i < titles.length; i++) {
-      const tr = document.createElement('tr');
-      const td = document.createElement('td');
-      td.appendChild(document.createTextNode(titles[i]));
-      tr.appendChild(td);
-      movie_list.appendChild(tr);
-    }
+
+    document.getElementById('number').innerHTML = num;
+
+    $('#movies').DataTable({
+      "paging":   false
+    });
+
   });
-
-
 
 </script>
 
