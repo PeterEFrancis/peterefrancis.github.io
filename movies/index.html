@@ -9,8 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <p id="test">
-    </p>
+<p id="test"></p>
 <div class="container">
   <h1>Movie List</h1>
   <p>Type something in the input field to search the list for movie titles:</p>
@@ -33,6 +32,15 @@
 
 
 <script>
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#movies tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
   var movie_list = document.getElementById('movie-list');
 
