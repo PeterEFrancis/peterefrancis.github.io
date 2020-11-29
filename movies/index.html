@@ -51,7 +51,13 @@
         const tr = document.createElement('tr');
 
         const title = document.createElement('td');
-        title.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('title')));
+        const a = document.createElement('a');
+        const plexLink = xml.documentElement.childNodes[i].getAttribute('guid');
+        const url = plexLink.startsWith("com.plexapp.agents.imdb") ? "https://www.imdb.com/title/" : "https://www.themoviedb.org/movie/";
+        a.target = "_blank";
+        a.href = url + plexLink.substring(plexLink.indexOf('//') + 2, plexLink.indexOf('?'));
+        a.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('title')));
+        title.appendChild(a);
         tr.appendChild(title);
 
         const summary = document.createElement('td');
