@@ -13,6 +13,12 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
+  <style>
+    a:hover {
+      cursor: pointer;
+    }
+  </style>
+
 
 </head>
 <body>
@@ -61,7 +67,36 @@
         tr.appendChild(title);
 
         const summary = document.createElement('td');
-        summary.appendChild(document.createTextNode(xml.documentElement.childNodes[i].getAttribute('summary') || ""));
+        const summ_text = xml.documentElement.childNodes[i].getAttribute('summary') || "";
+        const summ_prev = summ_text.substring(0, 50);
+        const summ_prev_span = document.createElement('span');
+        summ_prev_span.appendChild(document.createTextNode(summ_prev));
+        const dots = document.createElement('span');
+        dots.appendChild(document.createTextNode('...'));
+        const summ_exp = summ_text.substring(50) + " ";
+        const summ_exp_span = document.createElement('span');
+        summ_exp_span.appendChild(document.createTextNode(summ_exp));
+        summ_exp_span.style.display = 'none';
+        const more_less = document.createElement('a');
+        more_less.innerHTML = '(more)';
+        more_less.onclick = function() {
+          if (this.innerHTML == '(more)') {
+            this.innerHTML = '(less)';
+            summ_exp_span.style.display = 'inline';
+            dots.style.display = 'none';
+          } else {
+            this.innerHTML = '(more)';
+            summ_exp_span.style.display = 'none';
+            dots.style.display = 'inline';
+          }
+
+        };
+        summary.appendChild(summ_prev_span);
+        summary.appendChild(dots);
+        summary.appendChild(summ_exp_span);
+        summary.appendChild(document.createTextNode(' '));
+        summary.appendChild(more_less);
+
         tr.appendChild(summary);
 
         const year = document.createElement('td');
