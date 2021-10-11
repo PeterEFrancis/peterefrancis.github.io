@@ -53,10 +53,9 @@
 
 
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
+
+    body {
+      min-width: 300px !important;
     }
 
     /* Add a gray background color and some padding to the footer */
@@ -112,10 +111,6 @@
         margin-bottom:50px;
     }
 
-    html {
-      min-width: 220px;
-    }
-
 
     .desc {
       margin-bottom:20px;
@@ -150,43 +145,51 @@
       background-color: lightgrey;
     }
 
-
+    .ani {
+      background-color: black;
+      color: grey;
+      padding: 10px;
+      display: block;
+      outline: 0px !important;
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    .ani:hover {
+      color: lightgrey
+    }
 
 
 
   </style>
 
+  <script>
+    function stopclick(event, element) {
+      // Don't propogate the event to the document
+      if (event.stopPropagation) {
+          event.stopPropagation();   // W3C model
+      } else {
+          event.cancelBubble = true; // IE model
+      }
+    }
+  </script>
+
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button> -->
-      <a class="navbar-brand" href="javascript:switch_view(COLOR)"><i class="fas fa-paint-brush"></i></a>
-			<a class="navbar-brand" href="javascript:changeFont()"><i class="fas fa-font"></i></a>
-			<!-- <a class="navbar-brand" href="javascript:toggleDesc()">T</a> -->
-			<a class="navbar-brand" href="javascript:switch_view(STARS)"><i class="fas fa-space-shuttle"></i></a>
-			<a class="navbar-brand" href="javascript:switch_view(NETWORK)"><i class="fa fa-dot-circle-o"></i></a>
-			<a class="navbar-brand" href="javascript:switch_view(DELAUNAY)"><i class="fa fa-asterisk"></i></a>
-			<a class="navbar-brand" href="javascript:switch_view(EYES)"><i class="fa fa-eye"></i></a>
-    </div>
-    <!-- <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div> -->
-  </div>
-</nav>
+
+
 
 <div class="jumbotron" id="colorChanging" style="padding: 0px; height: 300px;">
+  <div class="btn-group" style="position: absolute; z-index:100" onclick="stopclick(event, this)">
+    <button class="btn ani" onclick="switch_view(COLOR)"><i class="fas fa-paint-brush"></i></a>
+    <button class="btn ani" onclick="changeFont()"><i class="fas fa-font"></i></a>
+    <!-- <a class="navbar-brand" href="javascript:toggleDesc()">T</a> -->
+    <button class="btn ani" onclick="switch_view(STARS)"><i class="fas fa-space-shuttle"></i></a>
+    <button class="btn ani" onclick="switch_view(NETWORK)"><i class="fa fa-dot-circle-o"></i></a>
+    <button class="btn ani" onclick="switch_view(DELAUNAY)"><i class="fa fa-asterisk"></i></a>
+    <button class="btn ani" onclick="switch_view(EYES)"><i class="fa fa-eye"></i></a>
+  </div>
 	<canvas id="canvas" height="300" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
-  <div class="center-block" style="position: absolute; top: 130px; width: 100%; min-width: 220px" id="">
+  <div class="center-block" style="position: absolute; top: 75px; width: 100%; min-width: 220px" id="">
     <h1 class="textColorChanging text-center" id="display" style="user-select: none">Peter E. Francis</h1>
     <em><p class="textColorChanging text-center" id="subtitle" style="user-select: none">A Collection of Projects from Diverse Motivations</p></em>
   </div>
@@ -199,7 +202,7 @@
       <button id="btn-about" class="btn btn-lg main-btn btn-default" on="true" onclick="change_page(this)">About</button>
       <button id="btn-writing" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Writing</button>
       <button id="btn-projects" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Projects</button>
-      <button id="btn-photography" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Photography</button>
+      <button id="btn-photography" class="btn btn-lg main-btn btn-default" onclick="change_page(this);">Photography</button>
       <button id="btn-other" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Other</button>
     </div>
   </div>
@@ -210,10 +213,16 @@
 
   <div id="row-about" class="row" style="display: block">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <p class="sanSerif">I am a math nerd, a photographer, and someone who likes adding third phrases on written lists to show people that I'm a fan of the Oxford comma.</p>
-      <p>More specifically, I am a PhD student in the Mathematics Department at Stony Brook University. I graduated Gettysburg College in the spring of 2021.</p>
+    <div class="col-md-8" align="justify">
+      <p>I am a math nerd, a photographer, and someone who likes adding third phrases on written lists to demonstrate how much I love the Oxford comma.</p>
+      <p>More specifically, I graduated Gettysburg College in the spring of 2021 with a BA mathematics, and am now a PhD student at Stony Brook University studying... you guessed it... Mathematics.</p>
+      <p>When I'm not proving various things that I am instructed to prove (as is the life of a math graduate student) I enjoy elimintating projects from my mile-long "to do" list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I have spent time on, and am most proud of.</p>
+      <p>If you are interested in working together, please contact me!</p>
+      <br>
+      <img src="/img/signature.svg" style="height: 7em"/>
       <br><br>
+      <p>P.S. Click on one of those buttons on the top left of your screen!</p>
+
       <canvas id="fern" class="img-responsive center-block" height="1000" width="1000" style="width:80%; max-width:369px; user-select:none;"></canvas>
     </div>
     <div class="col-md-2"></div>
@@ -372,7 +381,7 @@
 
   <div id="row-photography" class="row" style="display: none">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-8" id="photo-content">
       <h3 class="serif">PEF Photography</h3>
       <a href="http://www.instagram.com/pef_photography" target="_blank" class="sansSerif"><i class="fab fa-instagram"></i> Instagram Page</a>
       <br>
@@ -415,6 +424,10 @@
           <button type="button" class="btn btn-default" onclick="price()">Get Price</button>
         </span>
       </div>
+
+      <br>
+      <br>
+
 
     </div>
     <div class="col-md-2"></div>
