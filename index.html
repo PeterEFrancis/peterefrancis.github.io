@@ -281,7 +281,8 @@
 
         }, 1);
       }
-
+      
+      window.addEventListener('scroll', viewtest);
       function viewtest() {
         var position = signature.getBoundingClientRect();
         if(position.top >= 0 && position.bottom <= window.innerHeight) {
@@ -290,7 +291,7 @@
         }
       }
       viewtest();
-      window.addEventListener('scroll', viewtest);
+
 
     </script>
 
