@@ -159,6 +159,17 @@
     }
 
 
+    #ani-group {
+      position: absolute;
+      z-index: 100;
+      transform: translate(-230px, 0px);
+      transition: ease 2s;
+      transition-delay: 10s;
+    }
+    #ani-group:hover {
+      transform: translate(0px, 0px);
+      transition: 1s;
+    }
 
   </style>
 
@@ -177,399 +188,403 @@
 <body>
 
 
-
-<div class="jumbotron" id="colorChanging" style="padding: 0px; height: 300px;">
-  <div class="btn-group" style="position: absolute; z-index:100" onclick="stopclick(event, this)">
-    <button class="btn ani" onclick="switch_view(COLOR)"><i class="fas fa-paint-brush"></i></a>
+  <div id="ani-group" class="btn-group" onclick="stopclick(event, this);">
+    <button class="btn ani" onclick="switch_view(COLOR)"><i class="fas fa-paint-brush"></i></button>
     <button class="btn ani" onclick="changeFont()"><i class="fas fa-font"></i></a>
     <!-- <a class="navbar-brand" href="javascript:toggleDesc()">T</a> -->
-    <button class="btn ani" onclick="switch_view(STARS)"><i class="fas fa-space-shuttle"></i></a>
-    <button class="btn ani" onclick="switch_view(NETWORK)"><i class="fa fa-dot-circle-o"></i></a>
-    <button class="btn ani" onclick="switch_view(DELAUNAY)"><i class="fa fa-asterisk"></i></a>
-    <button class="btn ani" onclick="switch_view(EYES)"><i class="fa fa-eye"></i></a>
+    <button class="btn ani" onclick="switch_view(STARS)"><i class="fas fa-space-shuttle"></i></button>
+    <button class="btn ani" onclick="switch_view(NETWORK)"><i class="fa fa-dot-circle-o"></i></button>
+    <button class="btn ani" onclick="switch_view(DELAUNAY)"><i class="fa fa-asterisk"></i></button>
+    <button class="btn ani" onclick="switch_view(EYES)"><i class="fa fa-eye"></i></button>
+    <button class="btn ani" style="height: 42px; color: white;"><i class="glyphicon glyphicon-chevron-right"></i></button>
   </div>
-	<canvas id="canvas" height="300" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
-  <div class="center-block" style="position: absolute; top: 75px; width: 100%; min-width: 220px" id="">
-    <h1 class="textColorChanging text-center" id="display" style="user-select: none">Peter E. Francis</h1>
-    <em><p class="textColorChanging text-center" id="subtitle" style="user-select: none">A Collection of Projects from Diverse Motivations</p></em>
-  </div>
-</div>
 
-<div class="container" style="margin-bottom: 50px;">
+  <div class="jumbotron" id="colorChanging" style="padding: 0px; height: 300px;">
 
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button id="btn-about" class="btn btn-lg main-btn btn-default" on="true" onclick="change_page(this)">About</button>
-      <button id="btn-writing" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Writing</button>
-      <button id="btn-projects" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Projects</button>
-      <button id="btn-photography" class="btn btn-lg main-btn btn-default" onclick="change_page(this);">Photography</button>
-      <button id="btn-other" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Other</button>
+  	<canvas id="canvas" height="300" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
+    <div class="center-block" style="position: absolute; top: 75px; width: 100%; min-width: 220px">
+      <h1 class="textColorChanging text-center" id="display" style="user-select: none">Peter E. Francis</h1>
+      <em><p class="textColorChanging text-center" id="subtitle" style="user-select: none">A Collection of Projects from Diverse Motivations</p></em>
     </div>
   </div>
 
+  <div class="container" style="margin-bottom: 50px;">
 
-
-
-
-  <div id="row-about" class="row" style="display: block">
-    <div class="col-md-2"></div>
-    <div class="col-md-8" align="justify">
-      <p>I am a math nerd, a photographer, and someone who likes adding third phrases on written lists to demonstrate how much I love the Oxford comma.</p>
-      <p>More specifically, I graduated Gettysburg College in the spring of 2021 with a BA mathematics, and am now a PhD student at Stony Brook University studying... you guessed it... Mathematics.</p>
-      <p>When I'm not proving various things that I am instructed to prove (as is the life of a math graduate student) I enjoy elimintating projects from my mile-long "to do" list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I have spent time on, and am most proud of.</p>
-      <p>If you are interested in working together, please contact me!</p>
-      <br>
-      <img src="/img/signature.svg" style="height: 7em"/>
-      <br><br>
-      <p>P.S. Click on one of those buttons on the top left of your screen!</p>
-
-      <canvas id="fern" class="img-responsive center-block" height="1000" width="1000" style="width:80%; max-width:369px; user-select:none;"></canvas>
-    </div>
-    <div class="col-md-2"></div>
-  </div>
-
-  <div id="row-writing" class="row" style="display: none">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <h3 class="serif">Publications</h3>
-      <ul>
-        <li>
-          [2021] <a href="https://ojs.aaai.org/index.php/AAAI/article/view/17824" target="_blank" class="sansSerif title_link"><em>Opponent Hand Estimation in the Game of Gin Rummy</em></a> (Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 35 No. 17)
-          <p class="desc"><strong>Abstract:</strong> In this article, we describe various approaches to opponent hand estimation in the card game Gin Rummy. We use an application of Bayes' rule, as well as both simple and convolutional neural networks, to recognize patterns in simulated game play and predict the opponent's hand. ...</p>
-        </li>
-        <li>
-          [2021] <a href="pdf/Secrets%20and%20Quantifiers.pdf" target="_blank" class="sansSerif title_link"><em>Secrets and Quantifiers</em></a> (Math Horizons, MAA)
-          <p class="desc">American writer, teacher, and comedian Sam Levenson gives us the following warning. "Somewhere on this globe, every ten seconds, there is a woman giving birth to a child. She must be found and stopped."...</p>
-        </li>
-        <li>
-          [2020] <a href="https://share.cocalc.com/share/535de1b4021791bf62276f30d13d80cd080773bc/3.2/Research%20401/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>Maximal Sizes of Weak <i class="math">(2,1)</i>-Sum-Free Sets in Finite Abelian Groups</em></a> (Gettysburg College Research Papers In Mathematics)
-          <p class="desc"><strong>Abstract:</strong> The finite abelian group <i class="math">G</i> is type I if <i class="math">|G|</i> has a prime divisor congruent to <i class="math">2(3)</i>, type II if <i class="math">|G|</i> is divisible by <i class="math">3</i> but has no divisors congruent to <i class="math">2(3)</i>, and type III if all divisors of <i class="math">|G|</i> are congruent to <i class="math">1(3)</i>.... <a href="https://share.cocalc.com/share/e27129bb6637de042fdd30c57a19791e1c06c98a/3.2/Research%20401/presentations/Presentation.pdf?viewer=raw" target="_blank">(Presentation)</a> <img class="code-logo" style="height:.75em;" src="img/TeX.png"/></p>
-        </li>
-        <li>
-          [2019] <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/Final%20Paper/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>The Maximum Size of Weak (<i class="math">k</i>, <i class="math">l</i>)-Sum-Free Sets</em></a> (Gettysburg College Research Papers In Mathematics)
-          <p class="desc"><strong>Abstract:</strong> A subset <i class="math">A</i> of a given finite abelian group <i class="math">G</i> is called weakly (<i class="math">k</i>, <i class="math">l</i>)-sum-free if the set of all sums of <i class="math">k</i> distinct elements of <i class="math">A</i> is disjoint with set of all sums of <i class="math">l</i> distinct elements of <i class="math">A</i>.... <a href="https://share.cocalc.com/share/ffb6474b099ea32e4235833504cf0ba372f17ba3/2.2/Math%20Research/presentation/presentation.pdf?viewer=raw" target="_blank">(Presentation)</a> <img class="code-logo" style="height:.75em;" src="img/TeX.png"/></p>
-        </li>
-      </ul>
-
-      <h3 class="serif">Other Writing</h3>
-      <ul>
-        <li>
-          [2021] <a href="http://ifs-fractals.herokuapp.com/math" target="_blank" class="sanserif title_link"><em>The Beautiful Mathematics of IFS Fractals</em></a>
-          <p class="desc"><strong>Abstract:</strong> Just a few random numbers and 2-by-2 matrices can be used in unison to create spectacularly beautiful images of planar fractals. These iterated function systems (IFS) are easy to understand, but lead to deep constructions...</p>
-        </li>
-        <li>
-          [2021] <a href="/schottky-groups" target="_blank" class="sanserif title_link"><em>The Beauty of Schottky Groups</em></a>
-          <p class="desc"><strong>Abstract:</strong> Möbius transformations are a convenient group of maps to study. We will explore a specific kind of Möbius transformation used to generate particular discrete subgroups of Möbius transformations called Schottky Groups. We will then use Schottky Groups to explain and make fractal-like images out of circles.</p>
-        </li>
-        <li>
-          [2020] <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif title_link"><em>On Moments and Centroids</em></a>
-          <p class="desc">While serving as a PLA for a Calculus 2 class, I realized that the students were not understanding the origin of the formulas they were trying to memorize and use, which motivated me to write this short tutorial.</p>
-        </li>
-        <li>
-          [2020] <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Algebra in the Game "Lights Out"</em></a>
-          <p class="desc">(In Progress) "Lights Out" is a game using binary-state cellular automota. This paper explores the algebraic structures the game admits. <i class="code-logo fab fa-python"></i><i class="code-logo fab fa-markdown"></i></p>
-        </li>
-        <li>
-          [2019] <a href="https://share.cocalc.com/share/fe1b52d3-0a65-4731-a145-f98a9f424ba5/Mathematical%20Techniques%20for%20Physicists.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Mathematical Techniques for Physicists</em></a>
-          <p class="desc">(In Progress) After taking a math methods course for Physicits, I realized that the 1333-page textbook that we used covered far more material than a semseter of undergraduate math for physics majors requires. This textbook will include coverage of 4 important topics that every physics major should be familiar with: Fourier Analysis, Vector Calculus, Linear Algebra, and Partial Differential Equations. <img class="code-logo" style="height:.75em;" src="img/TeX.png"/><i class="code-logo fab fa-python"></i></p>
-        </li>
-      </ul>
-
-    </div>
-    <div class="col-md-2"></div>
-  </div>
-
-  <div id="row-projects" class="row" style="display: none">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <h3 class="serif">Web Tools</h3>
-      <ul>
-        <li>
-          <a href="http://ifs-fractals.herokuapp.com/" target="_blank title_link" class="sansSerif title_link">ifs-Fractals</a><br>
-          <p class="desc">A showcase and collection of the Mathematics and beauty of fractals generated with iterated function systems. This web app allows for the creation and sensitivity investigations of IFS fractals. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i><i class="code-logo fas fa-database"></i></p>
-        </li>
-        <li>
-          <a href="/addcomb-js" class="sansSerif title_link" target="_blank">AddComb.js</a><br>
-          <p class="desc">is a javascript library for additive combinatorics calculation. This web app allows has four Additive combinatorics tools free for use: a function calculator, sumset calculator, table generator, and playground Jupyter-style notebook. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="/complex-function-plot" class="sansSerif title_link" target="_blank">Complex Function Plot</a><br>
-          <p class="desc">This web app plots functions <i class="math">f</i> from the complex plane to itself by first coloring the plane and then recoloring the plane, assigning to <i class="math">z</i> the color at <i class="math">f(z)</i>. I believe this is an improvement on software written in MatLab: with this tool, you can upload your own image to be used as domain coloring. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="/color-pixels-as-points" class="sansSerif title_link" target="_blank">Color Pixels as Points</a><br>
-          <p class="desc">This tool is an interface for some javascript that colors pixels on an HTML canvas element. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="table-editor" target="_blank" class="sansSerif title_link">Table Editor</a><br>
-          <p class="desc">This is a web app that can create, edit, convert, export, and save table files, such as CSV, TSV, and others. <i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="random-generators" target="_blank" class="sansSerif title_link">Random Generators</a><br>
-          <p class="desc">Here is an assortment of random generators that I have been requested to make. <i class="code-logo fab fa-js-square"></i></p>
-        </li>
-      </ul>
-
-      <h3 class="serif">Python Modules</h3>
-      <ul>
-        <li>
-          <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif title_link">graphPlot</a><br>
-          <p class="desc">graphPlot is a Python module (released on PyPi) that uses physical simulation to find ideal plotting coordinates for graphs. <i class="code-logo fab fa-python"></i></p>
-        </li>
-        <li>
-          <a href="https://pypi.org/project/ifsFractals/" target="_blank" class="sansSerif title_link">ifsFractals-py</a><br>
-          <p class="desc">ifsFractals is a Python module (released on PyPi) that can be used to generate fractals that are fixed point sets of contraction mappings. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-python"></i></p>
-        </li>
-      </ul>
-
-
-      <h3 class="serif">Games</h3>
-      <ul>
-        <li>
-          <a href="/sedar-io" class="sansSerif title_link" target="_blank">Sedar-io</a><br>
-          <p class="desc">Sedario is a short two-person strategy game of my own invention, with simple rules and few materials. I had fun developing this client-side online interface to play the game. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="canvas-games" class="sansSerif title_link" target="_blank">Canvas Games</a><br>
-          <p class="desc">This is a collection of games that are all made using the HTML5 canvas element and javascript. They are intended to be fun as well as instructional for somone wanting to make thier own. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="http://online-poker-holdem.herokuapp.com/" target="_blank title_link" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> Online Texas Hold 'em</a><br>
-          <p class="desc">This is a Texas Holdem' web application that allows users to create and join games. My intention is that players use Zoom (or equivalent) simultaneously.<i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i><i class="code-logo fas fa-database"></i></p>
-        </li>
-        <li>
-          <a href="https://bingogames.herokuapp.com" target="_blank" class="sansSerif title_link">Bingo Caller</a><br>
-          <p class="desc">I was annoyed when I struggled to find a simple web-based Bingo Caller that would be good to project on a screen, so I made one. <i class="code-logo fab fa-html5"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i></p>
-        </li>
-        <li>
-          <a href="https://play-quadegories.herokuapp.com/" target="_blank title_link" class="sansSerif title_link">Play Quadegories!&trade;</a><br>
-          <p class="desc">Quadegories!&trade; is an extremely challenging, clue-based trivia game that works the brain's executive funtion. It was developed by <a href="http://Zelcer.tk" target="_blank" class="sansSerif">Brook Zelcer</a>. <i class="code-logo fab fa-html5"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i></p>
-        </li>
-      </ul>
-
-      <h3 class="serif">Other</h3>
-      <ul>
-        <li>
-          <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/?viewer=share/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> New Projects and Problems</a><br>
-          <p class="desc">(Always in Progess) This CoCalc folder contains some of my "backburner" projects and ideas. Some subfolders have unanswered questions and probelems, so feel free to take a look! <i class="code-logo fab fa-python"></i></p>
-        </li>
-        <li>
-          <a href="https://github.com/PeterEFrancis/lorentz-attractor" target="_blank" class="sansSerif title_link">Lorentz Attractor Animation</a><br>
-          <p class="desc">I made this animation as a demonstration of the way to animate solutions to three-dimmensional systems of ODEs. <i class="code-logo fab fa-python"></i></p>
-        </li>
-        <li>
-          <a href="http://MathWeather.live" target="_blank" class="sansSerif title_link">MathWeather.live</a><br>
-          <p class="desc">After hearing the chair of the Math Department at Gettysburg College (Dr. Ben Kennedy) asses the "math weather" at the beginning of each colloquium, I decided to make a web app to do it everyday! <i class="code-logo fab fa-js-square"></i></p>
-        </li>
-        <li>
-          <a href="https://github.com/francisp336/LaTeX-samples/tree/master" target="_blank" class="sansSerif title_link">Sample LaTeX Files</a><br>
-          <p class="desc">Everyone who has done it knows that learning LaTeX can be a struggle at first, but the rewards are huge! I made these templates so that people who have never learned a markup language before can get started with typesetting. <img class="code-logo" style="height:.75em;" src="img/TeX.png"/></p>
-        </li>
-        <li>
-          <a href="desmos_links.html" target="_blank" class="sansSerif title_link">Desmos Graphs</a><br>
-          <p class="desc">Building and using Desmos Graphs can give great intuitive and visual understaing of various topics. These are some of the graphs that I have made that I either find helpful or nice to look at.</p>
-        </li>
-        <li>
-          <a href="/python-course" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> Python Course</a><br>
-          <p class="desc">(In progress) This is the homepage for an introduction to Python Programming course (and textbook) I wrote and have taught a few times upon request.<i class="code-logo fab fa-python"></i></p>
-        </li>
-      </ul>
-
-    </div>
-    <div class="col-md-2"></div>
-  </div>
-
-  <div id="row-photography" class="row" style="display: none">
-    <div class="col-md-2"></div>
-    <div class="col-md-8" id="photo-content">
-      <h3 class="serif">PEF Photography</h3>
-      <a href="http://www.instagram.com/pef_photography" target="_blank" class="sansSerif"><i class="fab fa-instagram"></i> Instagram Page</a>
-      <br>
-      <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif"><i class="fab fa-flickr"></i> Flickr Page</a><br>
-      <br>
-      <p class="desc">I started photography in high school, and I started working professionally for the office of Communications and Marketing at Gettysburg College in 2018.</p><p class="desc">I enjoy shooting portaits and events, but I have also done wildlife, landscape, and travel photography.</p>
-      <h5>Rates</h5>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td><strong style="font-size:11pt"># of photos</strong></td>
-            <td><strong style="font-size:11pt">Price per photo</strong></td>
-          </tr>
-          <tr>
-            <td>1-2</td>
-            <td>$12 each</td>
-          </tr>
-          <tr>
-            <td>3-9</td>
-            <td>$11 each</td>
-          </tr>
-          <tr>
-            <td>10+</td>
-            <td>$10 each</td>
-          </tr>
-          <tr>
-            <td>unlimited</td>
-            <td>$150/hour</td>
-          </tr>
-          <!-- <tr>
-            <td><a href="http://public.gettysburg.edu/~franpe02/files/Recital%20Photography.pdf" data-toggle="tooltip" title="Includes: 3 portraits and a live stream of the event" target="_blank">Recital Special</a></td>
-            <td>$100</td>
-          </tr> -->
-        </tbody>
-      </table>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="# of Photos" id="num_of_pics">
-        <span class="input-group-addon" id="price" style="width: 30%"></span>
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-default" onclick="price()">Get Price</button>
-        </span>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button id="btn-about" class="btn btn-lg main-btn btn-default" on="true" onclick="change_page(this)">About</button>
+        <button id="btn-writing" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Writing</button>
+        <button id="btn-projects" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Projects</button>
+        <button id="btn-photography" class="btn btn-lg main-btn btn-default" onclick="change_page(this);">Photography</button>
+        <button id="btn-other" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Other</button>
       </div>
-
-      <br>
-      <br>
-
-
     </div>
-    <div class="col-md-2"></div>
-  </div>
 
-  <div id="row-other" class="row" style="display: none">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <h3 class="serif">Writing</h3>
-      <ul>
-        <li>
-          <a href="https://cocalc.com/share/raw/59cf1d2b252ecefb7368a3d4df2bbb165a5eb9a4/2.2/Philosophy%20233/Book/Book.pdf" target="_blank" class="sansSerif title_link"><em>What is the Scientific Method?</em></a><br>
-          <p class="desc">Although 'The Scientific Method' is a fairly ubiquitous phrase, we will begin to see that the poseter flowchart that we recall adorning the wall of our fifth grade classroom does not do it justice. <em>What is the Scientific Method?</em> aims to take the reader through notable episodes of the history of particle physics while examining the ongoing philosophical discussion on the scientific method.</p>
-        </li>
-        <li>
-          <a href="https://cocalc.com/share/raw/fd415256847ecbe18992c0da7ab625f5c90f9250/3.1/Jewish%20Humor/final/Final_Tom_Lehrer_2.pdf" target="_blank" class="sansSerif title_link"><em>The Life and Comedy of Tom Lehrer</em></a>
-          <p class="desc">In 1967, the heart of the Cold War, a lanky Russian Jewish mathematician from the United States sat at a piano in front of a large audience in Copenhagen, singing a satire about mutually assured destruction and nuclear holocaust, that was televised to viewers around the world. Should we be that surprised?...</p>
-        </li>
-        <li>
-          <a href="https://cocalc.com/share/raw/fc887e0f932e0be42150035b49770f2376e0bf0e/3.1/Jewish%20Humor/paper%202_3/Paper%202_3%20--%20draft%203.pdf" target="_blank" class="sansSerif title_link"><em>Ironic Power: Analyzing Gender Roles in Transition from Phase I to Phase II of Jewish Comedy</em></a>
-          <p class="desc">World War II induced a fear in American-Jewish communities, which instigated a sharp turn from the chaotic energy that had been driving the subversive Jewish comedy in America. However, the common and blatant sexism of the time affected Jewish male and female comedians in opposite ways.... (<a href="https://docs.google.com/presentation/d/e/2PACX-1vTTRXnm9X9OmxeV0FPKjRre1-8jhqIv_2DWE2cTTEOSvgDsnE5AlLyh5_IdJD8br1M059bFAknTUf8l/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank">Photo Slides</a>)</p>
-        </li>
-        <li>
-          <a data-toggle="modal" data-target="#TheYearThatEveryoneForgot_modal" href="" class="title_link">
-            <i class="fas fa-lock"></i> <em>The Year That Everyone Forgot</em>
-          </a>
-          <p class="desc">(In progress) I have always enjoyed writing short stories, and I have begun collecting and organizing them into a book.
-          </p>
-          <!-- Modal -->
-          <div id="TheYearThatEveryoneForgot_modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Enter Passphrase</h4>
-                </div>
-                <div class="modal-body">
-                  <input id="TheYearThatEveryoneForgot_input" type="password" name="password" placeholder="passphrase" autofocus/>
-                  <button type="button" class="btn btn-default" onclick="show('TheYearThatEveryoneForgot', 'U2FsdGVkX1+1LQCawPQ9uTJddTakq7uiJ/uBucjaQJKMMqIlx6cDmni6bx8JIG5kRfBzCSJuqFyos9SvG25IwcXPUp9QosTfV50xGp3zJS4hJkR75Ytb7QGCsgiB60pa1iv/XkPZdiJxIzwhb4ugGFdZlZ0gPYmfD3wZv4rLLlvOTbHNueuFDDH5brh+cOG1ocrYu87SCf1cJGEolgI9JA==');"/>Submit</button>
-                  <a style="margin-left:20px;" href="#" id="TheYearThatEveryoneForgot_link" target="_blank"></a>
+
+
+
+
+    <div id="row-about" class="row" style="display: block">
+      <div class="col-md-2"></div>
+      <div class="col-md-8" align="justify">
+        <div style="box-shadow: 5px 10px 18px #888888; padding: 20px;">
+          <p>I am a math nerd, a photographer, and someone who likes adding third phrases on written lists to demonstrate how much I love the Oxford comma.</p>
+          <p>More specifically, I graduated Gettysburg College in the spring of 2021 with a BA mathematics, and am now a PhD student at Stony Brook University studying... you guessed it... Mathematics.</p>
+          <p>When I'm not proving various things that I am instructed to prove (as is the life of a math graduate student) I enjoy elimintating projects from my mile-long "to do" list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I am most proud of.</p>
+          <p>If you are interested in working together, please contact me!</p>
+          <br>
+          <img src="/img/signature.svg" style="height: 7em"/>
+          <br><br>
+          <p>P.S. Click on one of those buttons on the top left of your screen!</p>
+        </div>
+
+        <canvas id="fern" class="img-responsive center-block" height="1000" width="1000" style="width:80%; max-width:369px; user-select:none;"></canvas>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div id="row-writing" class="row" style="display: none">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h3 class="serif">Publications</h3>
+        <ul>
+          <li>
+            [2021] <a href="https://ojs.aaai.org/index.php/AAAI/article/view/17824" target="_blank" class="sansSerif title_link"><em>Opponent Hand Estimation in the Game of Gin Rummy</em></a> (Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 35 No. 17)
+            <p class="desc"><strong>Abstract:</strong> In this article, we describe various approaches to opponent hand estimation in the card game Gin Rummy. We use an application of Bayes' rule, as well as both simple and convolutional neural networks, to recognize patterns in simulated game play and predict the opponent's hand. ...</p>
+          </li>
+          <li>
+            [2021] <a href="pdf/Secrets%20and%20Quantifiers.pdf" target="_blank" class="sansSerif title_link"><em>Secrets and Quantifiers</em></a> (Math Horizons, MAA)
+            <p class="desc">American writer, teacher, and comedian Sam Levenson gives us the following warning. "Somewhere on this globe, every ten seconds, there is a woman giving birth to a child. She must be found and stopped."...</p>
+          </li>
+          <li>
+            [2020] <a href="https://share.cocalc.com/share/535de1b4021791bf62276f30d13d80cd080773bc/3.2/Research%20401/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>Maximal Sizes of Weak <i class="math">(2,1)</i>-Sum-Free Sets in Finite Abelian Groups</em></a> (Gettysburg College Research Papers In Mathematics)
+            <p class="desc"><strong>Abstract:</strong> The finite abelian group <i class="math">G</i> is type I if <i class="math">|G|</i> has a prime divisor congruent to <i class="math">2(3)</i>, type II if <i class="math">|G|</i> is divisible by <i class="math">3</i> but has no divisors congruent to <i class="math">2(3)</i>, and type III if all divisors of <i class="math">|G|</i> are congruent to <i class="math">1(3)</i>.... <a href="https://share.cocalc.com/share/e27129bb6637de042fdd30c57a19791e1c06c98a/3.2/Research%20401/presentations/Presentation.pdf?viewer=raw" target="_blank">(Presentation)</a> <img class="code-logo" style="height:.75em;" src="img/TeX.png"/></p>
+          </li>
+          <li>
+            [2019] <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/2.2/Math%20Research/Final%20Paper/Final_Paper.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><em>The Maximum Size of Weak (<i class="math">k</i>, <i class="math">l</i>)-Sum-Free Sets</em></a> (Gettysburg College Research Papers In Mathematics)
+            <p class="desc"><strong>Abstract:</strong> A subset <i class="math">A</i> of a given finite abelian group <i class="math">G</i> is called weakly (<i class="math">k</i>, <i class="math">l</i>)-sum-free if the set of all sums of <i class="math">k</i> distinct elements of <i class="math">A</i> is disjoint with set of all sums of <i class="math">l</i> distinct elements of <i class="math">A</i>.... <a href="https://share.cocalc.com/share/ffb6474b099ea32e4235833504cf0ba372f17ba3/2.2/Math%20Research/presentation/presentation.pdf?viewer=raw" target="_blank">(Presentation)</a> <img class="code-logo" style="height:.75em;" src="img/TeX.png"/></p>
+          </li>
+        </ul>
+
+        <h3 class="serif">Other Writing</h3>
+        <ul>
+          <li>
+            [2021] <a href="http://ifs-fractals.herokuapp.com/math" target="_blank" class="sanserif title_link"><em>The Beautiful Mathematics of IFS Fractals</em></a>
+            <p class="desc"><strong>Abstract:</strong> Just a few random numbers and 2-by-2 matrices can be used in unison to create spectacularly beautiful images of planar fractals. These iterated function systems (IFS) are easy to understand, but lead to deep constructions...</p>
+          </li>
+          <li>
+            [2021] <a href="/schottky-groups" target="_blank" class="sanserif title_link"><em>The Beauty of Schottky Groups</em></a>
+            <p class="desc"><strong>Abstract:</strong> Möbius transformations are a convenient group of maps to study. We will explore a specific kind of Möbius transformation used to generate particular discrete subgroups of Möbius transformations called Schottky Groups. We will then use Schottky Groups to explain and make fractal-like images out of circles.</p>
+          </li>
+          <li>
+            [2020] <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif title_link"><em>On Moments and Centroids</em></a>
+            <p class="desc">While serving as a PLA for a Calculus 2 class, I realized that the students were not understanding the origin of the formulas they were trying to memorize and use, which motivated me to write this short tutorial.</p>
+          </li>
+          <li>
+            [2020] <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Algebra in the Game "Lights Out"</em></a>
+            <p class="desc">(In Progress) "Lights Out" is a game using binary-state cellular automota. This paper explores the algebraic structures the game admits. <i class="code-logo fab fa-python"></i><i class="code-logo fab fa-markdown"></i></p>
+          </li>
+          <li>
+            [2019] <a href="https://share.cocalc.com/share/fe1b52d3-0a65-4731-a145-f98a9f424ba5/Mathematical%20Techniques%20for%20Physicists.pdf?viewer=raw" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> <em>Mathematical Techniques for Physicists</em></a>
+            <p class="desc">(In Progress) After taking a math methods course for Physicits, I realized that the 1333-page textbook that we used covered far more material than a semseter of undergraduate math for physics majors requires. This textbook will include coverage of 4 important topics that every physics major should be familiar with: Fourier Analysis, Vector Calculus, Linear Algebra, and Partial Differential Equations. <img class="code-logo" style="height:.75em;" src="img/TeX.png"/><i class="code-logo fab fa-python"></i></p>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div id="row-projects" class="row" style="display: none">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h3 class="serif">Web Tools</h3>
+        <ul>
+          <li>
+            <a href="http://ifs-fractals.herokuapp.com/" target="_blank title_link" class="sansSerif title_link">ifs-Fractals</a><br>
+            <p class="desc">A showcase and collection of the Mathematics and beauty of fractals generated with iterated function systems. This web app allows for the creation and sensitivity investigations of IFS fractals. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i><i class="code-logo fas fa-database"></i></p>
+          </li>
+          <li>
+            <a href="/addcomb-js" class="sansSerif title_link" target="_blank">AddComb.js</a><br>
+            <p class="desc">is a javascript library for additive combinatorics calculation. This web app allows has four Additive combinatorics tools free for use: a function calculator, sumset calculator, table generator, and playground Jupyter-style notebook. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="/complex-function-plot" class="sansSerif title_link" target="_blank">Complex Function Plot</a><br>
+            <p class="desc">This web app plots functions <i class="math">f</i> from the complex plane to itself by first coloring the plane and then recoloring the plane, assigning to <i class="math">z</i> the color at <i class="math">f(z)</i>. I believe this is an improvement on software written in MatLab: with this tool, you can upload your own image to be used as domain coloring. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="/color-pixels-as-points" class="sansSerif title_link" target="_blank">Color Pixels as Points</a><br>
+            <p class="desc">This tool is an interface for some javascript that colors pixels on an HTML canvas element. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="table-editor" target="_blank" class="sansSerif title_link">Table Editor</a><br>
+            <p class="desc">This is a web app that can create, edit, convert, export, and save table files, such as CSV, TSV, and others. <i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="random-generators" target="_blank" class="sansSerif title_link">Random Generators</a><br>
+            <p class="desc">Here is an assortment of random generators that I have been requested to make. <i class="code-logo fab fa-js-square"></i></p>
+          </li>
+        </ul>
+
+        <h3 class="serif">Python Modules</h3>
+        <ul>
+          <li>
+            <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif title_link">graphPlot</a><br>
+            <p class="desc">graphPlot is a Python module (released on PyPi) that uses physical simulation to find ideal plotting coordinates for graphs. <i class="code-logo fab fa-python"></i></p>
+          </li>
+          <li>
+            <a href="https://pypi.org/project/ifsFractals/" target="_blank" class="sansSerif title_link">ifsFractals-py</a><br>
+            <p class="desc">ifsFractals is a Python module (released on PyPi) that can be used to generate fractals that are fixed point sets of contraction mappings. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-python"></i></p>
+          </li>
+        </ul>
+
+
+        <h3 class="serif">Games</h3>
+        <ul>
+          <li>
+            <a href="/sedar-io" class="sansSerif title_link" target="_blank">Sedar-io</a><br>
+            <p class="desc">Sedario is a short two-person strategy game of my own invention, with simple rules and few materials. I had fun developing this client-side online interface to play the game. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="canvas-games" class="sansSerif title_link" target="_blank">Canvas Games</a><br>
+            <p class="desc">This is a collection of games that are all made using the HTML5 canvas element and javascript. They are intended to be fun as well as instructional for somone wanting to make thier own. <i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="http://online-poker-holdem.herokuapp.com/" target="_blank title_link" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> Online Texas Hold 'em</a><br>
+            <p class="desc">This is a Texas Holdem' web application that allows users to create and join games. My intention is that players use Zoom (or equivalent) simultaneously.<i class="code-logo fab fa-html5"></i><i class="code-logo fab fa-js-square"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i><i class="code-logo fas fa-database"></i></p>
+          </li>
+          <li>
+            <a href="https://bingogames.herokuapp.com" target="_blank" class="sansSerif title_link">Bingo Caller</a><br>
+            <p class="desc">I was annoyed when I struggled to find a simple web-based Bingo Caller that would be good to project on a screen, so I made one. <i class="code-logo fab fa-html5"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i></p>
+          </li>
+          <li>
+            <a href="https://play-quadegories.herokuapp.com/" target="_blank title_link" class="sansSerif title_link">Play Quadegories!&trade;</a><br>
+            <p class="desc">Quadegories!&trade; is an extremely challenging, clue-based trivia game that works the brain's executive funtion. It was developed by <a href="http://Zelcer.tk" target="_blank" class="sansSerif">Brook Zelcer</a>. <i class="code-logo fab fa-html5"></i><img class="code-logo" style="height:1em;" src="img/flask.png"/><i class="code-logo fab fa-python"></i></p>
+          </li>
+        </ul>
+
+        <h3 class="serif">Other</h3>
+        <ul>
+          <li>
+            <a href="https://share.cocalc.com/share/f6aee960-eb32-4259-a1ff-cddafc5864a0/New%20Projects%20and%20Problems/?viewer=share/" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> New Projects and Problems</a><br>
+            <p class="desc">(Always in Progess) This CoCalc folder contains some of my "backburner" projects and ideas. Some subfolders have unanswered questions and probelems, so feel free to take a look! <i class="code-logo fab fa-python"></i></p>
+          </li>
+          <li>
+            <a href="https://github.com/PeterEFrancis/lorentz-attractor" target="_blank" class="sansSerif title_link">Lorentz Attractor Animation</a><br>
+            <p class="desc">I made this animation as a demonstration of the way to animate solutions to three-dimmensional systems of ODEs. <i class="code-logo fab fa-python"></i></p>
+          </li>
+          <li>
+            <a href="http://MathWeather.live" target="_blank" class="sansSerif title_link">MathWeather.live</a><br>
+            <p class="desc">After hearing the chair of the Math Department at Gettysburg College (Dr. Ben Kennedy) asses the "math weather" at the beginning of each colloquium, I decided to make a web app to do it everyday! <i class="code-logo fab fa-js-square"></i></p>
+          </li>
+          <li>
+            <a href="https://github.com/francisp336/LaTeX-samples/tree/master" target="_blank" class="sansSerif title_link">Sample LaTeX Files</a><br>
+            <p class="desc">Everyone who has done it knows that learning LaTeX can be a struggle at first, but the rewards are huge! I made these templates so that people who have never learned a markup language before can get started with typesetting. <img class="code-logo" style="height:.75em;" src="img/TeX.png"/></p>
+          </li>
+          <li>
+            <a href="desmos_links.html" target="_blank" class="sansSerif title_link">Desmos Graphs</a><br>
+            <p class="desc">Building and using Desmos Graphs can give great intuitive and visual understaing of various topics. These are some of the graphs that I have made that I either find helpful or nice to look at.</p>
+          </li>
+          <li>
+            <a href="/python-course" target="_blank" class="sansSerif title_link"><i class="fas fa-spinner" aria-hidden="true"></i> Python Course</a><br>
+            <p class="desc">(In progress) This is the homepage for an introduction to Python Programming course (and textbook) I wrote and have taught a few times upon request.<i class="code-logo fab fa-python"></i></p>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div id="row-photography" class="row" style="display: none">
+      <div class="col-md-2"></div>
+      <div class="col-md-8" id="photo-content">
+        <h3 class="serif">PEF Photography</h3>
+        <a href="http://www.instagram.com/pef_photography" target="_blank" class="sansSerif"><i class="fab fa-instagram"></i> Instagram Page</a>
+        <br>
+        <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif"><i class="fab fa-flickr"></i> Flickr Page</a><br>
+        <br>
+        <p class="desc">I started photography in high school, and I started working professionally for the office of Communications and Marketing at Gettysburg College in 2018.</p><p class="desc">I enjoy shooting portaits and events, but I have also done wildlife, landscape, and travel photography.</p>
+        <h5>Rates</h5>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><strong style="font-size:11pt"># of photos</strong></td>
+              <td><strong style="font-size:11pt">Price per photo</strong></td>
+            </tr>
+            <tr>
+              <td>1-2</td>
+              <td>$12 each</td>
+            </tr>
+            <tr>
+              <td>3-9</td>
+              <td>$11 each</td>
+            </tr>
+            <tr>
+              <td>10+</td>
+              <td>$10 each</td>
+            </tr>
+            <tr>
+              <td>unlimited</td>
+              <td>$150/hour</td>
+            </tr>
+            <!-- <tr>
+              <td><a href="http://public.gettysburg.edu/~franpe02/files/Recital%20Photography.pdf" data-toggle="tooltip" title="Includes: 3 portraits and a live stream of the event" target="_blank">Recital Special</a></td>
+              <td>$100</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="# of Photos" id="num_of_pics">
+          <span class="input-group-addon" id="price" style="width: 30%"></span>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" onclick="price()">Get Price</button>
+          </span>
+        </div>
+
+        <br>
+        <br>
+
+
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div id="row-other" class="row" style="display: none">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h3 class="serif">Writing</h3>
+        <ul>
+          <li>
+            <a href="https://cocalc.com/share/raw/59cf1d2b252ecefb7368a3d4df2bbb165a5eb9a4/2.2/Philosophy%20233/Book/Book.pdf" target="_blank" class="sansSerif title_link"><em>What is the Scientific Method?</em></a><br>
+            <p class="desc">Although 'The Scientific Method' is a fairly ubiquitous phrase, we will begin to see that the poseter flowchart that we recall adorning the wall of our fifth grade classroom does not do it justice. <em>What is the Scientific Method?</em> aims to take the reader through notable episodes of the history of particle physics while examining the ongoing philosophical discussion on the scientific method.</p>
+          </li>
+          <li>
+            <a href="https://cocalc.com/share/raw/fd415256847ecbe18992c0da7ab625f5c90f9250/3.1/Jewish%20Humor/final/Final_Tom_Lehrer_2.pdf" target="_blank" class="sansSerif title_link"><em>The Life and Comedy of Tom Lehrer</em></a>
+            <p class="desc">In 1967, the heart of the Cold War, a lanky Russian Jewish mathematician from the United States sat at a piano in front of a large audience in Copenhagen, singing a satire about mutually assured destruction and nuclear holocaust, that was televised to viewers around the world. Should we be that surprised?...</p>
+          </li>
+          <li>
+            <a href="https://cocalc.com/share/raw/fc887e0f932e0be42150035b49770f2376e0bf0e/3.1/Jewish%20Humor/paper%202_3/Paper%202_3%20--%20draft%203.pdf" target="_blank" class="sansSerif title_link"><em>Ironic Power: Analyzing Gender Roles in Transition from Phase I to Phase II of Jewish Comedy</em></a>
+            <p class="desc">World War II induced a fear in American-Jewish communities, which instigated a sharp turn from the chaotic energy that had been driving the subversive Jewish comedy in America. However, the common and blatant sexism of the time affected Jewish male and female comedians in opposite ways.... (<a href="https://docs.google.com/presentation/d/e/2PACX-1vTTRXnm9X9OmxeV0FPKjRre1-8jhqIv_2DWE2cTTEOSvgDsnE5AlLyh5_IdJD8br1M059bFAknTUf8l/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank">Photo Slides</a>)</p>
+          </li>
+          <li>
+            <a data-toggle="modal" data-target="#TheYearThatEveryoneForgot_modal" href="" class="title_link">
+              <i class="fas fa-lock"></i> <em>The Year That Everyone Forgot</em>
+            </a>
+            <p class="desc">(In progress) I have always enjoyed writing short stories, and I have begun collecting and organizing them into a book.
+            </p>
+            <!-- Modal -->
+            <div id="TheYearThatEveryoneForgot_modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enter Passphrase</h4>
+                  </div>
+                  <div class="modal-body">
+                    <input id="TheYearThatEveryoneForgot_input" type="password" name="password" placeholder="passphrase" autofocus/>
+                    <button type="button" class="btn btn-default" onclick="show('TheYearThatEveryoneForgot', 'U2FsdGVkX1+1LQCawPQ9uTJddTakq7uiJ/uBucjaQJKMMqIlx6cDmni6bx8JIG5kRfBzCSJuqFyos9SvG25IwcXPUp9QosTfV50xGp3zJS4hJkR75Ytb7QGCsgiB60pa1iv/XkPZdiJxIzwhb4ugGFdZlZ0gPYmfD3wZv4rLLlvOTbHNueuFDDH5brh+cOG1ocrYu87SCf1cJGEolgI9JA==');"/>Submit</button>
+                    <a style="margin-left:20px;" href="#" id="TheYearThatEveryoneForgot_link" target="_blank"></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </li>
-        <li>
-          <a data-toggle="modal" data-target="#AShortMelodytotheEnd_modal" href="" class="title_link">
-            <i class="fas fa-lock"></i> <em>A Short Melody to The End</em>
-          </a>
-          <p class="desc">
-            (In progress) <em>A Short Melody to the End</em> is a one Act Play that I am writing. I hope to be able to announce the debut soon!
-          </p>
-          <!-- Modal -->
-          <div id="AShortMelodytotheEnd_modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Enter Passphrase</h4>
+          </li>
+          <li>
+            <a data-toggle="modal" data-target="#AShortMelodytotheEnd_modal" href="" class="title_link">
+              <i class="fas fa-lock"></i> <em>A Short Melody to The End</em>
+            </a>
+            <p class="desc">
+              (In progress) <em>A Short Melody to the End</em> is a one Act Play that I am writing. I hope to be able to announce the debut soon!
+            </p>
+            <!-- Modal -->
+            <div id="AShortMelodytotheEnd_modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enter Passphrase</h4>
+                  </div>
+                  <div class="modal-body">
+                    <input id="AShortMelodytotheEnd_input" type="password" name="password" placeholder="passphrase" autofocus/>
+                    <button type="button" class="btn btn-default" onclick="show('AShortMelodytotheEnd', 'U2FsdGVkX1+V42qwxcCr3y4svdo+cnFf5XltG7PHvRytJaXE+jlLLSw2/9JKp0u497eTzvk011IiSHAH2tnszAOp0hh8NZatJlDgv3sR19xe9P/BUUD6k0BfBrcfS/hn1tpiYYnnlxikvto9jipgmAZO/Jmr8it+WzHxaBRAohTIqXi6QK5TMQXsCONyl5MMhBNmC/ROfFuiapvegoXwZE47BCUTTGLXHSOO3Z77+fePJlZfJwDzjH6zO6ZCIC5/');"/>Submit</button>
+                    <!-- <a style="margin-left:20px;" href="#" id="AShortMelodytotheEnd_link" target="_blank"></a> -->
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <input id="AShortMelodytotheEnd_input" type="password" name="password" placeholder="passphrase" autofocus/>
-                  <button type="button" class="btn btn-default" onclick="show('AShortMelodytotheEnd', 'U2FsdGVkX1+V42qwxcCr3y4svdo+cnFf5XltG7PHvRytJaXE+jlLLSw2/9JKp0u497eTzvk011IiSHAH2tnszAOp0hh8NZatJlDgv3sR19xe9P/BUUD6k0BfBrcfS/hn1tpiYYnnlxikvto9jipgmAZO/Jmr8it+WzHxaBRAohTIqXi6QK5TMQXsCONyl5MMhBNmC/ROfFuiapvegoXwZE47BCUTTGLXHSOO3Z77+fePJlZfJwDzjH6zO6ZCIC5/');"/>Submit</button>
-                  <!-- <a style="margin-left:20px;" href="#" id="AShortMelodytotheEnd_link" target="_blank"></a> -->
-                </div>
+
               </div>
-
             </div>
-          </div>
 
-        </li>
+          </li>
 
-      </ul>
+        </ul>
 
-      <h3 class="serif">Music</h3>
-      <ul>
-        <li>
-          <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif title_link">Original Compositions and Arrangements on Noteflight</a>
-          <p class="desc">I have arranged and composed for various groups including marching band, choir, piano, and small chamber ensembles. Here you can access my <em>Noteflight Marketplace</em> as well as view all of my public scores.</p>
-        </li>
-
-
-      </ul>
+        <h3 class="serif">Music</h3>
+        <ul>
+          <li>
+            <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif title_link">Original Compositions and Arrangements on Noteflight</a>
+            <p class="desc">I have arranged and composed for various groups including marching band, choir, piano, and small chamber ensembles. Here you can access my <em>Noteflight Marketplace</em> as well as view all of my public scores.</p>
+          </li>
 
 
+        </ul>
 
+
+
+      </div>
+      <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
+
+
+
+
+
   </div>
 
 
 
 
 
-</div>
 
 
-
-
-
-
-
-<footer class="container-fluid">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Peter E. Francis</h2>
-        <em>A Collection of Projects from Diverse Motivations</em>
+  <footer class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Peter E. Francis</h2>
+          <em>A Collection of Projects from Diverse Motivations</em>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="logo.png" style="width:120px; padding:20px"/>
+        </div>
+        <div class="col-sm-3">
+          <h5>Personal</h5>
+          <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fab fa-github"></i> PeterEFrancis</a></p>
+          <p><a href="https://share.cocalc.com/share/1cd78fdc1c0934eafe7710682dca38d1f3f774cf/Personal/Resume/new/resume_cv.pdf?viewer=raw" target="_blank"><i class="far fa-address-card	"></i> Resume</a></p>
+          <p><a href="http://public.gettysburg.edu/~franpe02/files/" target="_blank"><i class="fas fa-archive"></i> Raw Files</a></p>
+          <p><a href="other_links.html" target="_blank"><i class="fas fa-link"></i> Other Links</a></p>
+        </div>
+        <div class="col-sm-5">
+          <h5>Contact</h5>
+          <p><a href="mailto:peter.e.francis@stonybrook.edu"><i class="far fa-envelope"></i> Peter.E.Francis@stonybrook.edu</a></p>
+          <p>Peter E. Francis<br>
+             Department of Mathematics<br>
+             Stony Brook University<br>
+             Stony Brook, NY 11794-3651
+          </p>
+        </div>
+        <!-- <div class="col-sm-2">
+          <iframe src="https://mathweather.live/embed.html" style="width:130px;height:200px; border:1px solid black"></iframe>
+        </div> -->
+      </div>
+      <div class="row" style="margin-top:50px;">
+        <div class="col-xs-12">
+          <p class="text-center" style="font-size:10pt">&copy; Peter E. Francis 2018-2021</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-5">
-        <img src="logo.png" style="width:120px; padding:20px"/>
-      </div>
-      <div class="col-md-2">
-        <h5>Personal</h5>
-        <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fab fa-github"></i> PeterEFrancis</a></p>
-        <p><a href="https://share.cocalc.com/share/1cd78fdc1c0934eafe7710682dca38d1f3f774cf/Personal/Resume/new/resume_cv.pdf?viewer=raw" target="_blank"><i class="far fa-address-card	"></i> Resume</a></p>
-        <p><a href="http://public.gettysburg.edu/~franpe02/files/" target="_blank"><i class="fas fa-archive"></i> Raw Files</a></p>
-        <p><a href="other_links.html" target="_blank"><i class="fas fa-link"></i> Other Links</a></p>
-      </div>
-      <div class="col-md-3">
-        <h5>Contact</h5>
-        <p><a href="mailto:peter.e.francis@stonybrook.edu"><i class="far fa-envelope"></i> Peter.E.Francis@stonybrook.edu</a></p>
-        <p>Peter E. Francis<br>
-           Department of Mathematics<br>
-           Stony Brook University<br>
-           Stony Brook, NY 11794-3651
-        </p>
-      </div>
-      <div class="col-md-2">
-        <iframe src="https://mathweather.live/embed.html" style="width:130px;height:200px; border:1px solid black"></iframe>
-      </div>
-    </div>
-    <div class="row" style="margin-top:50px;">
-      <div class="col-xs-12">
-        <p class="text-center" style="font-size:10pt">&copy; Peter E. Francis 2018-2021</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 
