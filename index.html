@@ -238,8 +238,7 @@
           <br><br>
           <p>P.S. Click on one of those buttons on the top left of your screen!</p>
         </div>
-        <br><br><br>
-        <canvas id="fern" class="img-responsive center-block" height="1000" width="1000" style="width:80%; max-width:369px; user-select:none;"></canvas>
+        <br>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -281,7 +280,7 @@
 
         }, 1);
       }
-      
+
       window.addEventListener('scroll', viewtest);
       function viewtest() {
         var position = signature.getBoundingClientRect();
@@ -341,7 +340,8 @@
             <p class="desc">(In Progress) After taking a math methods course for Physicits, I realized that the 1333-page textbook that we used covered far more material than a semseter of undergraduate math for physics majors requires. This textbook will include coverage of 4 important topics that every physics major should be familiar with: Fourier Analysis, Vector Calculus, Linear Algebra, and Partial Differential Equations. <img class="code-logo" style="height:.75em;" src="img/TeX.png"/><i class="code-logo fab fa-python"></i></p>
           </li>
         </ul>
-
+        <br><br><br>
+        <canvas id="fern" class="img-responsive center-block" height="1000" width="1000" style="width:80%; max-width:369px; user-select:none;"></canvas>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -588,8 +588,45 @@
     </div>
 
 
+  </div>
 
 
+  <div class="container-fluid" style="background-color: black; margin-bottom: 100px;">
+    <div class="row" style="margin-bottom: 0px">
+      <div class="col-xs-6" align="right">
+        <canvas id="face" style="border: 1px solid black; background-color: black; height: 400px;" width="498" height="1081"></canvas>
+      </div>
+      <div class="col-xs-6" align="left" style="padding-left: 30px">
+        <h3 class="serif" style="color: lightgrey; display: block; margin-top: 175px">"Sorry for teh typos"</h3>
+      </div>
+    </div>
+    <script>
+
+      function rand_int(min, max) {
+        return min + Math.floor(Math.random() * (max - min));
+      }
+
+      const ctx = document.getElementById('face').getContext('2d');
+      $.ajax({
+        url: 'data.csv',
+        success: function(data) {
+          let matrix = data.split('\n').map(row=>JSON.parse('[' + row + ']'));
+          let i = 0;
+          let intervalID = setInterval(function() {
+            let x = rand_int(1, 498);
+            let y = rand_int(1, 1081);
+            if (Math.random() < matrix[y][x]) {
+              ctx.fillStyle = 'rgba(255,255,255,' + matrix[y][x] + ')';
+              ctx.fillRect(x, y, Math.random() * 12, Math.random() * 12);
+            }
+            if (i % 8000 == 0) {
+              ctx.fillStyle = 'rgba(0,0,0,0.001)';
+              ctx.fillRect(0, 0, 1081, 1081)
+            }
+          }, 1);
+        }
+      });
+    </script>
 
   </div>
 
