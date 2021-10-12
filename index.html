@@ -606,7 +606,7 @@
         return min + Math.floor(Math.random() * (max - min));
       }
 
-      const ctx = document.getElementById('face').getContext('2d');
+      const facectx = document.getElementById('face').getContext('2d');
       $.ajax({
         url: 'data.csv',
         success: function(data) {
@@ -616,12 +616,12 @@
             let x = rand_int(1, 498);
             let y = rand_int(1, 1081);
             if (Math.random() < matrix[y][x]) {
-              ctx.fillStyle = 'rgba(255,255,255,' + matrix[y][x] + ')';
-              ctx.fillRect(x, y, Math.random() * 12, Math.random() * 12);
+              facectx.fillStyle = 'rgba(255,255,255,' + matrix[y][x] + ')';
+              facectx.fillRect(x, y, Math.random() * 12, Math.random() * 12);
             }
-            if (i % 8000 == 0) {
-              ctx.fillStyle = 'rgba(0,0,0,0.001)';
-              ctx.fillRect(0, 0, 1081, 1081)
+            if (i % 6000 == 0) {
+              facectx.fillStyle = 'rgba(0,0,0,0.001)';
+              facectx.fillRect(0, 0, 1081, 1081);
             }
           }, 1);
         }
