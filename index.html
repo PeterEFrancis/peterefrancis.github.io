@@ -60,8 +60,9 @@
 
     /* Add a gray background color and some padding to the footer */
     footer {
-      background-color: #f2f2f2;
+      /* background-color: #f2f2f2; */
       padding: 25px;
+      padding-top: 50px;
     }
 
     * {
@@ -221,14 +222,14 @@
     </div>
 
 
+  </div>
 
-
-
-    <div id="row-about" class="row" style="display: block">
+  <div id="cont-about" class="container" style="display: block">
+    <div  class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8" align="justify">
         <div style="box-shadow: 5px 10px 18px #888888; padding: 20px;">
-          <p>I am a math nerd, a photographer, and someone who likes adding third phrases to written lists out of love for the Oxford comma.</p>
+          <p>I am a proud math nerd, a photographer, and someone who likes adding third phrases to written lists out of love for the Oxford comma.</p>
           <p>More specifically, I graduated as valedictorian from Gettysburg College in the spring of 2021 with a BA mathematics, and am now a PhD student at Stony Brook University studying... you guessed it... Mathematics.</p>
           <p>When I'm not proving various things that I am instructed to prove (as is the life of a math graduate student) I enjoy elimintating projects from my mile-long "to do" list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I am most proud of.</p>
           <p>If you are interested in working together, please contact me!</p>
@@ -242,7 +243,6 @@
       </div>
       <div class="col-md-2"></div>
     </div>
-
     <script>
       const signature = document.getElementById('signature');
       const signature_ctx = signature.getContext('2d');
@@ -293,8 +293,10 @@
 
 
     </script>
+  </div>
 
-    <div id="row-writing" class="row" style="display: none">
+  <div id="cont-writing" class="container" style="display: none">
+    <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <h3 class="serif">Publications</h3>
@@ -345,8 +347,10 @@
       </div>
       <div class="col-md-2"></div>
     </div>
+  </div>
 
-    <div id="row-projects" class="row" style="display: none">
+  <div id="cont-projects" class="container" style="display: none">
+    <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <h3 class="serif">Web Tools</h3>
@@ -445,8 +449,10 @@
       </div>
       <div class="col-md-2"></div>
     </div>
+  </div>
 
-    <div id="row-photography" class="row" style="display: none">
+  <div id="cont-photography" class="container" style="display: none">
+    <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8" id="photo-content">
         <h3 class="serif">PEF Photography</h3>
@@ -495,12 +501,106 @@
         <br>
         <br>
 
-
       </div>
       <div class="col-md-2"></div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol id="carousel" class="carousel-indicators"></ol>
+          <script>
+            for (let i = 0; i < 26; i++) {
+              let li = document.createElement('li');
+              if (i == 0) {
+                li.classList.add('active');
+              }
+              li.setAttribute('data-target', '#myCarousel');
+              li.setAttribute('data-slide-to', String(i));
+              document.getElementById('carousel').appendChild(li);
+            }
+          </script>
 
-    <div id="row-other" class="row" style="display: none">
+          <!-- Wrapper for slides -->
+          <div id="photo-wrapper" class="carousel-inner"></div>
+          <script>
+            function shuffleArray(array) {
+              for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+              }
+              return array;
+            }
+            let photo_data = [
+              {num: 1, title: 'A Fur Seal Pup', subtitle: 'Swakopmund, Namibia'},
+              {num: 2, title: 'Kayaking With Fur Seals', subtitle: 'Swakopmund, Namibia'},
+              {num: 3, title: 'A Giraffe Drinking', subtitle: 'Etosha National Park, Namibia'},
+              {num: 4, title: 'Misty Mountains and Bird Aloft', subtitle: 'Etosha National Park, Namibia'},
+              {num: 5, title: 'Seagulls Taking Off', subtitle: 'Swakopmund, Namibia'},
+              {num: 6, title: 'A Rig', subtitle: 'Swakopmund, Namibia'},
+              {num: 7, title: 'A Resting Jackle', subtitle: 'Swakopmund, Namibia'},
+              {num: 8, title: 'A Weaver Bird', subtitle: 'Etosha, Namibia'},
+              {num: 9, title: 'At the Namibian National Aquarium', subtitle: 'Swakopmund, Namibia'},
+              {num: 10, title: 'Informal Housing', subtitle: 'Namibia'},
+              {num: 11, title: 'Helena', subtitle: 'Namibia'},
+              {num: 12, title: 'Ricky Miranda 1', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 13, title: 'Ricky Miranda 2', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 14, title: 'Denise Chávez\'s Chandelier', subtitle: 'New Mexico'},
+              {num: 15, title: 'Jumping On A Dune', subtitle: 'New Mexico'},
+              {num: 16, title: 'Gorditas', subtitle: 'New Mexico'},
+              {num: 17, title: 'Sun Setting On A Dune', subtitle: 'New Mexico'},
+              {num: 18, title: 'Churros After Seeing the Boarder', subtitle: 'Texas'},
+              {num: 19, title: 'Snowball 1', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 20, title: 'Snowball 2', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 21, title: 'Hover', subtitle: 'Gettysburg, Pennsylvania'},
+              // {num: 22, title: 'Rose', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 23, title: 'Jack Edelson', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 24, title: 'Holi', subtitle: 'Gettysburg, Pennsylvania'},
+              {num: 25, title: 'Barbara', subtitle: 'Bronx, New York'},
+            ];
+            let order = shuffleArray(Array(photo_data.length).fill().map((x,i)=>i));
+            let photo_wrapper = document.getElementById('photo-wrapper');
+            for (let i = 0; i < photo_data.length; i++) {
+              let item = document.createElement('div');
+              item.classList.add('item');
+              if (i == 0) {
+                item.classList.add('active');
+              }
+              let img = document.createElement('img');
+              img.src = "img/photos/resized/" + photo_data[order[i]].num + ".jpg";
+              img.setAttribute('alt', photo_data[order[i]].title);
+              let caption = document.createElement('div');
+              caption.classList.add('carousel-caption');
+              let h3 = document.createElement('h3');
+              h3.innerHTML = photo_data[order[i]].title;
+              let p = document.createElement('p');
+              p.innerHTML = photo_data[order[i]].subtitle;
+              caption.appendChild(h3);
+              caption.appendChild(p);
+              item.appendChild(img);
+              item.appendChild(caption);
+              photo_wrapper.appendChild(item);
+            }
+          </script>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cont-other" class="container" style="display: none">
+    <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <h3 class="serif">Writing (Not Math or CS)</h3>
@@ -586,12 +686,10 @@
       </div>
       <div class="col-md-2"></div>
     </div>
-
-
   </div>
 
 
-  <div class="container-fluid" style="background-color: black; margin-bottom: 100px;">
+  <div class="container-fluid" style="background-color: black; margin-top: 50px">
     <div class="row" style="margin-bottom: 0px">
       <div class="col-xs-6" align="right">
         <canvas id="face" style="border: 1px solid black; background-color: black; height: 400px;" width="498" height="1081"></canvas>
@@ -607,6 +705,7 @@
       }
 
       const facectx = document.getElementById('face').getContext('2d');
+      const M = 100000;
       $.ajax({
         url: 'data.csv',
         success: function(data) {
@@ -615,14 +714,20 @@
           let intervalID = setInterval(function() {
             let x = rand_int(1, 498);
             let y = rand_int(1, 1081);
+            let max = 12 * (M - i) / M;
             if (Math.random() < matrix[y][x]) {
               facectx.fillStyle = 'rgba(255,255,255,' + matrix[y][x] + ')';
-              facectx.fillRect(x, y, Math.random() * 12, Math.random() * 12);
+              facectx.fillRect(x, y, Math.random() * max, Math.random() * max);
             }
-            if (i % 6000 == 0) {
-              facectx.fillStyle = 'rgba(0,0,0,0.001)';
+            if (i % 1000 == 0) {
+              facectx.fillStyle = 'rgba(0,0,0,0.002)';
               facectx.fillRect(0, 0, 1081, 1081);
             }
+            if (i == M) {
+              clearInterval(intervalID);
+              alert('here');
+            }
+            i++;
           }, 1);
         }
       });
@@ -632,11 +737,7 @@
 
 
 
-
-
-
-
-  <footer class="container-fluid">
+  <footer class="container-fluid" style="box-shadow: 0px 40px 40px -20px grey inset" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -688,9 +789,9 @@
     let id = th.getAttribute('id').split('-')[1];
     for (let page of PAGES) {
       let btn = document.getElementById('btn-' + page);
-      let row = document.getElementById('row-' + page);
+      let row = document.getElementById('cont-' + page);
       btn.setAttribute('on', btn.id == 'btn-' + id);
-      row.style.display = row.id == 'row-' + id ? 'block' : 'none';
+      row.style.display = row.id == 'cont-' + id ? 'block' : 'none';
     }
   }
 
