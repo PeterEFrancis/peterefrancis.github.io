@@ -171,6 +171,20 @@
       transform: translate(0px, 0px);
       transition: 1s;
     }
+/* 
+    #ribbon {
+      text-align: center;
+      background-color: lightblue;
+      color: black;
+      position: absolute;
+      z-index: 100;
+      display: block;
+      width: 120px;
+      right: 10px;
+      padding: 10px;
+
+    } */
+
 
   </style>
 
@@ -187,7 +201,6 @@
 
 </head>
 <body>
-
 
   <div id="ani-group" class="btn-group" onclick="stopclick(event, this);">
     <button class="btn ani" onclick="switch_view(COLOR)"><i class="fas fa-paint-brush"></i></button>
@@ -242,6 +255,12 @@
         <br>
       </div>
       <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <button class="center-block btn-lg btn btn-info" onclick="window.open('/monthly', '_blank');">Read PEF Monthly!</button>
+      </div>
     </div>
     <script>
       const signature = document.getElementById('signature');
