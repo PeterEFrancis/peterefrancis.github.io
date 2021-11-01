@@ -171,7 +171,7 @@
       transform: translate(0px, 0px);
       transition: 1s;
     }
-/* 
+/*
     #ribbon {
       text-align: center;
       background-color: lightblue;
@@ -185,6 +185,12 @@
 
     } */
 
+    .monthly {
+      background-color: black;
+      border-radius: 0px;
+      color: white !important;
+      outline: 0px !important;
+    }
 
   </style>
 
@@ -218,7 +224,7 @@
   	<canvas id="canvas" height="300" style="width: 100%; height: 300px; margin: 0px; padding: 0px; border: 0px; background-color: transparent"></canvas>
     <div class="center-block" style="position: absolute; top: 75px; width: 100%; min-width: 220px">
       <h1 class="textColorChanging text-center" id="display" style="user-select: none">Peter E. Francis</h1>
-      <em><p class="textColorChanging text-center" id="subtitle" style="user-select: none">A Collection of Projects from Diverse Motivations</p></em>
+      <em><p class="textColorChanging text-center" id="subtitle" style="user-select: none">Projects from Diverse Motivations</p></em>
     </div>
   </div>
 
@@ -259,7 +265,9 @@
 
     <div class="row">
       <div class="col-md-12">
-        <button class="center-block btn-lg btn btn-info" onclick="window.open('/monthly', '_blank');">Read PEF Monthly!</button>
+        <button class="center-block btn-lg btn monthly" onclick="window.open('/monthly', '_blank');">
+          Read PEF Monthly! <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
       </div>
     </div>
     <script>
