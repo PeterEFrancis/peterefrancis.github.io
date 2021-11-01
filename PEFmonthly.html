@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PEF Monthly</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #fff;
+      }
+      br {
+        user-select: none;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <img src="img/PEF_monthly.png" class="center-block img-responsive" style="padding: 20px; margin-top: 30px; max-width: 700px"/>
+          <br>
+          <!-- <embed style="width: 100%; height: 11.5in" src="https://cocalc.com/share/raw/cf646fb10efc5b63dc3dc01788071abcfaa8e89b/newsletter/PEF_Monthly.pdf"></embed> -->
+
+          <div id="adobe-dc-view" style="width: 100%;"></div>
+          <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+          <script type="text/javascript">
+            document.addEventListener("adobe_dc_view_sdk.ready", function(){
+            var adobeDCView = new AdobeDC.View({clientId: "565484c3e4054f869762a22371fd808d", divId: "adobe-dc-view"});
+              adobeDCView.previewFile({
+              content:{location: {url: "https://cocalc.com/share/raw/cf646fb10efc5b63dc3dc01788071abcfaa8e89b/newsletter/PEF_Monthly.pdf"}},
+              metaData:{fileName: "PEF_Monthly.pdf.pdf"}
+              }, {embedMode: "IN_LINE"});
+            });
+          </script>
+
+          <br>
+          <div id="disqus_thread" style="background-color: white; padding: 10px; margin-top: 100px; margin-bottom: 100px;"></div>
+          <script>
+              /**
+              *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+              *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+              /*
+              var disqus_config = function () {
+              this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+              };
+              */
+              (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://peterefrancis.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
