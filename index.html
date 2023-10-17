@@ -247,7 +247,7 @@
         <button id="btn-about" class="btn btn-lg main-btn btn-default" on="true" onclick="change_page(this)">About</button>
         <button id="btn-writing" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Writing</button>
         <button id="btn-projects" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Projects</button>
-        <button id="btn-photography" class="btn btn-lg main-btn btn-default" onclick="change_page(this);">Photography</button>
+        <!-- <button id="btn-photography" class="btn btn-lg main-btn btn-default" onclick="change_page(this);">Photography</button> -->
         <button id="btn-other" class="btn btn-lg main-btn btn-default" onclick="change_page(this)">Other</button>
       </div>
     </div>
@@ -492,7 +492,7 @@
     </div>
   </div>
 
-  <div id="cont-photography" class="container" style="display: none">
+<!--   <div id="cont-photography" class="container" style="display: none">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8" id="photo-content">
@@ -525,10 +525,7 @@
               <td>unlimited</td>
               <td>$150/hour</td>
             </tr>
-            <!-- <tr>
-              <td><a href="http://public.gettysburg.edu/~franpe02/files/Recital%20Photography.pdf" data-toggle="tooltip" title="Includes: 3 portraits and a live stream of the event" target="_blank">Recital Special</a></td>
-              <td>$100</td>
-            </tr> -->
+            
           </tbody>
         </table>
         <div class="input-group">
@@ -548,7 +545,7 @@
     <div class="row">
       <div class="col-md-12">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
+         
           <ol id="carousel" class="carousel-indicators" style="margin-bottom: -5px;"></ol>
           <script>
             for (let i = 0; i < 26; i++) {
@@ -562,7 +559,7 @@
             }
           </script>
 
-          <!-- Wrapper for slides -->
+        
           <div id="photo-wrapper" class="carousel-inner"></div>
           <script>
             function shuffleArray(array) {
@@ -626,7 +623,6 @@
             }
           </script>
 
-          <!-- Left and right controls -->
           <a class="left carousel-control" href="#myCarousel" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
             <span class="sr-only">Previous</span>
@@ -638,7 +634,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div id="cont-other" class="container" style="display: none">
     <div class="row">
@@ -720,6 +716,16 @@
           <li>
             <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif title_link">Original Compositions and Arrangements on Noteflight</a>
             <p class="desc">I have arranged and composed for various groups including marching band, choir, piano, and small chamber ensembles. Here you can access my <em>Noteflight Marketplace</em> as well as view all of my public scores.</p>
+          </li>
+
+
+        </ul>
+
+        <h3 class="serif">Photography</h3>
+        <ul>
+          <li>
+            <a href="https://www.flickr.com/photos/156332522@N05/albums" target="_blank" class="sansSerif title_link">Flickr</a>
+            <p class="desc">I started photography in high school, and I started working professionally for the office of Communications and Marketing at Gettysburg College in 2018. I enjoy shooting portaits and events, but I have also done wildlife, landscape, and travel photography.</p>
           </li>
 
 
@@ -826,7 +832,7 @@
 
 <script>
 
-  const PAGES = ['about', 'writing', 'projects', 'photography', 'other'];
+  const PAGES = ['about', 'writing', 'projects', 'other'];
 
   function change_page(th) {
     let id = th.getAttribute('id').split('-')[1];
@@ -1675,26 +1681,26 @@
   // | .__/   \__,_|  \__, |  \___|   |_| |_|  \___| |_| | .__/   \___| |_|    |___/
   // |_|              |___/                              |_|
 
-    function price(){
-      var price = 0;
-      var numPics = document.getElementById('num_of_pics').value;
-      if (numPics>0 && !isNaN(numPics) && parseInt(Number(numPics)) == numPics && !isNaN(parseInt(numPics, 10))){
-        if (numPics <= 2){
-          price = numPics * 12;
-        } else if (numPics <= 9){
-          price = numPics * 11;
-        } else if (numPics >= 10){
-          price = numPics * 10;
-        }
-        document.getElementById('price').innerHTML = "$ " + price;
-      }
+    // function price(){
+    //   var price = 0;
+    //   var numPics = document.getElementById('num_of_pics').value;
+    //   if (numPics>0 && !isNaN(numPics) && parseInt(Number(numPics)) == numPics && !isNaN(parseInt(numPics, 10))){
+    //     if (numPics <= 2){
+    //       price = numPics * 12;
+    //     } else if (numPics <= 9){
+    //       price = numPics * 11;
+    //     } else if (numPics >= 10){
+    //       price = numPics * 10;
+    //     }
+    //     document.getElementById('price').innerHTML = "$ " + price;
+    //   }
 
-      if (numPics == ""){
-        document.getElementById('price').innerHTML = "";
-      }
+    //   if (numPics == ""){
+    //     document.getElementById('price').innerHTML = "";
+    //   }
 
 
-    }
+    // }
 
 
     // function toggleDesc(){
