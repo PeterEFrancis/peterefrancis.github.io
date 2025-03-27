@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-xelatex","-f","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/b756db2115eef0e7a07de8123cf1b9b391f010eb","cover_letter.tex"]}
