@@ -1,1 +1,0 @@
-{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/e52bd949f90c07c13b96fc74d7e2fe0c791e33dd","committees.tex"]}

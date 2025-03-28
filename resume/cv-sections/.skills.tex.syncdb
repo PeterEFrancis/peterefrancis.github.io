@@ -1,1 +1,0 @@
-{"key":"build_command","value":["latexmk","-pdf","-f","-deps","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/a557eb1082b47f8fb1985c0b4f834bc741a762b7","skills.tex"]}

@@ -123,8 +123,8 @@
 \definecolor{white}{HTML}{FFFFFF}
 \definecolor{black}{HTML}{000000}
 \definecolor{darkgray}{HTML}{333333}
-\definecolor{gray}{HTML}{5D5D5D}
-\definecolor{lightgray}{HTML}{999999}
+\definecolor{gray}{HTML}{5D5D5D} % {000000} %
+\definecolor{lightgray}{HTML}{999999} % {000000} %
 % Basic colors
 \definecolor{green}{HTML}{C2E15F}
 \definecolor{orange}{HTML}{FDA333}
@@ -145,7 +145,7 @@
 \definecolor{awesome-nephritis}{HTML}{27AE60}
 \definecolor{awesome-concrete}{HTML}{95A5A6}
 \definecolor{awesome-darknight}{HTML}{131A28}
-\colorlet{awesome}{awesome-red}
+% \colorlet{awesome}{awesome-red}
 
 % Boolean value to switch section color highlighting
 \newbool{acvSectionColorHighlight}
@@ -196,6 +196,8 @@
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
 \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+% \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text} #1}}
+
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
@@ -204,7 +206,9 @@
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+% \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\codestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}\texttt{#1}}}
 
 % For elements of subentry
 \newcommand*{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
@@ -218,6 +222,7 @@
 \newcommand*{\honorpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\honordatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
 \newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+% \newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape #1}}
 
 % For elements of skill
 \newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
@@ -536,6 +541,9 @@
   \color{gray}\vhrulefill{0.9pt}
 }
 
+
+
+
 % Define a subsection for CV
 % Usage: \cvsubsection{<subsection-title>}
 \newcommand{\cvsubsection}[1]{%
@@ -554,6 +562,20 @@
   \par
   \vspace{2mm}
 }
+
+
+
+
+
+
+
+
+%-------------------------------------------------------------------------------
+%                Entry Commands
+%-------------------------------------------------------------------------------
+
+
+
 
 % Define an environment for cventry
 \newenvironment{cventries}{%
@@ -578,6 +600,54 @@
 }
 
 
+
+
+% teaching
+\newcommand*{\cventryteaching}[2]{%
+  \entrytitlestyle{#1} \hfill \entrylocationstyle{#2}
+}
+
+
+\newcommand*{\cventrysubteaching}[3]{%
+  \vspace{-2.0mm}
+  \entrypositionstyle{#1} \hfill \entrydatestyle{#3}
+  \vspace{0.5em}
+  \descriptionstyle{#2}
+  \vspace{1em}
+}
+
+
+% activity
+\newcommand*{\cventryactivity}[2]{%
+  \entrytitlestyle{#1} \hfill \entrylocationstyle{#2}
+}
+
+
+\newcommand*{\cventrysubactivity}[3]{%
+  \vspace{-2.0mm}
+  \entrypositionstyle{#1} \hfill \entrydatestyle{#3}
+  \vspace{0.5em}
+  \descriptionstyle{#2}
+  \vspace{1em}
+}
+
+
+
+
+
+\newcommand*{\cventryedu}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrytitlestyle{#1} & \entrylocationstyle{#2} \\
+    \descriptionstyle{#5} & \entrydatestyle{#4} \\
+  \end{tabular*}%
+  \vspace{1em}
+}
+
+
+
 % Define a light entry of cv information
 % Usage: \cventrylight{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventrylight}[4]{%
@@ -590,15 +660,28 @@
   \end{tabular*}%
 }
 
+
 \newcommand*{\cventrylighttwo}[4]{%
   \vspace{-2.0mm}
-  \entrytitlestyle{#1} (\descriptionstyle{#4})\hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
+  \entrytitlestyle{#1}\quad (\descriptionstyle{#4})\hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
 }
+
 
 \newcommand*{\cventrylightthree}[3]{%
   \vspace{-2.0mm}
   \entrytitlestyle{#1}\quad (\descriptionstyle{#2})\hfill \entrylocationstyle{#3}
 }
+
+\newcommand*{\cventrylightpub}[4]{%
+  \vspace{-2.0mm}
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+    \setlength{\parskip}{0pt}
+    \renewcommand{\labelitemi}{\bullet}
+    \item  \descriptionstyle{#1} \hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
+\end{itemize}
+}
+
+
 
 
 \newcommand{\cventrylistfourcontinued}[3]{
@@ -639,7 +722,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{1.5cm} L{2cm} L{\textwidth - 7.5cm} R{2.5cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -647,7 +730,7 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+  \honordatestyle{#4} & \honorpositionstyle{#1} & \honortitlestyle{#2} & \honorlocationstyle{#3} \\
 }
 
 % Define an environment for cvskill
@@ -668,6 +751,34 @@
 	\skilltypestyle{#1} & \skillsetstyle{#2} \\
 }
 
+
+
+% Define an environment for projects
+\newenvironment{cvprojects}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2.0mm}
+  \begin{center}
+    \setlength\tabcolsep{1ex}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{
+    @{\extracolsep{\fill}}
+     r 
+     c
+     L{\textwidth * \real{0.9}}
+    }
+}{%
+    \end{tabular*}
+  \end{center}
+}
+% Define a line of cv information(projects)
+\newcommand*{\cvproject}[3]{%
+  \entrytitlestyle{#1} & \codestyle{#3} & \descriptionstyle{#2}\\
+}
+
+
+
+
+
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
   \vspace{-4.0mm}
@@ -680,6 +791,20 @@
   \end{justify}
   \vspace{-4.0mm}
 }
+
+
+% Define an environment for cvitems(for cventry)
+% \newenvironment{subitems}{%
+  
+%   \vspace{-1em}
+%   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+%     \renewcommand{\labelitemi}{\bullet}
+% }{%
+%   \end{itemize}
+%   \vspace{-1em}
+% }
+
+
 
 
 %-------------------------------------------------------------------------------
