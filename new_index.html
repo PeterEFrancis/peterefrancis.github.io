@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <title>Peter E. Francis</title>
+    <link rel="icon" type="image/png" href="/img/logo.svg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/c13a8d5cc1.js" crossorigin="anonymous"></script>
+
+      <!-- Icon files -->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/icon_files/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/icon_files/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/icon_files/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/icon_files/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/icon_files/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/icon_files/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/icon_files/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icon_files/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icon_files/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/icon_files/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon_files/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/icon_files/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon_files/favicon-16x16.png">
+    <link rel="manifest" href="img/icon_files/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/icon_files/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+      
+    </style>
+
+  </head>
+
+  <body>
+    <div class="container-fluid py-5" style="background-color: black;">
+    <div class="row" style="margin-bottom: 0px">
+      <div class="col-md-12 text-center">
+        <canvas class="mr-5" id="face" style="background-color: black; height: 400px;" width="498" height="1081"></canvas>
+        <h1 class="align-top" style="color: lightgrey; display: inline-block; margin-top: 100px; font-size:">Peter E. Francis</h1>
+      </div>
+    </div>
+     <!--  <div class="col-sm-6">
+        
+      </div>
+      <div class="col-sm-6" style="padding-left: 30px">
+        
+      </div>
+     -->
+    <script>
+
+      function rand_int(min, max) {
+        return min + Math.floor(Math.random() * (max - min));
+      }
+
+      const facectx = document.getElementById('face').getContext('2d');
+      const M = 100000;
+      $.ajax({
+        url: 'face-data.csv',
+        success: function(data) {
+          let matrix = data.split('\n').map(row=>JSON.parse('[' + row + ']'));
+          let i = 0;
+          let intervalID = setInterval(function() {
+            let x = rand_int(1, 498);
+            let y = rand_int(1, 1081);
+            let max = 12 * (M - i) / M;
+            if (Math.random() < matrix[y][x]) {
+              facectx.fillStyle = 'rgba(255,255,255,' + matrix[y][x] + ')';
+              facectx.fillRect(x, y, Math.random() * max, Math.random() * max);
+            }
+            if (i % 1000 == 0) {
+              facectx.fillStyle = 'rgba(0,0,0,0.002)';
+              facectx.fillRect(0, 0, 1081, 1081);
+            }
+            if (i == M) {
+              clearInterval(intervalID);
+            }
+            i++;
+          }, 1);
+        }
+      });
+    </script>
+
+  </div>
+
+
+  </body>
+
+
+</html>
