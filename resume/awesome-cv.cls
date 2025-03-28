@@ -127,6 +127,7 @@
 \definecolor{lightgray}{HTML}{999999} % {000000} %
 % Basic colors
 \definecolor{green}{HTML}{C2E15F}
+\definecolor{link-blue}{HTML}{2854c5}
 \definecolor{orange}{HTML}{FDA333}
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
@@ -145,7 +146,7 @@
 \definecolor{awesome-nephritis}{HTML}{27AE60}
 \definecolor{awesome-concrete}{HTML}{95A5A6}
 \definecolor{awesome-darknight}{HTML}{131A28}
-% \colorlet{awesome}{awesome-red}
+\colorlet{awesome}{black}
 
 % Boolean value to switch section color highlighting
 \newbool{acvSectionColorHighlight}
@@ -193,7 +194,7 @@
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
-\newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
+\newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
 \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 % \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text} #1}}
@@ -535,7 +536,7 @@
 % Define a section for CV
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{%
-  \vspace{\acvSectionTopSkip}
+  \vspace{\acvSectionTopSkip - 0.75em}
   \sectionstyle{#1}
   \phantomsection
   \color{gray}\vhrulefill{0.9pt}
@@ -602,19 +603,19 @@
 
 
 
-% teaching
-\newcommand*{\cventryteaching}[2]{%
-  \entrytitlestyle{#1} \hfill \entrylocationstyle{#2}
-}
+% % teaching
+% \newcommand*{\cventryexp}[2]{%
+%   \entrytitlestyle{#1} \hfill \entrylocationstyle{#2}
+% }
 
 
-\newcommand*{\cventrysubteaching}[3]{%
-  \vspace{-2.0mm}
-  \entrypositionstyle{#1} \hfill \entrydatestyle{#3}
-  \vspace{0.5em}
-  \descriptionstyle{#2}
-  \vspace{1em}
-}
+% \newcommand*{\cventrysubexp}[3]{%
+%   \vspace{-2.0mm}
+%   \entrypositionstyle{#1} \hfill \entrydatestyle{#3}
+%   \vspace{0.5em}
+%   \descriptionstyle{#2}
+%   \vspace{1em}
+% }
 
 
 % activity
@@ -643,7 +644,6 @@
     \entrytitlestyle{#1} & \entrylocationstyle{#2} \\
     \descriptionstyle{#5} & \entrydatestyle{#4} \\
   \end{tabular*}%
-  \vspace{1em}
 }
 
 
@@ -661,25 +661,34 @@
 }
 
 
-\newcommand*{\cventrylighttwo}[4]{%
-  \vspace{-2.0mm}
-  \entrytitlestyle{#1}\quad (\descriptionstyle{#4})\hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
-}
+% \newcommand*{\cventrylighttwo}[4]{%
+%   \vspace{-2.0mm}
+%   \entrytitlestyle{#1}\quad (\descriptionstyle{#4})\hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
+% }
 
 
-\newcommand*{\cventrylightthree}[3]{%
-  \vspace{-2.0mm}
-  \entrytitlestyle{#1}\quad (\descriptionstyle{#2})\hfill \entrylocationstyle{#3}
+% \newcommand*{\cventrylightthree}[3]{%
+%   \vspace{-2.0mm}
+%   \entrytitlestyle{#1}\quad (\descriptionstyle{#2})\hfill \entrylocationstyle{#3}
+% }
+
+\newcommand*{\cvitemthree}[3]{%
+  \item \descriptionstyle{#1} \hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
 }
 
-\newcommand*{\cventrylightpub}[4]{%
-  \vspace{-2.0mm}
-  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
-    \setlength{\parskip}{0pt}
-    \renewcommand{\labelitemi}{\bullet}
-    \item  \descriptionstyle{#1} \hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
-\end{itemize}
-}
+% \newcommand*{\cventrylightexp}[3]{%
+%   \item  \descriptionstyle{#1} \hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
+% }
+
+
+% \newcommand*{\cventrylightpub}[4]{%
+%   \vspace{-2.0mm}
+%   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+%     \setlength{\parskip}{0pt}
+%     \renewcommand{\labelitemi}{\bullet}
+%     \item  \descriptionstyle{#1} \hfill \entrylocationstyle{#2} \quad \entrydatestyle{#3}
+% \end{itemize}
+% }
 
 
 
@@ -770,6 +779,8 @@
     \end{tabular*}
   \end{center}
 }
+
+
 % Define a line of cv information(projects)
 \newcommand*{\cvproject}[3]{%
   \entrytitlestyle{#1} & \codestyle{#3} & \descriptionstyle{#2}\\

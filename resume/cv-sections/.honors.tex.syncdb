@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-deps","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/ab19b084fcec92a0c3fb10d75033c9c23c47500c","honors.tex"]}

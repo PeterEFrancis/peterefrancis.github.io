@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-xelatex","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/7fb21a13aaa309aa16b6634789eeafe753a01863","resume_cv.tex"]}

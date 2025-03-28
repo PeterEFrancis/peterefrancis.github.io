@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/d6288a1354bd761bb88379bb3167cee66381862e","cover_letter_Michigan.tex"]}

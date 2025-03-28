@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-xelatex","-f","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/cfccf3e8e6273b24da8cc32892f96955017b0717","cover_letter_ICERM.tex"]}
