@@ -1,1 +1,0 @@
-{"key":"build_command","value":["latexmk","-pdf","-f","-deps","-g","-bibtex","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/2893d813f90065bde0611e8748baa624a6ba710d","education.tex"]}
