@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  28 MAR 2025 12:34
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  29 MAR 2025 14:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -827,14 +827,14 @@ LaTeX Font Info:    ... okay on input line 76.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(42.67912pt, 528.93675pt, 42.67912pt)
-* v-part:(T,H,B)=(28.45274pt, 738.0645pt, 28.45274pt)
+* v-part:(T,H,B)=(21.33955pt, 752.29088pt, 21.33955pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
 * \textwidth=528.93675pt
-* \textheight=738.0645pt
+* \textheight=752.29088pt
 * \oddsidemargin=-29.59087pt
 * \evensidemargin=-29.59087pt
-* \topmargin=-80.81725pt
+* \topmargin=-87.93044pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -984,7 +984,7 @@ Package rerunfilecheck Info: File `resume_cv.out' has not changed.
 Here is how much of TeX's memory you used:
  32355 strings out of 474773
  659078 string characters out of 5757724
- 1958839 words of memory out of 5000000
+ 1959839 words of memory out of 5000000
  53973 multiletter control sequences out of 15000+600000
  561995 words of font info for 115 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
