@@ -238,7 +238,7 @@ class Stars {
 		clearInterval(this.intervalId);
 		this.intervalId = setInterval(function() {
 			t.update_stars();
-		}, 15);
+		}, 20);
 
 	}
 
@@ -284,7 +284,6 @@ class Stars {
 		}
 	}
 }
-
 
 
 class Network {
@@ -589,7 +588,7 @@ class Delaunay {
 		this.del_mode = this.TRIANGLES;
 
 		const t = this;
-		document.addEventListener("click",function(e){
+		this.canvas.addEventListener("click",function(e){
 			let rect = t.canvas.getBoundingClientRect();
 			let user_x = (e.clientX - rect.left) * (t.canvas.width / t.canvas.clientWidth);
 			let user_y = (e.clientY - rect.top) * (t.canvas.height / t.canvas.clientHeight);

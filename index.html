@@ -87,12 +87,12 @@
             font-display: swap;
         }
 
-        .code {
-          font-family: 'Fira Code';
+        *, .san-serif {
+          font-family: 'Fira Sans', sans-serif;
         }
 
-        .san-serif {
-          font-family: 'Fira Sans';
+        .code {
+          font-family: 'Fira Code', monospace !important;
         }
 
 
@@ -137,7 +137,7 @@
 
   <body>
     <!-- top face and name -->
-    <div class="container-fluid py-5" style="background-color: black;">
+    <div class="container-fluid py-5" style="background-color: black; user-select:none">
       <div class="row py-5">
         <div class="col-md-12 text-center">
           <canvas class="" id="face" style="background-color: black; height: 400px;" width="498" height="1081"></canvas>
@@ -175,9 +175,9 @@
               });
             }
           </script>
-          <span id="top-text" class="align-top code">
-            <h1 id="top-name">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-            <p id="top-description" class="lead"></p>
+          <span id="top-text" class="align-top">
+            <h1 id="top-name" class="code">_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+            <p id="top-description" class="lead code"></p>
           </span>
           <script>
             function load_name() {
@@ -185,32 +185,25 @@
               const top_name = document.getElementById('top-name');
               let blinks = 0;
               let char_index = 0;
-              const blink_interval_function_id = setInterval(function() {
-                top_name.innerHTML = (blinks % 2) ? "|" + "&nbsp;".repeat(text.length) : "&nbsp;".repeat(text.length + 1);
-                blinks += 1;
-                if (blinks == 3) {
-                  clearInterval(blink_interval_function_id);
-                  const name_text_function_id = setInterval(function() {
-                    top_name.innerHTML = text.slice(0, char_index + 1) 
-                    + "|"
-                    // + (char_index < text.length - 1 ? "|" : "&nbsp;") 
-                    + "&nbsp;".repeat(text.length - 1 - char_index);
-                    // console.log(top_name.innerHTML);
-                    char_index += 1;
-                    if (char_index == text.length) {
-                      clearInterval(name_text_function_id);
-                      let blinks = 0;
-                      const second_blink_interval_function_id = setInterval(function() {
-                        top_name.innerHTML = (blinks % 2) ? text + "|" : text + "&nbsp;";
-                        blinks += 1;
-                        if (blinks == 3) {
-                          clearInterval(second_blink_interval_function_id);
-                          document.getElementById('top-description').innerHTML = 'Programmer + Mathematician&nbsp;&nbsp;';
-                        }
-                      }, 500);
-                    }
-                  }, 250);
-                }
+              setTimeout(function() {
+                const name_text_function_id = setInterval(function() {
+                  top_name.innerHTML = text.slice(0, char_index + 1)
+                  if (char_index < text.length - 1) {
+                    top_name.innerHTML += "_" +
+                      "&nbsp;".repeat(text.length - 2 - char_index);
+                  } else if (char_index == text.index - 2) {
+                    top_name.innerHTML += "_";
+                  }
+                  // console.log(top_name.innerHTML);
+                  char_index += 1;
+                  if (char_index == text.length) {
+                    clearInterval(name_text_function_id);
+                    setTimeout(function() {
+                      document.getElementById('top-description').innerHTML = 'Programmer + Mathematician';
+                      
+                    }, 500);
+                  }
+                }, 200);  
               }, 500);
             }
           </script>
@@ -476,7 +469,6 @@
           </div>
         </div>
 
-
         <!-- Technical Writing -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
@@ -500,12 +492,6 @@
           </div>
         </div>
 
-        <!-- Fern -->
-        <div class="col-md-6 col-lg-4 my-2 text-center">
-          <canvas id="fern" class="" height="1000" width="1000" style="width:80%; user-select:none;"></canvas>
-          <script src="js/fern.js"></script>
-        </div>
-
          <!-- Philosophy -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
@@ -525,6 +511,12 @@
             </div>
           </div>
         </div>
+
+        <!-- Fern -->
+        <div class="col-md-6 col-lg-4 my-2 text-center">
+          <canvas id="fern" class="" height="1000" width="1000" style="width:80%; user-select:none;"></canvas>
+          <script src="js/fern.js"></script>
+        </div>
       </div>
 
     </div>
@@ -535,7 +527,7 @@
         <div class="row">
           <div class="col-md-12">
             <h2>Peter E. Francis</h2>
-            <em>A Collection of Projects from Diverse Motivations</em>
+            <!-- <em>A Collection of Projects from Diverse Motivations</em> -->
           </div>
         </div>
         <div class="row mt-5">
