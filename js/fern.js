@@ -49,7 +49,7 @@ function start_fern() {
 			fern_theta = 0.06 * Math.sin(fern_i);
 			fern_i += 0.1;
 			fern_i = fern_i % (2 * Math.PI);
-		}, 80);
+		}, 100);
 	}
 }
 
