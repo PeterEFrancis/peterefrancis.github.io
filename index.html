@@ -158,9 +158,11 @@
                 success: function(data) {
                   let matrix = data.split('\n').map(row=>JSON.parse('[' + row + ']'));
                   let i = 0;
+                  const w = matrix[0].length;
+                  const h = matrix.length;
                   let intervalID = setInterval(function() {
-                    let x = rand_int(1, 498);
-                    let y = rand_int(1, 1081);
+                    let x = rand_int(1, w);
+                    let y = rand_int(1, h);
                     let max = 12 * (M - i) / M;
                     if (Math.random() < matrix[y][x]) {
                       facectx.fillStyle = 'rgba(255,255,255,' + matrix[y][x] + ')';

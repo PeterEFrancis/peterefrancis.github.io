@@ -310,7 +310,7 @@ class Network {
         }
 
         const t = this;
-        document.addEventListener("mousemove",function(e){
+        this.canvas.addEventListener("mousemove",function(e){
             let rect = t.canvas.getBoundingClientRect();
             let user_x = (e.clientX - rect.left) * (t.canvas.width / t.canvas.clientWidth);
             let user_y = (e.clientY - rect.top) * (t.canvas.height / t.canvas.clientHeight);
@@ -327,6 +327,23 @@ class Network {
         this.network_interval_id = setInterval(function() {
             t.update_network();
         }, 15);
+
+
+        this.canvas.addEventListener("click",function(e){
+    		let rect = t.canvas.getBoundingClientRect();
+    		let user_x = (e.clientX - rect.left) * (t.canvas.width / t.canvas.clientWidth);
+    		let user_y = (e.clientY - rect.top) * (t.canvas.height / t.canvas.clientHeight);
+    		if (user_y > 0 && user_y < t.canvas.height) {
+				t.nodes.push({
+	                x: user_x,
+	                y: user_y,
+	                dir: Math.random() * Math.random() * Math.PI * 2
+		        });
+		        t.numNodes += 1;
+    		}
+    	});
+
+
     }
 
 
@@ -472,7 +489,7 @@ class Eyes {
     		}
     	});
 
-    	document.addEventListener("click",function(e){
+    	this.canvas.addEventListener("click",function(e){
     		let rect = t.canvas.getBoundingClientRect();
     		let user_x = (e.clientX - rect.left) * (t.canvas.width / t.canvas.clientWidth);
     		let user_y = (e.clientY - rect.top) * (t.canvas.height / t.canvas.clientHeight);
