@@ -61,8 +61,24 @@
 
     <style>
 
+        :root {
+          --page-bg: #f7f9fb;
+          --panel-bg: #ffffff;
+          --ink: #20252d;
+          --muted-ink: #4f5c68;
+          --link: #155f8f;
+          --link-hover: #0b3f62;
+          --line: #dfe7ed;
+          --soft-shadow: 0 10px 26px rgba(28, 43, 54, 0.12);
+          --hero-name: #e3e6e8;
+          --hero-accent: #acd8e6;
+        }
+
         body {
           min-width: 320px;
+          background-color: var(--page-bg);
+          color: var(--ink);
+          line-height: 1.5;
         }
 
         @font-face {
@@ -96,11 +112,45 @@
 
         .code {
           font-family: 'Fira Code', monospace !important;
+          letter-spacing: 0;
         }
 
+        a {
+          color: var(--link);
+          text-decoration-thickness: 0.08em;
+          text-underline-offset: 0.16em;
+          transition: color 120ms ease, text-decoration-color 120ms ease;
+        }
+
+        a:hover {
+          color: var(--link-hover);
+        }
+
+        a:focus-visible {
+          outline: 3px solid var(--hero-accent);
+          outline-offset: 3px;
+          border-radius: 3px;
+        }
+
+        .skip-link {
+          background-color: var(--panel-bg);
+          border: 2px solid var(--hero-accent);
+          border-radius: 0.375rem;
+          color: var(--ink);
+          left: 1rem;
+          padding: 0.6rem 0.9rem;
+          position: absolute;
+          top: 1rem;
+          transform: translateY(-150%);
+          z-index: 1000;
+        }
+
+        .skip-link:focus {
+          transform: translateY(0);
+        }
 
         #top-name {
-          color: lightgrey;
+          color: var(--hero-name);
           font-size: clamp(2.2rem, 7vw, 5em);
           line-height: 1.15;
         }
@@ -111,7 +161,7 @@
         }
 
         #top-description {
-          color: lightblue;
+          color: var(--hero-accent);
           font-size: clamp(1.25rem, 4vw, 2em);
         }
 
@@ -121,6 +171,7 @@
         }
 
         .interesting-canvas {
+          display: block;
           width: 100%;
           height: 400px;
         }
@@ -129,14 +180,38 @@
           overflow: hidden;
         }
 
-        footer {
-           background-color: #f2f2f2; 
-          padding: 25px;
-          padding-top: 50px;
+        .card {
+          background-color: var(--panel-bg);
+          border: 1px solid var(--line);
+          border-radius: 0.375rem;
+          box-shadow: 0 4px 14px rgba(28, 43, 54, 0.05);
+        }
+
+        .card-body {
+          padding: 1.3rem 1.45rem;
+        }
+
+        .card-title {
+          color: var(--ink);
+          font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+          line-height: 1.15;
+          margin-bottom: 0.8rem;
+        }
+
+        .card ul {
+          margin-bottom: 0;
+          padding-left: 1.25rem;
+        }
+
+        .card li {
+          margin: 0.18rem 0;
         }
 
         .about-card {
-          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+          background-color: var(--panel-bg);
+          border: 1px solid var(--line);
+          border-radius: 0.375rem;
+          box-shadow: var(--soft-shadow);
           padding: clamp(1.25rem, 4vw, 2rem);
           text-align: left;
         }
@@ -150,14 +225,114 @@
           max-width: 100%;
         }
 
+        .site-footer {
+          background-color: #edf2f5;
+          border-top: 1px solid var(--line);
+          color: var(--muted-ink);
+          padding: 3rem 0 1.25rem;
+        }
+
+        .footer-brand {
+          align-items: center;
+          display: flex;
+          gap: 1.1rem;
+        }
+
+        .footer-logo {
+          height: auto;
+          width: 88px;
+        }
+
+        .footer-name {
+          color: var(--ink);
+          font-size: clamp(1.45rem, 3vw, 2rem);
+          line-height: 1.1;
+          margin: 0;
+        }
+
+        .footer-tagline {
+          color: var(--muted-ink);
+          margin: 0.35rem 0 0;
+        }
+
+        .footer-heading {
+          color: var(--ink);
+          font-size: 1rem;
+          font-weight: bold;
+          margin-bottom: 0.75rem;
+        }
+
+        .footer-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .footer-list li {
+          margin-bottom: 0.5rem;
+        }
+
+        .footer-link {
+          align-items: center;
+          display: inline-flex;
+          gap: 0.5rem;
+        }
+
+        .footer-link i {
+          color: var(--link);
+          width: 1.1rem;
+        }
+
+        .footer-address {
+          font-style: normal;
+          margin: 0.75rem 0 0;
+        }
+
+        .footer-bottom {
+          border-top: 1px solid var(--line);
+          color: var(--muted-ink);
+          font-size: 0.9rem;
+          margin-top: 2.25rem;
+          padding-top: 1rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+          }
+
+          .decorative-canvas {
+            display: none;
+          }
+        }
+
 
     </style>
+
+    <script>
+      const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      window.prefersReducedMotion = motionPreference.matches;
+      function updateMotionPreference(event) {
+        window.prefersReducedMotion = event.matches;
+      }
+      if (motionPreference.addEventListener) {
+        motionPreference.addEventListener('change', updateMotionPreference);
+      } else {
+        motionPreference.addListener(updateMotionPreference);
+      }
+    </script>
 
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- top face and name -->
-    <div class="container-fluid py-5" style="background-color: black; user-select:none">
+    <header class="container-fluid py-5" style="background-color: black; user-select:none">
       <div class="row py-5">
         <div class="col-md-12 text-center">
           <canvas class="" id="face" style="background-color: black; height: 400px;" width="498" height="1081" role="img" aria-label="Animated pixel portrait of Peter E. Francis"></canvas>
@@ -176,6 +351,19 @@
                   let i = 0;
                   const w = matrix[0].length;
                   const h = matrix.length;
+                  if (window.prefersReducedMotion) {
+                    facectx.clearRect(0, 0, facectx.canvas.width, facectx.canvas.height);
+                    for (let y = 0; y < h; y += 2) {
+                      for (let x = 0; x < w; x += 2) {
+                        let alpha = matrix[y][x];
+                        if (alpha > 0.08) {
+                          facectx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+                          facectx.fillRect(x, y, 2, 2);
+                        }
+                      }
+                    }
+                    return;
+                  }
                   let intervalID = setInterval(function() {
                     let x = rand_int(1, w);
                     let y = rand_int(1, h);
@@ -205,6 +393,11 @@
             function load_name() {
               let text = 'Peter E. Francis';
               const top_name = document.getElementById('top-name');
+              if (window.prefersReducedMotion) {
+                top_name.textContent = text;
+                document.getElementById('top-description').textContent = 'Programmer + Mathematician';
+                return;
+              }
               let blinks = 0;
               let char_index = 0;
               setTimeout(function() {
@@ -231,17 +424,19 @@
           </script>
         </div>
       </div>
-    </div>
+    </header>
 
 
+    <main id="main-content">
     <!-- About -->
-    <div class="container my-5" style="display: block">
+    <section class="container my-5" aria-labelledby="about-heading" style="display: block">
+      <h2 class="visually-hidden" id="about-heading">About</h2>
       <div  class="row justify-items-center">
         <div class="col-md-8 mx-auto">
           <div class="about-card">
             <p class="san-serif">I am a proud math nerd, programmer, and someone who likes adding third phrases to written lists out of love for the Oxford comma.</p>
-            <p class="san-serif">I graduated as valedictorian from Gettysburg College in the spring of 2021 with a BA in mathematics, and am now a PhD student of <a href="https://evitanestoridi.github.io/" target="_blank">Evita Nestoridi</a> at Stony Brook University writing a thesis on separation distance limit profiles of Markov chains.</p>
-            <p class="san-serif">When I'm not proving things, I enjoy eliminating projects from my mile-long to-do list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I am most proud of.</p>
+            <p class="san-serif">I graduated as valedictorian from Gettysburg College in the spring of 2021 with a BA in mathematics, and am now a PhD student of <a href="https://evitanestoridi.github.io/" target="_blank" rel="noopener noreferrer">Evita Nestoridi</a> at Stony Brook University writing a thesis on separation distance limit profiles of Markov chains.</p>
+            <p class="san-serif">When I'm not proving things, I enjoy eliminating projects from my mile-long to-do list. These can include math or CS research, programming web tools, composing music, developing games, weaving and spinning, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I am most proud of.</p>
             <a class="san-serif" href="#contact">If you are interested in working together, please contact me!</a>
             <br>
             <canvas id="signature" width="1000" height="500" role="img" aria-label="Peter E. Francis signature"></canvas>
@@ -252,11 +447,12 @@
       </div>
 
 
-    </div>
+    </section>
 
 
     <!-- content -->
-    <div class="container my-5">
+    <section class="container my-5" aria-labelledby="projects-heading">
+      <h2 class="visually-hidden" id="projects-heading">Projects and writing</h2>
       <div class="row" data-masonry='{"percentPosition": true }'>
 
         <!-- Books and Courses -->
@@ -283,7 +479,7 @@
               <h2 class=" card-title code">Web Tools</h2>
               <ul>
               <li>
-                <a href="http://ifs-fractals.pef.app/" target="_blank" class="sansSerif title_link">ifs-Fractals</a>
+                <a href="http://ifs-fractals.pef.app/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">ifs-Fractals</a>
               </li>
               <li>
                 <a href="/addcomb-js" class="sansSerif title_link" target="_blank">AddComb.js</a>
@@ -318,10 +514,10 @@
               <h2 class=" card-title code">Textile Tools</h2>
               <ul>
                 <li>
-                  <a href="https://peterefrancis.com/cross-stitch-generator/" target="_blank" class="sansSerif title_link">Cross Stitch Generator</a>
+                  <a href="https://peterefrancis.com/cross-stitch-generator/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Cross Stitch Generator</a>
                 </li>
                 <li>
-                  <a href="https://peterefrancis.com/weaving-draft-editor/" target="_blank" class="sansSerif title_link">Weaving Draft Editor</a>
+                  <a href="https://peterefrancis.com/weaving-draft-editor/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Weaving Draft Editor</a>
                 </li>
               </ul>
             </div>
@@ -335,10 +531,10 @@
               <h2 class=" card-title code">Python Modules</h2>
               <ul>
                 <li>
-                  <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif title_link">graphPlot</a>
+                  <a href="https://pypi.org/project/graphPlot/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">graphPlot</a>
                 </li>
                 <li>
-                  <a href="https://pypi.org/project/ifsFractals/" target="_blank" class="sansSerif title_link">ifsFractals-py</a>
+                  <a href="https://pypi.org/project/ifsFractals/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">ifsFractals-py</a>
                 </li>
               </ul>
             </div>
@@ -348,7 +544,7 @@
         <!-- Delaunay -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="delaunay-canvas" height="400" role="img" aria-label="Animated Delaunay triangulation"></canvas>
+            <canvas class="interesting-canvas decorative-canvas" id="delaunay-canvas" height="400" aria-hidden="true"></canvas>
             <script>
               let delaunay = new Delaunay(document.getElementById('delaunay-canvas'));
             </script>
@@ -358,7 +554,7 @@
         <!-- Network -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="network-canvas" height="400" role="img" aria-label="Animated network graph"></canvas>
+            <canvas class="interesting-canvas decorative-canvas" id="network-canvas" height="400" aria-hidden="true"></canvas>
             <script>
               let network = new Network(document.getElementById('network-canvas'));
             </script>
@@ -372,19 +568,19 @@
               <h2 class=" card-title code">Games</h2>
               <ul>
                 <li>
-                  <a href="https://sedario.pef.app" class="sansSerif title_link" target="_blank">Sedario</a><br>
+                  <a href="https://sedario.pef.app" class="sansSerif title_link" target="_blank" rel="noopener noreferrer">Sedario</a><br>
                 </li>
                 <li>
                   <a href="/canvas-games" class="sansSerif title_link" target="_blank">Canvas Games</a><br>
                 </li>
                 <li>
-                  <a href="https://bingo.pef.app" target="_blank" class="sansSerif title_link">Online Texas Hold 'em</a>
+                  <a href="https://online-poker.pef.app/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Online Texas Hold 'em</a>
                 </li>
                 <li>
-                  <a href="https://bingo.pef.app" target="_blank" class="sansSerif title_link">Bingo Caller</a>
+                  <a href="https://bingo.pef.app" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Bingo Caller</a>
                 </li>
                 <li>
-                  <a href="https://quadegories.pef.app" target="_blank" class="sansSerif title_link">Play Quadegories!&trade;</a>
+                  <a href="https://quadegories.pef.app" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Play Quadegories!&trade;</a>
                 </li>
               </ul>
             </div>
@@ -394,7 +590,7 @@
         <!-- Stars -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="star-canvas" height="400" role="img" aria-label="Animated starfield"></canvas>
+            <canvas class="interesting-canvas decorative-canvas" id="star-canvas" height="400" aria-hidden="true"></canvas>
             <script>
               let stars = new Stars(document.getElementById('star-canvas'));
             </script>
@@ -408,13 +604,13 @@
               <h2 class=" card-title code">Learning Resources</h2>
               <ul>
                 <li>
-                  <a href="https://github.com/francisp336/LaTeX-samples/tree/master" target="_blank" class="sansSerif title_link">Sample LaTeX Files</a>
+                  <a href="https://github.com/francisp336/LaTeX-samples/tree/master" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Sample LaTeX Files</a>
                 </li>
                 <li>
                   <a href="desmos_links.html" target="_blank" class="sansSerif title_link">Desmos Graphs</a>
                 </li>
                 <li>
-                  <a href="https://github.com/PeterEFrancis/lorentz-attractor" target="_blank" class="sansSerif title_link">Lorentz Attractor Animation</a>
+                  <a href="https://github.com/PeterEFrancis/lorentz-attractor" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Lorentz Attractor Animation</a>
                 </li>
               </ul>
             </div>
@@ -427,7 +623,7 @@
             <div class="card-body">
               <h2 class=" card-title code">Music</h2>
               <img src="https://v.fastcdn.co/u/6025a85e/22890931-0-logo-footer.png" class="card-img-top img-fluid p-4" alt="Noteflight">
-              <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif title_link">Compositions and Arrangements</a>
+              <a href="https://www.noteflight.com/profile/6acb9234764e55820bb80b4df66052d70a07105a#/marketplace" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">Compositions and Arrangements</a>
             </div>
           </div>
         </div>
@@ -440,9 +636,9 @@
             <div class="card-body">
               <h2 class="card-title code">Photography</h2>
               <div class="mb-2">
-                <a href="https://photos.pef.app" target="_blank" class="sansSerif title_link">photos.pef.app</a>
+                <a href="https://photos.pef.app" target="_blank" class="sansSerif title_link" rel="noopener noreferrer">photos.pef.app</a>
               </div>
-              <a href="https://photos.pef.app" target="_blank">
+              <a href="https://photos.pef.app" target="_blank" rel="noopener noreferrer">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner" style="width: 100%; aspect-ratio: 1">
                     <div class="carousel-item active">
@@ -484,7 +680,7 @@
         <!-- Eyes -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="eye-canvas" height="400" role="img" aria-label="Animated eyes following the pointer"></canvas>
+            <canvas class="interesting-canvas decorative-canvas" id="eye-canvas" height="400" aria-hidden="true"></canvas>
             <script>
               let eyes = new Eyes(document.getElementById('eye-canvas'));
             </script>
@@ -498,7 +694,7 @@
               <h2 class=" card-title code">Publications</h2>
               <ul>
                 <li>
-                  [2021] <a href="https://ojs.aaai.org/index.php/AAAI/article/view/17824" target="_blank" class="sansSerif title_link"><em>Opponent Hand Estimation in the Game of Gin Rummy</em></a> (Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 35 No. 17)
+                  [2021] <a href="https://ojs.aaai.org/index.php/AAAI/article/view/17824" target="_blank" class="sansSerif title_link" rel="noopener noreferrer"><em>Opponent Hand Estimation in the Game of Gin Rummy</em></a> (Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 35 No. 17)
                 </li>
                 <li>
                   [2021] <a href="pdf/Secrets%20and%20Quantifiers.pdf" target="_blank" class="sansSerif title_link"><em>Secrets and Quantifiers</em></a> (Math Horizons, MAA)
@@ -521,16 +717,16 @@
               <h2 class=" card-title code">Technical Writing</h2>
               <ul>
                 <li>
-                  [2021] <a href="https://ifs-fractals.pef.app/math" target="_blank" class="sanserif title_link"><em>The Beautiful Mathematics of IFS Fractals</em></a>
+                  [2021] <a href="https://ifs-fractals.pef.app/math" target="_blank" class="sanserif title_link" rel="noopener noreferrer"><em>The Beautiful Mathematics of IFS Fractals</em></a>
                 </li>
                 <li>
                   [2021] <a href="/schottky-groups" target="_blank" class="sanserif title_link"><em>The Beauty of Schottky Groups</em></a>
                 </li>
                 <li>
-                  [2020] <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif title_link"><em>On Moments and Centroids</em></a>
+                  [2020] <a href="https://share.cocalc.com/share/a25d76181d7c0dc233080f5936bb24059d8b3dc8/3.2/Calc%202/Moment%20and%20Centroid.pdf?viewer=raw" target="_blank" class="sanserif title_link" rel="noopener noreferrer"><em>On Moments and Centroids</em></a>
                 </li>
                 <li>
-                  [2020] <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif title_link"><em>Algebra in the Game "Lights Out"</em></a>
+                  [2020] <a href="https://peterefrancis.com/lights-out-algebra/" target="_blank" class="sansSerif title_link" rel="noopener noreferrer"><em>Algebra in the Game "Lights Out"</em></a>
                 </li>
               </ul>
             </div>
@@ -544,13 +740,13 @@
               <h2 class=" card-title code">Philosophy</h2>
               <ul>
                 <li>
-                  <a href="https://cocalc.com/share/raw/59cf1d2b252ecefb7368a3d4df2bbb165a5eb9a4/2.2/Philosophy%20233/Book/Book.pdf" target="_blank" class="sansSerif title_link"><em>What is the Scientific Method?</em></a>
+                  <a href="https://cocalc.com/share/raw/59cf1d2b252ecefb7368a3d4df2bbb165a5eb9a4/2.2/Philosophy%20233/Book/Book.pdf" target="_blank" class="sansSerif title_link" rel="noopener noreferrer"><em>What is the Scientific Method?</em></a>
                 </li>
                 <li>
-                  <a href="https://cocalc.com/share/raw/fd415256847ecbe18992c0da7ab625f5c90f9250/3.1/Jewish%20Humor/final/Final_Tom_Lehrer_2.pdf" target="_blank" class="sansSerif title_link"><em>The Life and Comedy of Tom Lehrer</em></a>
+                  <a href="https://cocalc.com/share/raw/fd415256847ecbe18992c0da7ab625f5c90f9250/3.1/Jewish%20Humor/final/Final_Tom_Lehrer_2.pdf" target="_blank" class="sansSerif title_link" rel="noopener noreferrer"><em>The Life and Comedy of Tom Lehrer</em></a>
                 </li>
                 <li>
-                  <a href="https://cocalc.com/share/raw/fc887e0f932e0be42150035b49770f2376e0bf0e/3.1/Jewish%20Humor/paper%202_3/Paper%202_3%20--%20draft%203.pdf" target="_blank" class="sansSerif title_link"><em>Ironic Power: Analyzing Gender Roles in Transition from Phase I to Phase II of Jewish Comedy</em></a> (<a href="https://docs.google.com/presentation/d/e/2PACX-1vTTRXnm9X9OmxeV0FPKjRre1-8jhqIv_2DWE2cTTEOSvgDsnE5AlLyh5_IdJD8br1M059bFAknTUf8l/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank">Photo Slides</a>)
+                  <a href="https://cocalc.com/share/raw/fc887e0f932e0be42150035b49770f2376e0bf0e/3.1/Jewish%20Humor/paper%202_3/Paper%202_3%20--%20draft%203.pdf" target="_blank" class="sansSerif title_link" rel="noopener noreferrer"><em>Ironic Power: Analyzing Gender Roles in Transition from Phase I to Phase II of Jewish Comedy</em></a> (<a href="https://docs.google.com/presentation/d/e/2PACX-1vTTRXnm9X9OmxeV0FPKjRre1-8jhqIv_2DWE2cTTEOSvgDsnE5AlLyh5_IdJD8br1M059bFAknTUf8l/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank" rel="noopener noreferrer">Photo Slides</a>)
                 </li>
               </ul>
             </div>
@@ -559,45 +755,73 @@
 
         <!-- Fern -->
         <div class="col-md-6 col-lg-4 my-2 text-center">
-          <canvas id="fern" class="" height="1000" width="1000" style="width:80%; user-select:none;" role="img" aria-label="Barnsley fern fractal"></canvas>
+          <canvas id="fern" class="decorative-canvas" height="1000" width="1000" style="width:80%; user-select:none;" aria-hidden="true"></canvas>
           <script src="js/fern.js"></script>
         </div>
       </div>
 
-    </div>
+    </section>
+    </main>
 
 
-    <footer class="container-fluid mt-5">
+    <footer class="site-footer mt-5">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Peter E. Francis</h2>
-            <!-- <em>A Collection of Projects from Diverse Motivations</em> -->
+        <div class="row g-4 align-items-start">
+          <div class="col-md-5">
+            <div class="footer-brand">
+              <img src="img/logo.svg" class="footer-logo" alt="" aria-hidden="true">
+              <div>
+                <h2 class="footer-name code">Peter E. Francis</h2>
+                <p class="footer-tagline">Programmer + Mathematician</p>
+              </div>
+            </div>
+          </div>
+
+          <nav class="col-sm-5 col-md-3" aria-label="Personal links">
+            <h5 class="footer-heading">Personal</h5>
+            <ul class="footer-list">
+              <li>
+                <a href="https://github.com/peterefrancis" target="_blank" rel="noopener noreferrer" class="footer-link">
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                  <span>GitHub</span>
+                </a>
+              </li>
+              <li>
+                <a href="resume/" target="_blank" class="footer-link">
+                  <i class="far fa-address-card" aria-hidden="true"></i>
+                  <span>Resume</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/peterefrancis" target="_blank" rel="noopener noreferrer" class="footer-link">
+                  <i class="fab fa-linkedin" aria-hidden="true"></i>
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="col-sm-7 col-md-4">
+            <h5 class="footer-heading" id="contact">Contact</h5>
+            <a href="mailto:peter.e.francis@stonybrook.edu" class="footer-link">
+              <i class="far fa-envelope" aria-hidden="true"></i>
+              <span>Peter.E.Francis@stonybrook.edu</span>
+            </a>
+            <address class="footer-address">
+              Peter E. Francis<br>
+              Department of Mathematics<br>
+              Stony Brook University<br>
+              Stony Brook, NY 11794-3651
+            </address>
           </div>
         </div>
-        <div class="row mt-5">
-          <div class="col-sm-4">
-            <img src="img/logo.svg" style="width:120px; padding:20px"/>
+
+        <div class="footer-bottom text-center">
+          <div class="row">
+            <div class="col-12">
+              Copyright &copy; Peter E. Francis 2018-2026
+            </div>
           </div>
-          <div class="col-sm-3">
-            <h5>Personal</h5>
-            <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fab fa-github"></i> PeterEFrancis</a></p>
-            <p><a href="resume/" target="_blank"><i class="far fa-address-card "></i> Resume</a></p>
-            <p><a href="https://www.linkedin.com/in/peterefrancis" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> PeterEFrancis</a></p>
-           </div>
-          <div class="col-sm-5">
-            <h5 id="contact">Contact</h5>
-            <p><a href="mailto:peter.e.francis@stonybrook.edu"><i class="far fa-envelope"></i> Peter.E.Francis@stonybrook.edu</a></p>
-            <p>Peter E. Francis<br>
-               Department of Mathematics<br>
-               Stony Brook University<br>
-               Stony Brook, NY 11794-3651
-            </p>
-          </div>
-        </div>
-        <div class="row" style="margin-top:50px;">
-          <div class="col-xs-12">
-            <p class="text-center" style="font-size:10pt">Copyright &copy; Peter E. Francis 2018-2025</p>
         </div>
       </div>
     </footer>
@@ -608,11 +832,13 @@
       pixelate_face();
       load_name();
       signature_viewtest();
-      start_fern();
-      network.start();
-      stars.start();
-      eyes.start();
-      delaunay.start();
+      if (!window.prefersReducedMotion) {
+        start_fern();
+        network.start();
+        stars.start();
+        eyes.start();
+        delaunay.start();
+      }
     }
   </script>
 

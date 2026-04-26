@@ -16,6 +16,18 @@ function animate_signature() {
   let j = 0;
   let i = 0;
 
+  if (window.prefersReducedMotion) {
+    for (let group_index = 0; group_index < point_groups.length; group_index++) {
+      signature_ctx.beginPath();
+      for (let point_index = 0; point_index < point_groups[group_index].length - 2; point_index += 2) {
+        signature_ctx.moveTo(point_groups[group_index][point_index][0], point_groups[group_index][point_index][1]);
+        signature_ctx.lineTo(point_groups[group_index][point_index + 2][0], point_groups[group_index][point_index + 2][1]);
+      }
+      signature_ctx.stroke();
+    }
+    return;
+  }
+
   let signature_intervalID = setInterval(function() {
 
     signature_ctx.beginPath();
