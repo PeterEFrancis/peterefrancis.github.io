@@ -2,10 +2,10 @@
 <html lang="en" class="h-100">
   <head>
     <title>Peter E. Francis</title>
-    <link rel="icon" type="image/png" href="/img/logo.svg">
+    <link rel="icon" type="image/svg+xml" href="/img/logo.svg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Personal website of Peter E. Francis, featuring mathematics, programming projects, writing, music, photography, and games.">
     <meta name="keywords" content="">
 
     <!-- do not cache this page -->
@@ -17,7 +17,6 @@
 
 
     <!-- Bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -63,7 +62,7 @@
     <style>
 
         body {
-          min-width: 375px;
+          min-width: 320px;
         }
 
         @font-face {
@@ -86,7 +85,7 @@
         @font-face {
             font-family: 'Fira Code';
             src: url('fonts/Fira_Code/FiraCode-VariableFont_wght.ttf') format('truetype');
-            font-weight: variable;
+            font-weight: 300 700;
             font-style: normal;
             font-display: swap;
         }
@@ -102,21 +101,23 @@
 
         #top-name {
           color: lightgrey;
-          font-size: 5em;
+          font-size: clamp(2.2rem, 7vw, 5em);
+          line-height: 1.15;
         }
 
         #top-text {
           display: inline-block;
-          margin-top: 120px;
+          margin-top: clamp(48px, 12vw, 120px);
         }
 
         #top-description {
           color: lightblue;
-          font-size: 2em;
+          font-size: clamp(1.25rem, 4vw, 2em);
         }
 
         #face {
-          padding-right: 50px;
+          height: clamp(260px, 55vw, 400px) !important;
+          padding-right: clamp(0px, 4vw, 50px);
         }
 
         .interesting-canvas {
@@ -134,6 +135,21 @@
           padding-top: 50px;
         }
 
+        .about-card {
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+          padding: clamp(1.25rem, 4vw, 2rem);
+          text-align: left;
+        }
+
+        .about-card p {
+          line-height: 1.6;
+        }
+
+        #signature {
+          height: 7em;
+          max-width: 100%;
+        }
+
 
     </style>
 
@@ -144,7 +160,7 @@
     <div class="container-fluid py-5" style="background-color: black; user-select:none">
       <div class="row py-5">
         <div class="col-md-12 text-center">
-          <canvas class="" id="face" style="background-color: black; height: 400px;" width="498" height="1081"></canvas>
+          <canvas class="" id="face" style="background-color: black; height: 400px;" width="498" height="1081" role="img" aria-label="Animated pixel portrait of Peter E. Francis"></canvas>
           <script>
             function rand_int(min, max) {
               return min + Math.floor(Math.random() * (max - min));
@@ -221,14 +237,14 @@
     <!-- About -->
     <div class="container my-5" style="display: block">
       <div  class="row justify-items-center">
-        <div class="col-md-8 mx-auto" align="justify">
-          <div style="box-shadow: 5px 10px 18px #888888; padding: 20px;">
+        <div class="col-md-8 mx-auto">
+          <div class="about-card">
             <p class="san-serif">I am a proud math nerd, programmer, and someone who likes adding third phrases to written lists out of love for the Oxford comma.</p>
-            <p class="san-serif">I graduated as valedictorian from Gettysburg College in the spring of 2021 with a BA mathematics, and am now a PhD student of <a href="https://evitanestoridi.github.io/" target="_blank">Evita Nestoridi</a> at Stony Brook University writing a thesis on separation distance limit profiles of Markov chains.</p>
-            <p class="san-serif">When I'm not proving things, I enjoy elimintating projects from my mile-long to-do list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I am most proud of.</p>
+            <p class="san-serif">I graduated as valedictorian from Gettysburg College in the spring of 2021 with a BA in mathematics, and am now a PhD student of <a href="https://evitanestoridi.github.io/" target="_blank">Evita Nestoridi</a> at Stony Brook University writing a thesis on separation distance limit profiles of Markov chains.</p>
+            <p class="san-serif">When I'm not proving things, I enjoy eliminating projects from my mile-long to-do list. These can include math or CS research, programming web tools, composing music, developing games, or writing philosophy and fiction. Of course, not every idea results in a masterpiece, but this website includes the things I am most proud of.</p>
             <a class="san-serif" href="#contact">If you are interested in working together, please contact me!</a>
             <br>
-            <canvas id="signature" width="1000" height="500" style="height: 7em;"></canvas>
+            <canvas id="signature" width="1000" height="500" role="img" aria-label="Peter E. Francis signature"></canvas>
             <script  src="js/signature.js"></script>
           </div>
           <br>
@@ -267,7 +283,7 @@
               <h2 class=" card-title code">Web Tools</h2>
               <ul>
               <li>
-                <a href="http://ifs-fractals.peterefrancis.com/" target="_blank title_link" class="sansSerif title_link">ifs-Fractals</a>
+                <a href="http://ifs-fractals.peterefrancis.com/" target="_blank" class="sansSerif title_link">ifs-Fractals</a>
               </li>
               <li>
                 <a href="/addcomb-js" class="sansSerif title_link" target="_blank">AddComb.js</a>
@@ -292,6 +308,23 @@
           </div>
         </div>
 
+        <!-- Textile Tools -->
+        <div class="col-md-6 col-lg-4 my-2">
+          <div class="card">
+            <div class="card-body">
+              <h2 class=" card-title code">Textile Tools</h2>
+              <ul>
+                <li>
+                  <a href="https://peterefrancis.com/cross-stitch-generator/" target="_blank" class="sansSerif title_link">Cross Stitch Generator</a>
+                </li>
+                <li>
+                  <a href="https://peterefrancis.com/weaving-draft-editor/" target="_blank" class="sansSerif title_link">Weaving Draft Editor</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <!-- Python Modules -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
@@ -312,7 +345,7 @@
         <!-- Delaunay -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="delaunay-canvas" height="400"></canvas>
+            <canvas class="interesting-canvas" id="delaunay-canvas" height="400" role="img" aria-label="Animated Delaunay triangulation"></canvas>
             <script>
               let delaunay = new Delaunay(document.getElementById('delaunay-canvas'));
             </script>
@@ -322,7 +355,7 @@
         <!-- Network -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="network-canvas" height="400"></canvas>
+            <canvas class="interesting-canvas" id="network-canvas" height="400" role="img" aria-label="Animated network graph"></canvas>
             <script>
               let network = new Network(document.getElementById('network-canvas'));
             </script>
@@ -342,13 +375,13 @@
                   <a href="/canvas-games" class="sansSerif title_link" target="_blank">Canvas Games</a><br>
                 </li>
                 <li>
-                  <a href="https://bingo.pef.app" target="_blank title_link" class="sansSerif title_link">Online Texas Hold 'em</a>
+                  <a href="https://bingo.pef.app" target="_blank" class="sansSerif title_link">Online Texas Hold 'em</a>
                 </li>
                 <li>
                   <a href="https://bingo.pef.app" target="_blank" class="sansSerif title_link">Bingo Caller</a>
                 </li>
                 <li>
-                  <a href="https://quadegories.pef.app" target="_blank title_link" class="sansSerif title_link">Play Quadegories!&trade;</a>
+                  <a href="https://quadegories.pef.app" target="_blank" class="sansSerif title_link">Play Quadegories!&trade;</a>
                 </li>
               </ul>
             </div>
@@ -358,7 +391,7 @@
         <!-- Stars -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="star-canvas" height="400"></canvas>
+            <canvas class="interesting-canvas" id="star-canvas" height="400" role="img" aria-label="Animated starfield"></canvas>
             <script>
               let stars = new Stars(document.getElementById('star-canvas'));
             </script>
@@ -398,34 +431,37 @@
 
 
 
-        <!-- Phtotography -->
+        <!-- Photography -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
             <div class="card-body">
               <h2 class="card-title code">Photography</h2>
+              <div class="mb-2">
+                <a href="https://photos.pef.app" target="_blank" class="sansSerif title_link">photos.pef.app</a>
+              </div>
               <a href="https://photos.pef.app" target="_blank">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner" style="width: 100%; aspect-ratio: 1">
                     <div class="carousel-item active">
-                      <img src="https://photos.pef.app/get_image_file/Namibia/_nam0003_32458036887_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
+                      <img src="https://photos.pef.app/get_image_file/Namibia/_nam0003_32458036887_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100" alt="Namibia landscape photograph">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://photos.pef.app/get_image_file/Great Barrier Reef Feb 2025/XZHP5663.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
+                      <img src="https://photos.pef.app/get_image_file/Great Barrier Reef Feb 2025/XZHP5663.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100" alt="Great Barrier Reef photograph">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://photos.pef.app/get_image_file/Quebec Wilderness in Winter/CAN_3060.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
+                      <img src="https://photos.pef.app/get_image_file/Quebec Wilderness in Winter/CAN_3060.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100" alt="Quebec wilderness in winter photograph">
                     </div>
                     <!-- <div class="carousel-item">
                       <img src="https://photos.pef.app/get_image_file/Ricky Miranda Portrait/_ric1394-2_47033355641_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
                     </div> -->
                     <div class="carousel-item">
-                      <img src="https://photos.pef.app/get_image_file/Claire Woodworth Graduation/claire-grad-25_51525987316_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
+                      <img src="https://photos.pef.app/get_image_file/Claire Woodworth Graduation/claire-grad-25_51525987316_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100" alt="Graduation portrait photograph">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://photos.pef.app/get_image_file/Willever Engagement/bw_willever-16_45164173811_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
+                      <img src="https://photos.pef.app/get_image_file/Willever Engagement/bw_willever-16_45164173811_o.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100" alt="Engagement portrait photograph">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://photos.pef.app/get_image_file/James Basketball 2025/JAM_3680.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
+                      <img src="https://photos.pef.app/get_image_file/James Basketball 2025/JAM_3680.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100" alt="Basketball photograph">
                     </div>
                     <!-- <div class="carousel-item">
                       <img src="https://photos.pef.app/get_image_file/Alyson's Sweet 16/ALY_1089.jpg?size=[1024,1024]&amp;thumbnail=true" class="d-block w-100">
@@ -445,7 +481,7 @@
         <!-- Eyes -->
         <div class="col-md-6 col-lg-4 my-2">
           <div class="card">
-            <canvas class="interesting-canvas" id="eye-canvas" height="400"></canvas>
+            <canvas class="interesting-canvas" id="eye-canvas" height="400" role="img" aria-label="Animated eyes following the pointer"></canvas>
             <script>
               let eyes = new Eyes(document.getElementById('eye-canvas'));
             </script>
@@ -520,7 +556,7 @@
 
         <!-- Fern -->
         <div class="col-md-6 col-lg-4 my-2 text-center">
-          <canvas id="fern" class="" height="1000" width="1000" style="width:80%; user-select:none;"></canvas>
+          <canvas id="fern" class="" height="1000" width="1000" style="width:80%; user-select:none;" role="img" aria-label="Barnsley fern fractal"></canvas>
           <script src="js/fern.js"></script>
         </div>
       </div>
@@ -544,7 +580,7 @@
             <h5>Personal</h5>
             <p><a href="https://github.com/peterefrancis" target="_blank"><i class="fab fa-github"></i> PeterEFrancis</a></p>
             <p><a href="resume/" target="_blank"><i class="far fa-address-card "></i> Resume</a></p>
-            <p><a href=""><i class="fab fa-linkedin"></i> PeterEFrancis</a>
+            <p><a href="https://www.linkedin.com/in/peterefrancis" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> PeterEFrancis</a></p>
            </div>
           <div class="col-sm-5">
             <h5 id="contact">Contact</h5>
